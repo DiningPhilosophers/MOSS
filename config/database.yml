@@ -6,12 +6,30 @@
 #
 default: &default
   adapter: postgresql
+  timeout: 5000
+  database: df9an5nichmvr1
+  encoding: utf8
+  host: ec2-54-197-241-24.compute-1.amazonaws.com
+  port: 5432
+  username: pmlimarpictsqt
+  password: iCkz1yhHDqf1QbetOIMCGRTMzf
+  min_messages: warning
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
-#  database: db/development.sqlite3
+  adapter: postgresql
+  timeout: 5000
+  database: df9an5nichmvr1
+  encoding: utf8
+  host: ec2-54-197-241-24.compute-1.amazonaws.com
+  port: 5432
+  username: pmlimarpictsqt
+  password: iCkz1yhHDqf1QbetOIMCGRTMzf
+  min_messages: warning
+  pool: 5
+  timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -24,6 +42,14 @@ production:
   # <<: *default
   # database: db/production.sqlite3
   adapter: postgresql
+  adapter: postgresql
+  timeout: 5000
+  database: df9an5nichmvr1
+  encoding: utf8
+  host: ec2-54-197-241-24.compute-1.amazonaws.com
+  port: 5432
+  username: pmlimarpictsqt
+  password: iCkz1yhHDqf1QbetOIMCGRTMzf
+  min_messages: warning
   pool: 5
   timeout: 5000
-  database: khuong_db
