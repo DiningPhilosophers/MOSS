@@ -4,9 +4,8 @@ development: &default
   encoding: utf8
 #  host: ec2-54-243-149-147.compute-1.amazonaws.com
 #  port: 5432
-#  username: ysstdauzrcjrdw
-#  password: l0Obvo3zZXGAya1q-mZ2tvDHgs
-#  database: dib8nukeuks6g
+  username: root
+  password: l0Obvo3zZXGAya1q-mZ2tvDHgs
   min_messages: warning
   pool: <%= ENV.fetch("DB_POOL", 5) %>
   reaping_frequency: <%= ENV.fetch("DB_REAPING_FREQUENCY", 10) %>
@@ -17,6 +16,12 @@ test:
   database: MOSS_test
 
 production: &deploy
+  adapter: postgresql
+  database: MOSS_development
+#  host: ec2-54-243-149-147.compute-1.amazonaws.com
+#  port: 5432
+  username: root
+  password: l0Obvo3zZXGAya1q-mZ2tvDHgs
   encoding: utf8
   min_messages: warning
   pool: <%= [ENV.fetch("MAX_THREADS", 5), ENV.fetch("DB_POOL", 5)].max %>
