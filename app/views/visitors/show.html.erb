@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @visitor.last_name %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @visitor.first_name %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @visitor.group_id %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @visitor.email %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @visitor.contact %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @visitor.zip_code %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @visitor.country_id %>
+</p>
+
+<%= link_to 'Edit', edit_visitor_path(@visitor) %> |
+<%= link_to 'Back', visitors_path %>
