@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :admins
+  resources :countries
+  resources :zipcodes
+  resources :surveys
+  resources :questions
+  resources :groups
+  resources :visitors
   get 'homepage/index'
 
   root 'homepage#index'
