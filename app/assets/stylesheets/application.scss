@@ -62,6 +62,19 @@ body > .container {
   padding-left: 15px;
 }
 
+.footer > .container p, a {
+  display: inline-table;
+}
+
+.footer > .container a {
+  float: right;
+  color: #FFFFFF;
+}
+
+.footer > .container a:hover {
+  background-color: #2D0000;
+}
+
 .footer > .container > .text-muted {
   color: #FFFFFF;
 }
@@ -77,6 +90,10 @@ body > .container {
 #navbar a:active  {
   color: #3E0001;
   background-color: #2D0000;
+}
+
+#navbar a  {
+  background: none;
 }
 
 code {
