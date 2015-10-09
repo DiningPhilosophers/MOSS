@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get 'visitors_statistics/show'
   get 'session/new'
 
