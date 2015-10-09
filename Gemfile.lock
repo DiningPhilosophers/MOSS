@@ -179,11 +179,9 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
-<<<<<<< HEAD
   bootstrap-datepicker-rails
-=======
   bcrypt (~> 3.1.7)
->>>>>>> Login and logout first draft untested.
+  bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.5)
   byebug
   coffee-rails (~> 4.1.0)
