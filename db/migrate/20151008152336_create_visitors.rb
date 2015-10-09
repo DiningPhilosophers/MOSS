@@ -7,7 +7,7 @@ class CreateVisitors < ActiveRecord::Migration
       t.belongs_to :group, index: true
       t.string :email
       t.boolean :contact
-       t.string :zip_code
+      t.string :zip_code
 #       t.integer :country_id
 	  t.belongs_to :country, index: true
 

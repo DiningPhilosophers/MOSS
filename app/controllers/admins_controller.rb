@@ -10,6 +10,7 @@ class AdminsController < ApplicationController
   # GET /admins/1
   # GET /admins/1.json
   def show
+    @admin = Admin.find(params[:id])
   end
 
   # GET /admins/new
@@ -26,6 +27,14 @@ class AdminsController < ApplicationController
   def create
     @admin = Admin.new(admin_params)
 
+    if @admin.save
+      log_in @admin
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to @admin
+    else
+      render 'new'
+    end
+=begin
     respond_to do |format|
       if @admin.save
         format.html { redirect_to @admin, notice: 'Admin was successfully created.' }
@@ -35,6 +44,7 @@ class AdminsController < ApplicationController
         format.json { render json: @admin.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # PATCH/PUT /admins/1

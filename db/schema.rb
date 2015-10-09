@@ -50,22 +50,8 @@ ActiveRecord::Schema.define(version: 20151009013532) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "visitors", force: :cascade do |t|
-    t.string   "last_name"
-    t.string   "first_name"
-    t.integer  "group_id"
-    t.string   "email"
-    t.boolean  "contact"
-    t.integer  "country_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "zipcodes", id: false, force: :cascade do |t|
     t.string   "zip_code",   null: false
-  end
-
-  add_index "visitors", ["country_id"], name: "index_visitors_on_country_id", using: :btree
-  add_index "visitors", ["group_id"], name: "index_visitors_on_group_id", using: :btree
-
-  create_table "zipcodes", primary_key: "zip_code", force: :cascade do |t|
     t.string   "city"
     t.string   "county"
     t.datetime "created_at", null: false
@@ -74,7 +60,4 @@ ActiveRecord::Schema.define(version: 20151009013532) do
 
   add_index "zipcodes", ["zip_code"], name: "index_zipcodes_on_zip_code", unique: true, using: :btree
 
-  add_foreign_key "visitors", "countries", name: "fk_country_id"
-  add_foreign_key "visitors", "groups", name: "fk_group_id"
-  add_foreign_key "visitors", "zipcodes", column: "zip_code", primary_key: "zip_code", name: "fk_zipcode"
 end
