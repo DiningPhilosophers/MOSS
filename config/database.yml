@@ -7,18 +7,12 @@
 default: &default
   adapter: postgresql
   timeout: 5000
-#  database: moss
-#  encoding: utf8
-#  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com
-#  port: 5432
-#  username: knn1989
-#  password: 0934084534
-  encoding: unicode
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  database: moss
+  encoding: utf8
+  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  port: 5432
+  username: knn1989
+  password: 0934084534
   min_messages: warning
   pool: 5
   timeout: 5000
@@ -27,18 +21,12 @@ development:
   <<: *default
   adapter: postgresql
   timeout: 5000
-#  database: moss
-#  encoding: utf8
-#  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com
-#  port: 5432
-#  username: knn1989
-#  password: 0934084534
-  encoding: unicode
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  database: moss
+  encoding: utf8
+  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  port: 5432
+  username: knn1989
+  password: 0934084534
   min_messages: warning
   pool: 5
   timeout: 5000
@@ -54,20 +42,13 @@ production:
   # <<: *default
   # database: db/production.sqlite3
   adapter: postgresql
-  adapter: postgresql
   timeout: 5000
-#  database: moss
-#  encoding: utf8
-#  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com
-#  port: 5432
-#  username: knn1989
-#  password: 0934084534
-  encoding: unicode
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  database: moss
+  encoding: utf8
+  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  port: 5432
+  username: knn1989
+  password: 0934084534
   min_messages: warning
   pool: 5
   timeout: 5000
