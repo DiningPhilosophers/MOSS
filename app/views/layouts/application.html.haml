@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %title Museum of American G.I
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          / <a class="navbar-brand" href="#">M.O.S.S</a>
+          <a class="navbar-brand" #{link_to "M.O.S.S", homepage_index_path}
+        #navbar.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            / <li class="active"><a href="/homepage/index">Home</a></li>
+            %li.active= link_to "Home", homepage_index_path
+            -#%li
+            -#  %a{:href => "#about"} About
+            %li= link_to "About", zipcodes_path
+            %li
+              %a{:href => "#contact"} Contact
+    = yield
+    %footer.footer
+      .container
+        %p.text-muted The Dining Philosophers - Copyright (c) 2015.
+        %a.navbar-brand{:href => "#admin_login"} Administration
