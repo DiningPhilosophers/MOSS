@@ -2,8 +2,29 @@
 
 <%# <%= render 'form' %>
 
+<% provide(:title, 'Sign up') %>
+
 <h1>Add Administrator</h1>
 
-<p>This will be a signup page for new users.</p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@admin) do |f| %>
+        <%= render 'shared/error_messages' %>
+
+        <%= f.label :user_name %>
+        <%= f.text_field :user_name, class: 'form-control' %>
+
+        <%# <%= f.label :email %>
+        <%#<%= f.email_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+        <%= f.submit "Create my account", class: "btn btn-primary" %> <% end %>
+  </div>
+</div>
 
 <%= link_to 'Back', admins_path %>
