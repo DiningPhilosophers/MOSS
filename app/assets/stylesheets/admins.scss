@@ -25,7 +25,8 @@ checkbox {
     font-weight: normal;
   }
 }
-/*
+
+/* This causes checkbox of remember me to overlap with the text, which is not good.
 #session_remember_me {
   width: auto;
   margin-left: 0;
