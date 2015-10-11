@@ -53,15 +53,9 @@ div {
     margin: 0 0 30px 0;
   }
 }
-/*.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    //color: $state-danger-text;
-    color: red;
-  }
-}*/
 
-/*
+
+/* This looked ugly
 .field_with_errors {
   padding: 2px;
   background-color: red;
