@@ -14,11 +14,11 @@
  //*= require_self
  */
 /*"bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"*/
-/*@import "bootstrap-sprockets";
+@import "bootstrap-sprockets";
 @import "bootstrap";
 @import "visitors_statistics";
 //@import "homepage";
-@import "bootstrap-datepicker3";*/
+@import "bootstrap-datepicker3";
 
 html {
   position: relative;
