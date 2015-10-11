@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'visitors_statistics/show'
+
   resources :admins
   resources :countries
   resources :zipcodes
