@@ -26,16 +26,16 @@ class AdminsController < ApplicationController
   # POST /admins.json
   def create
     @admin = Admin.new(admin_params)
-=begin
+
     if @admin.save
       log_in @admin
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome!"
       redirect_to @admin
     else
       render 'new'
     end
-=end
 
+=begin
     respond_to do |format|
       if @admin.save
         format.html { redirect_to @admin, notice: 'Admin was successfully created.' }
@@ -45,7 +45,7 @@ class AdminsController < ApplicationController
         format.json { render json: @admin.errors, status: :unprocessable_entity }
       end
     end
-
+=end
   end
 
   # PATCH/PUT /admins/1
@@ -80,6 +80,6 @@ class AdminsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-      params.require(:admin).permit(:user_name, :password)
+      params.require(:admin).permit(:user_name, :password, :password_confirmation)
     end
 end

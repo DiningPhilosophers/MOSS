@@ -1,19 +1,34 @@
 require 'bcrypt'
 
 module SessionsHelper
-  # Logs in the given user.
-  def log_in(user)
-    session[:user_id] = user.id
+  # Logs in the given admin.
+  def log_in(admin)
+    session[:admin_id] = admin.id
   end
 
-  # Returns the current logged-in user (if any).
-  def current_user
-    @current_user ||= Admin.find_by(id: session[:user_id])
+  # Remembers a admin in a persistent session.
+  def remember(admin)
+    admin.remember
+    cookies.permanent.signed[:admin_id] = admin.id
+    cookies.permanent[:remember_token] = admin.remember_token
   end
 
-  # Returns true if the user is logged in, false otherwise.
+  # Returns the admin corresponding to the remember token cookie.
+  def current_admin
+    if (admin_id = session[:admin_id])
+      @current_admin ||= Admin.find_by(id: admin_id)
+    elsif (admin_id = cookies.signed[:admin_id])
+      admin = Admin.find_by(id: admin_id)
+      if admin && admin.authenticated?(cookies[:remember_token])
+        log_in admin
+        @current_admin = admin
+      end
+    end
+  end
+
+  # Returns true if the admin is logged in, false otherwise.
   def logged_in?
-    !current_user.nil?
+    !current_admin.nil?
   end
   # Returns the hash digest of the given string.
   def Admin.digest(string)
@@ -21,8 +36,16 @@ module SessionsHelper
     BCrypt::Password.create(string, cost: cost)
   end
 
+  # Forgets a persistent session. def forget(admin)
+  def forget(admin)
+    admin.forget
+    cookies.delete(:admin_id)
+    cookies.delete(:remember_token)
+  end
+
   def log_out
-    session.delete(:user_id)
-    @current_user = nil
+    forget(current_admin)
+    session.delete(:admin_id)
+    @current_admin = nil
   end
 end
