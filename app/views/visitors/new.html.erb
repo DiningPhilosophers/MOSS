@@ -1,5 +1,144 @@
-<h1>New Visitor</h1>
+<!-- <h1>New Visitor</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', visitors_path %>
+<%= link_to 'Back', visitors_path %> -->
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Museum Of The American GI Sign-In Survey</title>
+    <link href="survey.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="frame" id="frame1">
+        <form id="form-frame1" action="#" method="post" name="form-frame1" target="_self">
+            <div class="question">
+                Where are you from?
+            </div>
+            <br/>
+            <label for="input-zip-code" form="form-frame1">
+                Zip Code
+            </label>
+            <input id="input-zip-code" name="input-zip-code" type="number" autofocus="autofocus" form="form-frame1" max="99999" maxlength="5" size="5" min="00000" pattern="[0-9]{5}" placeholder="12345" required="required" />
+            <h3>
+                OR
+            </h3>
+            <label for="input-city" form="form-frame1">
+                City
+            </label>
+            <input id="input-city" name="input-city" type="text" form="form-frame1" placeholder="City, State" required="required"/>
+            <br/>
+            <br />
+            <input id="button-submit-frame1" name="button-submit-frame1" type="submit" form="form-frame1" value="Submit" />
+            <input id="button-next-frame1" name="button-next-frame1" type="submit" form="form-frame1" value="Next" />
+        </form>
+    </div>
+    <div class="frame" id="frame2"> <!--hidden="hidden">-->
+        <form id="form-frame2" action="#" method="post" name="form-frame2" target="_self">
+            <div class="question">
+                Who are you?
+            </div>
+            <br />
+            <label for="input-name" form="form-frame2">
+                Name
+            </label>
+            <input id="input-name" name="input-name" type="text" form="form-frame2" placeholder="Name"/>
+            <br />
+            <br />
+            <div class="question">
+                May we contact you?
+            </div>
+            <br />
+            <label for="radio-button-email-contact-yes" form="form-frame2">
+                By Email
+            </label>
+            <input id="radio-button-email-contact-yes" name="radio-button-email-contact" type="radio" value="true" form="form-frame2" /> Yes
+            <input id="radio-button-email-contact-no" name="radio-button-email-contact" type="radio" value="false" form="form-frame2" checked="checked" /> No
+            <br />
+            <br />
+            <label for="input-email-address" form="form-frame2"> <!--hidden="hidden">-->
+                Email Address
+            </label>
+            <input id="input-email-address" name="input-email-address" type="email" form="form-frame2" placeholder="username@domain.com" required="required" /> <!--hidden="hidden"/>--> 
+            <br />
+            <br />
+            <input id="button-next-frame2" name="button-next-frame2" type="submit" form="form-frame2" value="Next" />
+        </form>
+    </div>
+    <div class="frame" id="frame3"> <!--hidden="hidden">-->
+        <form id="form-frame3" action="#" method="post" name="form-frame3" target="_self">
+            <div class="question">
+                How many people are with you?
+            </div>
+            <input id="input-number-people" name="input-number-people" type="number" form="form-frame3" max="99" maxlength="2" size="2" min="1" pattern="[0-9]{1,2}" placeholder="1"/>
+            <br />
+            <br />
+            <div class="question inline">
+                Did you stay in a hotel?
+            </div>
+            <input id="radio-button-hotel-stay-yes" name="radio-button-hotel-stay" type="radio" value="true" form="form-frame3" /> Yes
+            <input id="radio-button-hotel-stay-no" name="radio-button-hotel-stay" type="radio" value="false" form="form-frame3" checked="checked" /> No
+            <br />
+            <br />
+            <label for="input-number-nights" form="form-frame3"> <!--hidden="hidden">-->
+                Number Of Nights
+            </label>
+            <input id="input-number-nights" name="input-number-nights" type="number" form="form-frame3" max="99" maxlength="2" size="2" min="1" pattern="[0-9]{1,2}" placeholder="1" /> <!--hidden="hidden"/>--> 
+            <br />
+            <br />
+            <label for="input-number-eat-out" form="form-frame3"> <!--hidden="hidden">--> 
+                Number Of Times You Ate Out
+            </label>
+            <input id="input-number-eat-out" name="input-number-eat-out" type="number" form="form-frame3" max="99" maxlength="2" size="2" min="0" pattern="[0-9]{1,2}" placeholder="0" /> <!--hidden="hidden"/>-->
+            <br />
+            <br />
+            <input id="button-next-frame3" name="button-next-frame3" type="submit" form="form-frame3" value="Next" />
+        </form>
+    </div>
+    <div class="frame" id="frame4"> <!--hidden="hidden">--> 
+        <form id="form-frame4" action="#" method="post" name="form-frame4" target="_self">
+            <div class="question">
+                How did you hear about us?
+            </div>
+            <br />
+            <label for="input-ads" form="form-frame4">
+                Advertisements (check all that apply)
+            </label>
+            <br />
+            <input id="input-ads-friend" name="input-ads" type="checkbox" form="form-frame4" value="Friend" /> Friend
+            <br />
+            <input id="input-ads-kbtx" name="input-ads" type="checkbox" form="form-frame4" value="KBTX" /> KBTX
+            <br />
+            <input id="input-ads-eagle" name="input-ads" type="checkbox" form="form-frame4" value="The Eagle" /> The Eagle
+            <br />
+            <label for="input-ads-other" form="form-frame4">
+                Other
+            </label>
+            <input id="input-ads-other" name="input-ads-other" type="text" form="form-frame4" placeholder="Other Reason" />
+            <br />
+            <br />
+            <div class="question inline">
+                Have You Visited Other Museums?
+            </div>
+            <input id="radio-button-other-museums-yes" name="radio-button-other-museums" type="radio" value="true" form="form-frame4" /> Yes
+            <input id="radio-button-other-museums-no" name="radio-button-other-museums" type="radio" value="false" form="form-frame4" checked="checked" /> No
+            <br />
+            <br />
+            <label for="input-other-museums" form="form-frame4">
+                <!--hidden="hidden">-->
+                Museums (check all that apply)
+            </label>
+            <br />
+            <input id="input-other-museums-museum1" name="input-other-museums" type="checkbox" form="form-frame4" value="Museum 1" /> Museum 1 <!--hidden="hidden"/> Museum 1-->
+            <br />
+            <input id="input-other-museums-museum2" name="input-other-museums" type="checkbox" form="form-frame4" value="Museum 2" /> Museum 2 <!--hidden="hidden"/> Museum 2-->
+            <br />
+            <br />
+            <input id="button-submit-frame4" name="button-submit-frame4" type="submit" form="form-frame4" value="Submit" />
+        </form>
+    </div>
+</body>
+</html>
