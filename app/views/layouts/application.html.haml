@@ -17,7 +17,6 @@
           = link_to image_tag("logo-xs.gif", :alt => "Brand", :id => "logo"), homepage_index_path, :class => "navbar-brand"
         #navbar.navbar-collapse.collapse
           %ul.nav.navbar-nav
-            / <li class="active"><a href="/homepage/index">Home</a></li>
             %li.active= link_to "Home", homepage_index_path
             -#%li
             -#  %a{:href => "#about"} About
@@ -28,4 +27,5 @@
     %footer.footer
       .container
         %p.text-muted The Dining Philosophers - Copyright (c) 2015.
-        %a.navbar-brand{:href => "#admin_login"} Administration
+        = link_to "Administration", login_path, :class => "navbar-brand"
+        -#%a.navbar-brand{:href => "#admin_login"} Administration
