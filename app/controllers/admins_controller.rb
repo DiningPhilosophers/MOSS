@@ -26,7 +26,7 @@ class AdminsController < ApplicationController
   # POST /admins.json
   def create
     @admin = Admin.new(admin_params)
-
+=begin
     if @admin.save
       log_in @admin
       flash[:success] = "Welcome to the Sample App!"
@@ -34,7 +34,8 @@ class AdminsController < ApplicationController
     else
       render 'new'
     end
-=begin
+=end
+
     respond_to do |format|
       if @admin.save
         format.html { redirect_to @admin, notice: 'Admin was successfully created.' }
@@ -44,7 +45,7 @@ class AdminsController < ApplicationController
         format.json { render json: @admin.errors, status: :unprocessable_entity }
       end
     end
-=end
+
   end
 
   # PATCH/PUT /admins/1

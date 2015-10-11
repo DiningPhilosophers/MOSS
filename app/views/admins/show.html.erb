@@ -7,7 +7,7 @@
 
 <p>
   <strong>Password:</strong>
-  <%= @admin.password %>
+  <%= @admin.password_digest %>
 </p>
 
 <%= link_to 'Edit', edit_admin_path(@admin) %> |
