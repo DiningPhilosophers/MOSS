@@ -17,9 +17,6 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-<<<<<<< HEAD
 
   get 'signup'  => 'admins#new'
-=======
->>>>>>> Login and logout first draft untested.
 end
