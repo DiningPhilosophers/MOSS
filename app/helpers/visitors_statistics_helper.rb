@@ -1,0 +1,2 @@
+module VisitorsStatisticsHelper
+end

@@ -16,6 +16,9 @@
 /*"bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"*/
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "visitors_statistics";
+//@import "homepage";
+@import "bootstrap-datepicker3";
 
 html {
   position: relative;
@@ -62,6 +65,19 @@ body > .container {
   padding-left: 15px;
 }
 
+.footer > .container p, a {
+  display: inline-table;
+}
+
+.footer > .container a {
+  float: right;
+  color: #FFFFFF;
+}
+
+.footer > .container a:hover {
+  background-color: #2D0000;
+}
+
 .footer > .container > .text-muted {
   color: #FFFFFF;
 }
@@ -79,7 +95,25 @@ body > .container {
   background-color: #2D0000;
 }
 
+#navbar a  {
+  background: none;
+}
+
 code {
   font-size: 80%;
 }
 
+.content {
+  padding-top: 50px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#logo {
+  border-radius: 25%;
+  overflow:hidden;
+}
+
+#navbar > .navbar-nav li a {
+  line-height: 40px;
+}
