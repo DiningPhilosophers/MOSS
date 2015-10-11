@@ -14,8 +14,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          / <a class="navbar-brand" href="#">M.O.S.S</a>
-          <a class="navbar-brand" #{link_to "M.O.S.S", homepage_index_path}
+          = link_to image_tag("logo-xs.gif", :alt => "Brand", :id => "logo"), homepage_index_path, :class => "navbar-brand"
         #navbar.navbar-collapse.collapse
           %ul.nav.navbar-nav
             / <li class="active"><a href="/homepage/index">Home</a></li>

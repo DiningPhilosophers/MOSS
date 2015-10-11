@@ -17,6 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "visitors_statistics";
+//@import "homepage";
 @import "bootstrap-datepicker3";
 
 html {
@@ -102,8 +103,17 @@ code {
   font-size: 80%;
 }
 
-#content {
+.content {
   padding-top: 50px;
   width: 80%;
   margin: 0 auto;
+}
+
+#logo {
+  border-radius: 25%;
+  overflow:hidden;
+}
+
+#navbar > .navbar-nav li a {
+  line-height: 40px;
 }
