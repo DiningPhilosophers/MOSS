@@ -34,7 +34,6 @@ class AdminsController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   # PATCH/PUT /admins/1
