@@ -4,6 +4,8 @@ class VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
+
+    @test = params[:start_date]
     @visitors = Visitor.all
   end
 
