@@ -3,14 +3,14 @@
 <h1>Listing Visitors</h1>
 
 <form class="form-inline">
-    <div class="form-group">
-      <div class="input-group input-daterange">
-          <input type="text" name="start_date" class="form-control" value="">
-          <span class="input-group-addon">to</span>
-          <input type="text" name="end_date" class="form-control" value="">
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="form-group">
+    <div class="input-group input-daterange">
+        <input type="text" name="start_date" class="form-control" value="2012-04-05">
+        <span class="input-group-addon">to</span>
+        <input type="text" name="end_date" class="form-control" value="2012-04-19">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 <table class="table">
@@ -47,10 +47,16 @@
 
 <script>
 $('.input-daterange input').each(function() {
+<<<<<<< HEAD
     $(this).datepicker("clearDates");
 });
 </script>
 
 <br>
+=======
+    $(this).datepicker("clearDates");
+});
+</script>
+>>>>>>> origin/Chih-Yen
 
 <%= link_to 'New Visitor', new_visitor_path %>

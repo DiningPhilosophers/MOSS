@@ -4,7 +4,6 @@ class VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
-
     @start_date = params[:start_date]
     @end_date = params[:end_date]
     @visitors = Visitor.where(:created_at => @start_date..@end_date)
