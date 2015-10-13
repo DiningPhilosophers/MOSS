@@ -5,9 +5,9 @@
 <form class="form-inline">
     <div class="form-group">
       <div class="input-group input-daterange">
-          <input type="text" name="start_date" class="form-control" value="2012-04-05">
+          <input type="text" name="start_date" class="form-control" value="">
           <span class="input-group-addon">to</span>
-          <input type="text" name="end_date" class="form-control" value="2012-04-19">
+          <input type="text" name="end_date" class="form-control" value="">
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -46,9 +46,9 @@
 </table>
 
 <script>
-  $('.input-daterange input').each(function() {
-    $(this).datepicker("clearDates");
-  });
+$('.input-daterange input').each(function() {
+    $(this).datepicker("clearDates");
+});
 </script>
 
 <br>
