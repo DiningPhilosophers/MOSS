@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'visitors_statistics/show'
   get 'session/new'
+  post '/visitors/create'
+  post '/visitors/new'
 
   resources :admins # TODO We should probably remove this and do this manualy. We do not want somebody to get admins' data by visiting /admins/2
   resources :countries
