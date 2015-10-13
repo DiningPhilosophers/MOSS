@@ -6,7 +6,14 @@ class VisitorsController < ApplicationController
   def index
     @start_date = params[:start_date]
     @end_date = params[:end_date]
-    @visitors = Visitor.where(:created_at => @start_date..@end_date)
+
+    if !@start_date.blank?
+      @visitors = Visitor.where(:created_at => @start_date..@end_date)
+    else
+      @visitors = Visitor.all
+
+    end
+
   end
 
   # GET /visitors/1
