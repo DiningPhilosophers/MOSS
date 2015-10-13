@@ -7,13 +7,25 @@ class VisitorsController < ApplicationController
     @start_date = params[:start_date]
     @end_date = params[:end_date]
 
-    if !@start_date.blank?
+    session.delete(:some_key)
+    start_date_remembered = @start_date.blank? && session[:start_date].present?
+    end_date_remembered = @end_date.blank? && session[:end_date].present?
+    if start_date_remembered || end_date_remembered
+      @start_date = session[:start_date] if start_date_remembered
+      @end_date = session[:end_date] if end_date_remembered
+    
+      flash.keep
+      redirect_to :start_date => @start_date, :end_date => @end_date and return
+    end
+
+    if !@start_date.blank? && !@end_date.blank?
       @visitors = Visitor.where(:created_at => @start_date..@end_date)
     else
       @visitors = Visitor.all
-
     end
-
+    
+    session[:start_date] = @start_date
+    session[:end_date] = @end_date
   end
 
   # GET /visitors/1
