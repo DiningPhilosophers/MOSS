@@ -52,5 +52,10 @@ $('.input-daterange input').each(function() {
 </script>
 
 <br>
+<script>
+$('.input-daterange input').each(function() {
+    $(this).datepicker("clearDates");
+});
+</script>
 
 <%= link_to 'New Visitor', new_visitor_path %>
