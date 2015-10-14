@@ -7,6 +7,11 @@
   First name: <%= f.text_field :first_name %><br />
   Last name : <%= f.text_field :last_name %><br />
   Zip code: <%= f.text_field :zip_code %><br />
+  Group id: <%= f.number_field :group_id %><br />
+  Country: <%= f.text_field :country_id %><br />
+  Contact:
+  <%= f.radio_button :contact, 0, label: "np", checked: true, inline: true  %>
+  <%= f.radio_button :contact, 1, label: "yes", inline: true  %>
   <%= f.submit %>
 <% end %>
 </div>
