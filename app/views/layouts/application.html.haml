@@ -37,10 +37,12 @@
               -#    %li
               -#      = link_to "Log out", logout_path, method: "delete"
               %li= link_to "Profile", current_admin
-              %li= link_to "Settings", '#'
+              %li= link_to "Settings", edit_admin_path(current_admin)
+              %li= link_to "Add Admin", signup_path
               %li= link_to "Log out", logout_path, method: "delete"
             - else
-              %li= link_to "Log in", login_path
+              -# Do not show log in link in the navigation bar.
+              -# %li= link_to "Log in", login_path
 
     -# Show all alert messages from flash
     - flash.each do |message_type, message|
