@@ -9,7 +9,7 @@ default: &default
   timeout: 5000
   database: moss
   encoding: utf8
-  host: moss2.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  host: moss1.c9gazzpy3zya.us-west-2.rds.amazonaws.com
   port: 5432
   username: knn1989
   password: rrg-Lsu-VNY-KA4
@@ -23,7 +23,7 @@ development:
   timeout: 5000
   database: moss
   encoding: utf8
-  host: moss2.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  host: moss1.c9gazzpy3zya.us-west-2.rds.amazonaws.com
   port: 5432
   username: knn1989
   password: rrg-Lsu-VNY-KA4
@@ -46,7 +46,7 @@ production:
   timeout: 5000
   database: moss
   encoding: utf8
-  host: moss2.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  host: moss1.c9gazzpy3zya.us-west-2.rds.amazonaws.com
   port: 5432
   username: knn1989
   password: rrg-Lsu-VNY-KA4
