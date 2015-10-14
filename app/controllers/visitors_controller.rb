@@ -5,6 +5,9 @@ class VisitorsController < ApplicationController
   # GET /visitors.json
   def index
     @visitors = Visitor.all
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
+    #@visitors = Visitor.find_by group_id: '1'
   end
 
   # GET /visitors/1

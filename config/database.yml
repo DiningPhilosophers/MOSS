@@ -9,10 +9,10 @@ default: &default
   timeout: 5000
   database: moss
   encoding: utf8
-  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  host: moss2.c9gazzpy3zya.us-west-2.rds.amazonaws.com
   port: 5432
   username: knn1989
-  password: 0934084534
+  password: rrg-Lsu-VNY-KA4
   min_messages: warning
   pool: 5
   timeout: 5000
@@ -23,10 +23,10 @@ development:
   timeout: 5000
   database: moss
   encoding: utf8
-  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  host: moss2.c9gazzpy3zya.us-west-2.rds.amazonaws.com
   port: 5432
   username: knn1989
-  password: 0934084534
+  password: rrg-Lsu-VNY-KA4
   min_messages: warning
   pool: 5
   timeout: 5000
@@ -46,10 +46,10 @@ production:
   timeout: 5000
   database: moss
   encoding: utf8
-  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  host: moss2.c9gazzpy3zya.us-west-2.rds.amazonaws.com
   port: 5432
   username: knn1989
-  password: 0934084534
+  password: rrg-Lsu-VNY-KA4
   min_messages: warning
   pool: 5
   timeout: 5000
