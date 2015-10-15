@@ -19,3 +19,4 @@
 //= require bootstrap-datepicker
 //= require bootstrap
 //= require jquery.turbolinks
+//= require jquery-ui
