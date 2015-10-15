@@ -6,9 +6,11 @@
   <form class="pull-right form-inline">
     <div class="form-group">
       <div class="input-group input-daterange">
-          <input id="start_date" type="text" name="start_date" class="form-control">
-          <span class="input-group-addon">to</span>
-          <input id="end_date" type="text" name="end_date" class="form-control">
+        <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
+        <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
+        <span class="input-group-addon">to</span>
+        <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
+        <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -20,6 +22,7 @@
         <th class="table_header">Last name</th>
         <th class="table_header">First name</th>
         <th class="table_header">Group</th>
+        <th class="table_header">Visit Date</th>
         <th class="table_header">Email</th>
         <th class="table_header">Contact</th>
         <th class="table_header">Zip code</th>
@@ -34,6 +37,7 @@
           <td><%= visitor.last_name %></td>
           <td><%= visitor.first_name %></td>
           <td><%= visitor.group_id %></td>
+          <td><%= visitor.created_at %></td>
           <td><%= visitor.email %></td>
           <td><%= visitor.contact %></td>
           <td><%= visitor.zip_code %></td>
@@ -50,15 +54,15 @@
 
 <script>
     $( document ).ready(function() {
-        $('#end_date').datepicker("setDate", new Date());
-        var startdate = $('#end_date').datepicker('getDate', '+1d');
-        startdate.setDate(startdate.getDate()-15);
-        $('#start_date').datepicker("setDate", startdate);
-
+        if($('#end_date').val() == '' && $('#start_date').val()== '') {
+            $('#end_date').datepicker("setDate", new Date());
+            var startdate = $('#end_date').datepicker('getDate', '+1d');
+            startdate.setDate(startdate.getDate() - 15);
+            $('#start_date').datepicker("setDate", startdate);
+        }
+        else{
+            $('#start_date').datepicker();
+            $('#end_date').datepicker();
+        }
     });
-//$('.input-daterange input').each(function() {
-//    $(this).datepicker("clearDates");
-//});
 </script>
-
-

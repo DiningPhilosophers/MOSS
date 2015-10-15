@@ -120,7 +120,15 @@ code {
   line-height: 40px;
 }
 
+
 .btn {
-    background-color: maroon;
-  	border-color: maroon;
+  background-color: maroon;
+  border-color: maroon;
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
 }
