@@ -6,9 +6,9 @@
   <form class="pull-right form-inline">
     <div class="form-group">
       <div class="input-group input-daterange">
-          <input type="text" name="start_date" class="form-control" value="2012-04-05">
+          <input id="start_date" type="text" name="start_date" class="form-control">
           <span class="input-group-addon">to</span>
-          <input type="text" name="end_date" class="form-control" value="2012-04-19">
+          <input id="end_date" type="text" name="end_date" class="form-control">
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -45,13 +45,20 @@
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'New Visitor', new_visitor_path %>
+  <!--<%= link_to 'New Visitor', new_visitor_path %>-->
 </div>
 
 <script>
-$('.input-daterange input').each(function() {
-    $(this).datepicker("clearDates");
-});
+    $( document ).ready(function() {
+        $('#end_date').datepicker("setDate", new Date());
+        var startdate = $('#end_date').datepicker('getDate', '+1d');
+        startdate.setDate(startdate.getDate()-15);
+        $('#start_date').datepicker("setDate", startdate);
+
+    });
+//$('.input-daterange input').each(function() {
+//    $(this).datepicker("clearDates");
+//});
 </script>
 
 
