@@ -6,20 +6,30 @@
   <form class="pull-right form-inline">
     <div class="form-group">
       <div class="input-group input-daterange">
-          <input type="text" name="start_date" class="form-control" value="2012-04-05">
-          <span class="input-group-addon">to</span>
-          <input type="text" name="end_date" class="form-control" value="2012-04-19">
+        <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
+        <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
+        <span class="input-group-addon">to</span>
+        <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
+        <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-maroon">Submit</button>
   </form>
   <br><br><br>
-  <table class="table table-bordered table-hover">
+
+  <div class="form-group pull-right">
+    <input type="text" class="search form-control" placeholder="Search">
+  </div>
+
+  <div>
+  <table class="table table-bordered table-hover sortable results">
+
     <thead>
       <tr>
         <th class="table_header">Last name</th>
         <th class="table_header">First name</th>
         <th class="table_header">Group</th>
+        <th class="table_header">Visit Date</th>
         <th class="table_header">Email</th>
         <th class="table_header">Contact</th>
         <th class="table_header">Zip code</th>
@@ -34,24 +44,58 @@
           <td><%= visitor.last_name %></td>
           <td><%= visitor.first_name %></td>
           <td><%= visitor.group_id %></td>
+          <td><%= visitor.created_at %></td>
           <td><%= visitor.email %></td>
           <td><%= visitor.contact %></td>
           <td><%= visitor.zip_code %></td>
           <td><%= visitor.country.name %></td>
-          <td><%= link_to 'Show', visitor %></td>
-          <td><%= link_to 'Edit', edit_visitor_path(visitor) %></td>
-          <td><%= link_to 'Destroy', visitor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', visitor, class: 'btn btn-info' %></td>
+          <td><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning' %></td>
+          <td><%= link_to 'Destroy', visitor, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'New Visitor', new_visitor_path %>
+  </div>
+  <!--<%= link_to 'New Visitor', new_visitor_path %>-->
 </div>
 
 <script>
-$('.input-daterange input').each(function() {
-    $(this).datepicker("clearDates");
-});
+    $( document ).ready(function() {
+        if($('#end_date').val() == '' && $('#start_date').val()== '') {
+            $('#end_date').datepicker("setDate", new Date());
+            var startdate = $('#end_date').datepicker('getDate', '+1d');
+            startdate.setDate(startdate.getDate() - 15);
+            $('#start_date').datepicker("setDate", startdate);
+        }
+        else{
+            $('#start_date').datepicker();
+            $('#end_date').datepicker();
+        }
+
+        $(".search").keyup(function () {
+            var searchTerm = $(".search").val();
+            var listItem = $('.results tbody').children('tr');
+            var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+
+            $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+                return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+            }
+            });
+
+            $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+                $(this).attr('visible','false');
+            });
+
+            $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
+                $(this).attr('visible','true');
+            });
+
+            var jobCount = $('.results tbody tr[visible="true"]').length;
+            $('.counter').text(jobCount + ' item');
+
+            if(jobCount == '0') {$('.no-result').show();}
+            else {$('.no-result').hide();}
+        });
+    });
 </script>
-
-

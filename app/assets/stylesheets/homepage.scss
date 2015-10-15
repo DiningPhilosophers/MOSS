@@ -11,6 +11,8 @@
 
 .hp_image {
   margin: 0 auto;
+  -webkit-transition: width 2s;
+  transition: width 2s;
 }
 
 // .signin_btn {

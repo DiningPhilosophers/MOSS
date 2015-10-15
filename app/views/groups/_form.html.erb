@@ -30,7 +30,7 @@
         </div>
         <div class="field">
           <%= visitor.label :zip_code %>
-          <%= visitor.text_field :zip_code, class: 'form-control' %>
+          <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode" %>
         </div>
         <div class="field">
           <%= visitor.label :country_id %>
@@ -47,7 +47,7 @@
       <%= f.datetime_select :visit_date, class: 'form-control' %>
     </div>
     <div class="action">
-      <%= f.submit "Submit", class: "btn btn-primary" %>
+      <%= f.submit "Submit", class: "btn btn-maroon" %>
     </div>
 <% end %>
 
@@ -58,3 +58,21 @@
     });
 </script>
 %>
+
+<script>
+    $( document ).ready(function() {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/zipcodes#index",
+            success: function(data){
+                var arr = $.map(data, function(el) { return el.zip_code });
+//                console.log(arr[0].zip_code);
+                $( "#sign_in_zipcode" ).autocomplete({
+                    source: arr,
+                    delay: 0
+                });
+            }
+        });
+    });
+</script>
