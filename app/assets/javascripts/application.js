@@ -18,3 +18,4 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require bootstrap
+//= require jquery.turbolinks

@@ -31,6 +31,10 @@ gem 'mysql2', '~> 0.3.18'
 
 gem 'bootstrap-datepicker-rails'
 
+# gem 'bootstrap-table-rails', '~> 1.8.1'
+
+gem 'jquery-turbolinks'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
