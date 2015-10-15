@@ -45,6 +45,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pg'
   gem 'sqlite3'
+  gem 'railroady'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
