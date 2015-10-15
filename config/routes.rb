@@ -21,4 +21,7 @@ Rails.application.routes.draw do
 
   # Routes for adding a new administrator
   get 'signup'  => 'admins#new'
+
+  # Visitor sing in
+  get 'signin' => 'groups#new', as: 'sign_in'
 end

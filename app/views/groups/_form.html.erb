@@ -1,25 +1,61 @@
-<%= form_for(@group) do |f| %>
-  <% if @group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+<div class="content">
+  <%= form_for @group, :html => {:id => 'form1'} do |f| %>
+      <% if @group.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
-      <ul>
-      <% @group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+              <% @group.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
+
+      <%= f.fields_for :visitors do |visitor| %>
+          <div class="field">
+            <%= visitor.label :last_name %><br>
+            <%= visitor.text_field :last_name %>
+          </div>
+          <div class="field">
+            <%= visitor.label :first_name %><br>
+            <%= visitor.text_field :first_name %>
+          </div>
+          <div class="field">
+            <%= visitor.label :email %><br>
+            <%= visitor.text_field :email %>
+          </div>
+          <div class="field">
+            <%= visitor.label :contact %><br>
+            <%= visitor.check_box :contact, {checked: true} %>
+          </div>
+          <div class="field">
+            <%= visitor.label :zip_code %><br>
+            <%= visitor.text_field :zip_code %>
+          </div>
+          <div class="field">
+            <%= visitor.label :country_id %><br>
+            <%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'} %>
+          </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :group_size %><br>
+        <%= f.number_field :group_size, :value => 1 %>
+      </div>
+      <div class="field hidden">
+        <%= f.label :visit_date %><br>
+        <%= f.datetime_select :visit_date %>
+      </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :group_size %><br>
-    <%= f.number_field :group_size %>
-  </div>
-  <div class="field">
-    <%= f.label :visit_date %><br>
-    <%= f.datetime_select :visit_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <%= link_to "Submit", "#", :class => 'button_submit' %>
+
+</div>
+
+
+<script type="text/javascript">
+    $(".button_submit").click(function () {
+        $("#form1").submit();
+    });
+</script>

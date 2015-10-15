@@ -18,7 +18,6 @@ class VisitorsController < ApplicationController
   # GET /visitors/new
   def new
     @visitor = Visitor.new
-    @group = Group.new
   end
 
   # GET /visitors/1/edit
@@ -28,18 +27,7 @@ class VisitorsController < ApplicationController
   # POST /visitors
   # POST /visitors.json
   def create
-    @group = Group.new(group_params)
     @visitor = Visitor.new(visitor_params)
-
-    respond_to do |format|
-      if @group.save
-        # format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        # format.json { render :show, status: :created, location: @group }
-      else
-        format.html { render :new }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
-    end
 
     respond_to do |format|
       if @visitor.save

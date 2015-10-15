@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+    @group.visitors.build
   end
 
   # GET /groups/1/edit
@@ -26,9 +27,12 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
 
+    # If no group size is specified, consider it group of 1
+    @group.group_size = 1 if @group.group_size == nil
+
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to sign_in_path, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
@@ -69,6 +73,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:group_size, :visit_date)
+      params.require(:group).permit(:group_size, :visit_date, visitors_attributes: [:last_name, :first_name, :group_id, :email, :contact, :zip_code, :country_id])
     end
 end
