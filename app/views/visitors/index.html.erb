@@ -37,7 +37,7 @@
           <td><%= visitor.email %></td>
           <td><%= visitor.contact %></td>
           <td><%= visitor.zip_code %></td>
-          <td><%= visitor.country_id %></td>
+          <td><%= visitor.country.name %></td>
           <td><%= link_to 'Show', visitor %></td>
           <td><%= link_to 'Edit', edit_visitor_path(visitor) %></td>
           <td><%= link_to 'Destroy', visitor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

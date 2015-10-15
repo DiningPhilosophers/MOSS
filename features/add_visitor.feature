@@ -23,5 +23,5 @@ Scenario: successfully sign in to the database
   And I should see "Josef"
   And I should see "josef@novak.cz"
   And I should see "77840"
-  #And I should see "Czech Republic"
+  And I should see "Czech Republic"
   #And I should see "123456789"
