@@ -1,8 +1,8 @@
-Feature: get raw data from the database
+Feature: view visitors by date
  
   As an administrator
-  So that I can verify summary statistics
-  I want to be able to see the raw data entered by visitors
+  So that I can see who registered within two given dates
+  I want to be able to see the list of all visitors that were registered within a given period
 
 Background: I am on the home page and visitors have been added to database
 
@@ -14,21 +14,10 @@ Background: I am on the home page and visitors have been added to database
 
   Given I am on the visitor index page
 
-Scenario: I can see all visitors
+Scenario: I can filter visitors by date range
+  When I fill in "start_date" with "09/08/2015"
+  And I fill in "end_date" with "09/10/2015"
+  And I press "Submit"
   Then I should see "Doe"
-  And I should see "Joe"
-  And I should see "1"
-  And I should see "joe@doe.com"
-  And I should see "true"
-  And I should see "77840"
-  And I should see country with ID "12"
-
-Scenario: I should see all the visitors
-  Then I should see all the visitors
-
-# TODO Search field not working yet
-#Scenario: I can search for visitors
-#  When I fill in "search_visitor" with "Bond"
-#  Then I should see "Bond"
-#  And I should not see "Doe"
-#  And I should not see "Presley"
+  And I should not see "Bond"
+  And I should not see "Presley"
