@@ -13,12 +13,12 @@
 
     <%= f.fields_for :visitors do |visitor| %>
         <div class="field">
-          <%= visitor.label :last_name, class: 'sign_in_field_label' %>
-          <%= visitor.text_field :last_name, class: 'form-control' %>
-        </div>
-        <div class="field">
           <%= visitor.label :first_name %>
           <%= visitor.text_field :first_name, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= visitor.label :last_name, class: 'sign_in_field_label' %>
+          <%= visitor.text_field :last_name, class: 'form-control' %>
         </div>
         <div class="field">
           <%= visitor.label :email %>
@@ -60,19 +60,19 @@
 %>
 
 <script>
-    $( document ).ready(function() {
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: "/zipcodes#index",
-            success: function(data){
-                var arr = $.map(data, function(el) { return el.zip_code });
-//                console.log(arr[0].zip_code);
-                $( "#sign_in_zipcode" ).autocomplete({
-                    source: arr,
-                    delay: 0
-                });
-            }
-        });
-    });
+//    $( document ).ready(function() {
+//        $.ajax({
+//            type: "GET",
+//            dataType: "json",
+//            url: "/zipcodes#index",
+//            success: function(data){
+//                var arr = $.map(data, function(el) { return el.zip_code });
+////                console.log(arr[0].zip_code);
+//                $( "#sign_in_zipcode" ).autocomplete({
+//                    source: arr,
+//                    delay: 0
+//                });
+//            }
+//        });
+//    });
 </script>
