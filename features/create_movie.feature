@@ -1,3 +1,4 @@
+@ignore
 Feature: create a new movie
  
   As an avid moviegoer

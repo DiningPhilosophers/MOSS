@@ -1,12 +1,12 @@
 # Add a declarative step here for populating the DB with movies.
 
-Given /the following movies exist/ do |movies_table|
-  movies_table.hashes.each do |movie|
+Given /the following visitors exist/ do |visitor_table|
+  visitor_table.hashes.each do |visitor|
     # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
+    # you should arrange to add that visitor to the database here.
 
-    # create movie in the database
-    Movie.create(movie)
+    # create visitor in the database
+    Visitor.create(visitor)
   end
   #fail "Unimplemented"
 end
@@ -67,4 +67,14 @@ end
 
 Then /the director of "(.*)" should be "(.*)"/ do |title, director|
   Movie.find_by_title(title).director.should == director
+end
+
+Then /I should see country with ID "(.*)"/ do |country_id|
+  country_name = Country.find_by_id(country_id).name
+
+  if page.respond_to? :should
+    page.should have_content(country_name)
+  else
+    assert page.has_content?(country_name)
+  end
 end

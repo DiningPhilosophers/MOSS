@@ -13,11 +13,11 @@ Scenario: successfully sign in to the database
   And I fill in "group_visitors_attributes_0_last_name" with "Novak"
   And I fill in "group_visitors_attributes_0_first_name" with "Josef"
   And I fill in "group_visitors_attributes_0_email" with "josef@novak.cz"
-  And I fill in "group_visitors_attributes_0_zip_code" with "77840"
+  And I fill in "sign_in_zipcode" with "77840"
   And I select "Czech Republic" from "group_visitors_attributes_0_country_id"
   And I fill in "group_group_size" with "123456789"
   And I press "Submit"
-  And I am on visitor index page
+  And I am on the visitor index page
 
   Then I should see "Novak"
   And I should see "Josef"

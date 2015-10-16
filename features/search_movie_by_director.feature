@@ -1,3 +1,4 @@
+@ignore
 Feature: search for movies by director
 
   As a movie buff
