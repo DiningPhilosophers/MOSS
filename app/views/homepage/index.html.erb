@@ -7,7 +7,9 @@
   <div class="hp_image">
     <%= image_tag 'MAGI-Logo-2014-xsmall-v2.png', :class => "homepage_image" %>
   </div>
-  <div class="signin_btn">
-    <button type="button" class="btn btn-primary btn-lg">Sign In</button>
+  <div>
+<!--     <button type="button" class="btn btn-primary btn-lg">Sign In</button> -->
+<!--     <%= link_to '<button type="button" class="btn btn-primary btn-lg">Sign In</button>'.html_safe, sign_in_path %> -->
+  	<%= button_to "Sign In", sign_in_path, :class => "btn btn-primary btn-lg", :method => :get %>
   </div>
 </div>

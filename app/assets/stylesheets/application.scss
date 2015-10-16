@@ -17,6 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "visitors_statistics";
+@import "visitors";
 //@import "homepage";
 @import "bootstrap-datepicker3";
 
@@ -123,4 +124,8 @@ code {
   .form-control {
     color: $state-danger-text;
   }
+}
+.btn {
+    background-color: maroon;
+  	border-color: maroon;
 }
