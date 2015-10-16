@@ -37,8 +37,12 @@ gem 'jquery-turbolinks'
 
 gem 'jquery-ui-rails'
 
+gem 'simplecov'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
+gem "cucumber-rails-training-wheels", :group => :test
 
 # Use Unicorn as the app server
 # gem 'unicorn'

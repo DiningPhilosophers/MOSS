@@ -1,0 +1,15 @@
+class CreateVisitors < ActiveRecord::Migration
+  def change
+    create_table :visitors do |t|
+      t.string :last_name
+      t.string :first_name
+      t.integer :group_id, null: false
+      t.string :email
+      t.boolean :contact
+      t.string :zip_code, null: false
+      t.integer :country_id, null: false
+
+      t.timestamps null: false
+    end
+  end
+end
