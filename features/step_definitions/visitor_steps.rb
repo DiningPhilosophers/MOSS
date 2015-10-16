@@ -51,17 +51,17 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   #fail "Unimplemented"
 end
 
-Then /I should see all the movies/ do
+Then /I should see all the visitors/ do
   # Make sure that all the movies in the app are visible in the table
 
   # count the number of movies in the database
-  number_of_movies = Movie.count
+  number_of_visitors = Visitor.count
 
   # count number of rows in the movies table displayed
-  number_of_rows = page.all('table#movies tbody tr').count
+  number_of_rows = page.all('table tbody tr').count
 
   # those numbers should be the same
-  number_of_rows.should == number_of_movies
+  number_of_rows.should == number_of_visitors
   #fail "Unimplemented"
 end
 
