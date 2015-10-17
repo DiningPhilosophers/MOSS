@@ -24,7 +24,7 @@ development:
   timeout: 5000
   database: moss
   encoding: utf8
-  host: moss1.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  host: mossdevelopment.c9gazzpy3zya.us-west-2.rds.amazonaws.com
   port: 5432
   username: knn1989
   password: rrg-Lsu-VNY-KA4
@@ -35,9 +35,9 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test: &test
-  <<: *default
-#  database: db/test.sqlite3
+#test: &test
+#  <<: *default
+##  database: db/test.sqlite3
 
 production:
   # <<: *default
@@ -56,4 +56,14 @@ production:
   timeout: 5000
 
 cucumber:
-  <<: *test
+  adapter: postgresql
+  timeout: 5000
+  database: moss
+  encoding: utf8
+  host: moss1.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  port: 5432
+  username: knn1989
+  password: rrg-Lsu-VNY-KA4
+  min_messages: warning
+  pool: 5
+  timeout: 5000
