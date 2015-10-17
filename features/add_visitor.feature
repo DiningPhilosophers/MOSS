@@ -5,6 +5,12 @@ Feature: add visitor information to the database
   I want to enter my info to add to the system
 
 Background: I am on the home page
+
+  Given the following countries exist:
+    | name           | created_at                 | updated_at                 |
+    | USA            | 2015-09-09 21:09:41.580495 | 2015-09-09 21:09:41.580495 |
+    | Australia      | 2015-09-09 21:09:41.580495 | 2015-09-09 21:09:41.580495 |
+    | Czech Republic | 2015-09-09 21:09:41.580495 | 2015-09-09 21:09:41.580495 |
   
   Given I am on the home page
 

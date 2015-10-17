@@ -35,9 +35,18 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-#test: &test
-#  <<: *default
-##  database: db/test.sqlite3
+test: &test
+  adapter: postgresql
+  timeout: 5000
+  database: moss
+  encoding: utf8
+  host: aa122fghwng5b24.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+  port: 5432
+  username: knn1989
+  password: rrg-Lsu-VNY-KA4
+  min_messages: warning
+  pool: 5
+  timeout: 5000
 
 production:
   # <<: *default

@@ -11,6 +11,39 @@ Given /the following visitors exist/ do |visitor_table|
   #fail "Unimplemented"
 end
 
+Given /the following groups exist/ do |group_table|
+  group_table.hashes.each do |group|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create visitor in the database
+    Group.create(group)
+  end
+  #fail "Unimplemented"
+end
+
+Given /the following zipcodes exist/ do |zipcode_table|
+  zipcode_table.hashes.each do |zipcode|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create visitor in the database
+    Zipcode.create(zipcode)
+  end
+  #fail "Unimplemented"
+end
+
+Given /the following countries exist/ do |country_table|
+  country_table.hashes.each do |country|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create visitor in the database
+    Country.create(country)
+  end
+  #fail "Unimplemented"
+end
+
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
