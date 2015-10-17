@@ -19,7 +19,7 @@
 #  timeout: 5000
 
 development:
-  <<: *default
+#  <<: *default
   adapter: postgresql
   timeout: 5000
   database: moss
