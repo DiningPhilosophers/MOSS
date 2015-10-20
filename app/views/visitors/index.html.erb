@@ -13,33 +13,41 @@
         <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
       </div>
     </div>
-    <button type="submit" class="btn btn-maroon">Submit</button>
+    <button id="submit_btn" type="submit" class="btn btn-maroon" >Submit</button>
   </form>
   <br><br><br>
 
+  <div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+    <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
+  </div>
+
+  <div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
+    <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
+  </div>
+
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
-  </button>
+  <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
+    <!--Launch demo modal-->
+  <!--</button>-->
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+    <!--<div class="modal-dialog" role="document">-->
+      <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+          <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+          <!--...-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+          <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
   <div class="form-group pull-right">
     <input type="text" class="search form-control" id="search_visitor" placeholder="Search">
@@ -86,6 +94,9 @@
 
 <script>
     $( document ).ready(function() {
+        $('#alert_danger').hide();
+        $('#alert_warning').hide();
+
         if($('#end_date').val() == '' && $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
             var startdate = $('#end_date').datepicker('getDate', '+1d');
@@ -120,6 +131,24 @@
 
             if(jobCount == '0') {$('.no-result').show();}
             else {$('.no-result').hide();}
+        });
+
+        $('#submit_btn').click(function(event) {
+            if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
+                event.preventDefault();
+//                alert('Invalid date range input');
+                $('#alert_danger').show();
+                $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
+                    $("#alert_danger").hide();
+                });
+            }
+            else if(new Date($('#end_date').val()) > (new Date($.now()))){
+                event.preventDefault();
+                $('#alert_warning').show();
+                $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
+                    $("#alert_warning").hide();
+                });
+            }
         });
     });
 </script>
