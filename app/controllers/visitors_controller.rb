@@ -10,6 +10,7 @@ class VisitorsController < ApplicationController
     session.delete(:some_key)
     start_date_remembered = @start_date.blank? && session[:start_date].present?
     end_date_remembered = @end_date.blank? && session[:end_date].present?
+    
     if start_date_remembered || end_date_remembered
       @start_date = session[:start_date] if start_date_remembered
       @end_date = session[:end_date] if end_date_remembered
