@@ -2,7 +2,10 @@ class SessionsController < ApplicationController
   def new
   end
   def create
-    admin = Admin.find_by(user_name: params[:session][:user_name])
+    # This is a master e-mail for loging in to administrator's section
+    admin_email = 'dufek@tamu.edu' # TODO change to info@americangimuseum.org in production
+
+    admin = Admin.find_by(user_name: admin_email)#params[:session][:user_name])
     if admin && admin.authenticate(params[:session][:password])
       log_in admin
       params[:session][:remember_me] == '1' ? remember(admin) : forget(admin)

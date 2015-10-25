@@ -36,9 +36,10 @@
               -#    %li.divider
               -#    %li
               -#      = link_to "Log out", logout_path, method: "delete"
-              %li= link_to "Profile", current_admin
+              -# %li= link_to "Profile", current_admin
               %li= link_to "Settings", edit_admin_path(current_admin)
-              %li= link_to "Add Admin", signup_path
+              -# Customer does not want the add admin functionality. It is however still available on path /admins/new
+              -# %li= link_to "Add Admin", signup_path
               %li= link_to "Log out", logout_path, method: "delete"
             - else
               -# Do not show log in link in the navigation bar.

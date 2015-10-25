@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  #get 'password_resets/new'
+
+  #get 'password_resets/edit'
+
   get 'visitors_statistics/show'
   get 'session/new'
 
@@ -25,4 +29,7 @@ Rails.application.routes.draw do
 
   # Visitor sing in
   get 'signin' => 'groups#new', as: 'sign_in'
+
+  # Password reset
+  resources :password_resets, only: [:create, :edit, :update]
 end
