@@ -17,7 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "visitors_statistics";
-//@import "homepage";
+@import "visitors";
 @import "bootstrap-datepicker3";
 
 html {
@@ -107,6 +107,7 @@ code {
   padding-top: 50px;
   width: 80%;
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 #logo {
@@ -123,4 +124,67 @@ code {
   .form-control {
     color: $state-danger-text;
   }
+}
+
+/* line 71, /Users/khuongnguyen/.rvm/gems/ruby-2.2.3/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/_buttons.scss */
+.btn-maroon {
+  color: #fff;
+  //background-color: #337ab7;
+  //border-color: #2e6da4;
+  background-color: maroon;
+  border-color: maroon;
+}
+
+/* line 11, /Users/khuongnguyen/.rvm/gems/ruby-2.2.3/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
+.btn-maroon:focus, .btn-maroon.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+
+/* line 17, /Users/khuongnguyen/.rvm/gems/ruby-2.2.3/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
+.btn-maroon:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+/* line 22, /Users/khuongnguyen/.rvm/gems/ruby-2.2.3/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
+.btn-maroon:active, .btn-maroon.active, .open > .btn-maroon.dropdown-toggle {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+/* line 29, /Users/khuongnguyen/.rvm/gems/ruby-2.2.3/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
+.btn-maroon:active:hover, .btn-maroon:active:focus, .btn-maroon:active.focus,
+.btn-maroon.active:hover, .btn-maroon.active:focus, .btn-maroon.active.focus,
+.open > .btn-maroon.dropdown-toggle:hover, .open > .btn-maroon.dropdown-toggle:focus,
+.open > .btn-maroon.dropdown-toggle.focus {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+
+/* line 37, /Users/khuongnguyen/.rvm/gems/ruby-2.2.3/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
+.btn-maroon:active, .btn-maroon.active, .open > .btn-maroon.dropdown-toggle {
+  background-image: none;
+}
+
+/* line 45, /Users/khuongnguyen/.rvm/gems/ruby-2.2.3/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
+.btn-maroon.disabled, .btn-maroon.disabled:hover, .btn-maroon.disabled:focus,
+.btn-maroon.disabled.focus, .btn-maroon.disabled:active, .btn-maroon.disabled.active,
+.btn-maroon[disabled], .btn-maroon[disabled]:hover, .btn-maroon[disabled]:focus,
+.btn-maroon[disabled].focus, .btn-maroon[disabled]:active, .btn-maroon[disabled].active,
+fieldset[disabled] .btn-maroon, fieldset[disabled] .btn-maroon:hover,
+fieldset[disabled] .btn-maroon:focus, fieldset[disabled] .btn-maroon.focus,
+fieldset[disabled] .btn-maroon:active, fieldset[disabled] .btn-maroon.active {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+/* line 56, /Users/khuongnguyen/.rvm/gems/ruby-2.2.3/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/mixins/_buttons.scss */
+.btn-maroon .badge {
+  color: #337ab7;
+  background-color: #fff;
 }

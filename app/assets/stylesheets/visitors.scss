@@ -1,3 +1,28 @@
 // Place all the styles related to the visitors controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.visitor_title
+{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.table_header
+{
+	background-color: rgb(141,0,0);
+	color: white;
+}
+
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px;
+  color:#ccc;
+}
