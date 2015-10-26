@@ -14,11 +14,30 @@
       </div>
     </div>
     <button type="submit" class="btn btn-maroon">Submit</button>
+
   </form>
   <br><br><br>
 
+
   <div class="form-group pull-right">
-    <input type="text" class="search form-control" id="search_visitor" placeholder="Search">
+    <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle form-control" type="button" id="area-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Choose Area
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="area-dropdown">
+      <li><%= link_to 'Austin', area: 'Austin' %></li>
+      <li><%= link_to 'College Station', area: 'College Sation' %></li>
+      <li><%= link_to 'Dallas/Fort Worth', area: 'DFW' %></li>
+      <li><%= link_to 'Houston', area: 'Houston' %></li>
+      <li><%= link_to 'San Antonio', area: 'San Antonio' %></li>
+      <li><%= link_to 'Other Cities in Texas', area: 'OtherTX' %></li>
+      <li><%= link_to 'Out of Texas', area: 'OutTX' %></li>
+      <li><%= link_to 'Out of Country', area: 'OutUS' %></li>
+    </ul>
+    </div>
+    <br>
+    <input type="text" class="search form-control" id="search_visitor" placeholder="Enter Zip Code">
   </div>
 
   <div>
@@ -61,11 +80,9 @@
 </div>
 
 <script>
-<<<<<<< HEAD
-$('.input-daterange input').each(function() {
-    $(this).datepicker("clearDates");
-});
-=======
+    $('.input-daterange input').each(function() {
+        $(this).datepicker("clearDates");
+    });
     $( document ).ready(function() {
         if($('#end_date').val() == '' && $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
@@ -102,6 +119,6 @@ $('.input-daterange input').each(function() {
             if(jobCount == '0') {$('.no-result').show();}
             else {$('.no-result').hide();}
         });
-    });
->>>>>>> master
+      });
+      $('.dropdown-toggle').dropdown();
 </script>
