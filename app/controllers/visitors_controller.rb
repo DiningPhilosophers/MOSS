@@ -4,6 +4,7 @@ class VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
+<<<<<<< Updated upstream
     @start_date = params[:start_date]
     @end_date = params[:end_date]
 
@@ -26,6 +27,15 @@ class VisitorsController < ApplicationController
     
     session[:start_date] = @start_date
     session[:end_date] = @end_date
+=======
+    @visitors = Visitor.all
+    #where(:created_at => params[:start_date]..params[:end_date])
+    #respond_to do |format|
+    #  format.html
+    #  format.json { render json: @visitor}
+    #  format.js
+    #end
+>>>>>>> Stashed changes
   end
 
   # GET /visitors/1
