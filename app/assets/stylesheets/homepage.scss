@@ -11,15 +11,23 @@
 
 .hp_image {
   margin: 0 auto;
+  -webkit-transition: width 2s;
+  transition: width 2s;
 }
 
-.signin_btn {
-  text-align: center;
-  margin: 0 auto;
-  padding-bottom: 2cm;
-}
+// .signin_btn {
+//   text-align: center;
+//   margin: 0 auto;
+//   padding-bottom: 2cm;
+// }
 
-.signin_btn > .btn {
-  background-color: maroon;
-  border-color: maroon;
+// .signin_btn > .btn {
+
+// }
+
+.button_to {
+	width:90px;
+	text-align: center;
+    margin: 0 auto;
+    padding-bottom: 2cm;
 }

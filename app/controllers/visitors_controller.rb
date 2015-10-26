@@ -4,10 +4,33 @@ class VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
-    @visitors = Visitor.all
     @start_date = params[:start_date]
     @end_date = params[:end_date]
-    #@visitors = Visitor.find_by group_id: '1'
+    @area = params[:area]
+
+    session.delete(:some_key)
+    start_date_remembered = @start_date.blank? && session[:start_date].present?
+    end_date_remembered = @end_date.blank? && session[:end_date].present?
+    area_remembered = @area.blank? && session[:area].present?
+    if start_date_remembered || end_date_remembered || area_remembered
+      @start_date = session[:start_date] if start_date_remembered
+      @end_date = session[:end_date] if end_date_remembered
+      @area = session[:area] if area_remembered
+
+      flash.keep
+      redirect_to :area => @area, :start_date => @start_date, :end_date => @end_date and return
+      #redirect_to :start_date => @start_date, :end_date => @end_date and return
+    end
+
+    if !@start_date.blank? && !@end_date.blank?
+      @visitors = Visitor.where(:created_at => @start_date..@end_date)
+    else
+      @visitors = Visitor.all
+    end
+
+    session[:start_date] = @start_date
+    session[:end_date] = @end_date
+    session[:ara] = @area
   end
 
   # GET /visitors/1
