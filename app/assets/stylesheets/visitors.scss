@@ -12,3 +12,17 @@
 	background-color: rgb(141,0,0);
 	color: white;
 }
+
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px;
+  color:#ccc;
+}
