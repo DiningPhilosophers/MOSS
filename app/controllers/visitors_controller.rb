@@ -4,7 +4,6 @@ class VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
-<<<<<<< Updated upstream
     @start_date = params[:start_date]
     @end_date = params[:end_date]
 
@@ -14,7 +13,7 @@ class VisitorsController < ApplicationController
     if start_date_remembered || end_date_remembered
       @start_date = session[:start_date] if start_date_remembered
       @end_date = session[:end_date] if end_date_remembered
-    
+
       flash.keep
       redirect_to :start_date => @start_date, :end_date => @end_date and return
     end
@@ -24,10 +23,10 @@ class VisitorsController < ApplicationController
     else
       @visitors = Visitor.all
     end
-    
+
     session[:start_date] = @start_date
     session[:end_date] = @end_date
-=======
+
     @visitors = Visitor.all
     #where(:created_at => params[:start_date]..params[:end_date])
     #respond_to do |format|
@@ -35,7 +34,6 @@ class VisitorsController < ApplicationController
     #  format.json { render json: @visitor}
     #  format.js
     #end
->>>>>>> Stashed changes
   end
 
   # GET /visitors/1
