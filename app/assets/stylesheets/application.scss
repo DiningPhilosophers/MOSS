@@ -25,27 +25,17 @@ html {
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+html, body {
+  margin: 0;
+  height: 100%;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #3E0001;
-}
-.navbar {
-  position: absolute;
-  width: 100%;
-  //height: 60px;
-  background-color: #3E0001;
-}
-
-//nav > .container {
+//#footer {
+//  //position: absolute;
+//  bottom: 0px;
+//  width: 100%;
+//  /* Set the fixed height of the footer here */
+//  height: 60px;
 //  background-color: #3E0001;
 //}
 
@@ -60,54 +50,21 @@ body > .container {
   margin: 20px 0;
 }
 
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
-}
 
-.footer > .container p, a {
-  display: inline-table;
-}
 
-.footer > .container a {
-  float: right;
-  color: #FFFFFF;
-}
-
-.footer > .container a:hover {
-  background-color: #2D0000;
-}
-
-.footer > .container > .text-muted {
-  color: #FFFFFF;
-}
-
-#navbar a {
-  color: #FFFFFF;
-}
-
-#navbar a:hover {
-  background-color: #2D0000;
-}
-
-#navbar a:active  {
-  color: #3E0001;
-  background-color: #2D0000;
-}
-
-#navbar a  {
-  background: none;
-}
+//.footer, .push {
+//  height: 4em;
+//}
 
 code {
   font-size: 80%;
 }
 
-.content {
-  padding-top: 50px;
+#content {
+  padding-top: 10px;
   width: 80%;
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 #logo {
@@ -115,9 +72,9 @@ code {
   overflow:hidden;
 }
 
-#navbar > .navbar-nav li a {
-  line-height: 40px;
-}
+//#navbar > .navbar-nav li a {
+//  line-height: 40px;
+//}
 
 .field_with_errors {
   @extend .has-error;
@@ -187,4 +144,117 @@ fieldset[disabled] .btn-maroon:active, fieldset[disabled] .btn-maroon.active {
 .btn-maroon .badge {
   color: #337ab7;
   background-color: #fff;
+}
+
+nav a {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  font-size: 18px;
+}
+
+nav .navbar-toggle {
+  margin: 13px 15px 13px 0;
+}
+
+.navbar-brand {
+  font-size: 20px;
+}
+
+nav.navbar.shrink {
+  min-height: 35px;
+}
+
+nav.shrink a {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  font-size: 15px;
+}
+
+nav.shrink .navbar-brand {
+  font-size: 25px;
+}
+
+nav.shrink .navbar-toggle {
+  padding: 4px 5px;
+  margin: 8px 15px 8px 0;
+}
+
+.navbar {
+  //position: absolute;
+  width: 100%;
+  //height: 60px;
+  background-color: #3E0001;
+}
+
+#nav_menu_ul li a {
+  background: none;
+  //color: #FFFFFF;
+}
+
+#nav_menu_ul li a:hover {
+  background-color: #2D0000;
+}
+
+#nav_menu_ul li a:active  {
+  color: #3E0001;
+  background-color: #2D0000;
+}
+
+.navbar-static-top {
+  margin-bottom:20px;
+}
+
+i {
+  font-size:16px;
+}
+
+.nav > li > a {
+  color:#787878;
+}
+
+/* count indicator near icons */
+.nav>li .count {
+  position: absolute;
+  bottom: 12px;
+  right: 6px;
+  font-size: 9px;
+  background: rgba(51,200,51,0.55);
+  color: rgba(255,255,255,0.9);
+  line-height: 1em;
+  padding: 2px 4px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.footer {
+  margin-top:20px;
+  padding-top:20px;
+  padding-bottom:20px;
+  background-color: #3E0001;
+}
+
+.footer > .footer_container {
+  padding-right: 15px;
+  padding-left: 15px;
+  height: 30px;
+}
+
+.footer > .footer_container div p, a {
+  display: inline-table;
+}
+
+.footer > .footer_container a {
+  float: right;
+  color: #FFFFFF;
+}
+
+.footer > .footer_container a:hover {
+  background-color: #2D0000;
+}
+
+.footer > .footer_container > .text-muted {
+  color: #FFFFFF;
 }

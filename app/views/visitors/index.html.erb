@@ -39,10 +39,26 @@
     <br>
     <input type="text" class="search form-control" id="search_visitor" placeholder="Enter Zip Code">
   </div>
+</div>
+<button id="submit_btn" type="submit" class="btn btn-maroon" >Submit</button>
+</form>
+<br><br><br>
 
-  <div>
-  <table class="table table-bordered table-hover sortable results">
+<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+<strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
+</div>
 
+<div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
+<strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
+</div>
+
+<div class="form-group pull-right">
+<input type="text" class="search form-control" id="search_visitor" placeholder="Search">
+</div>
+
+<div>
+  <!--<table class="table table-bordered table-hover sortable results">-->
+<table id="visitors_table" class="sortable results">
     <thead>
       <tr>
         <th class="table_header">Last name</th>
@@ -53,7 +69,7 @@
         <th class="table_header">Contact</th>
         <th class="table_header">Zip code</th>
         <th class="table_header">Country</th>
-        <th class="table_header"colspan="3"></th>
+        <th class="table_header" colspan="3"></th>
       </tr>
     </thead>
 
@@ -75,8 +91,6 @@
       <% end %>
     </tbody>
   </table>
-  </div>
-  <!--<%= link_to 'New Visitor', new_visitor_path %>-->
 </div>
 
 <script>
@@ -84,6 +98,9 @@
         //$(this).datepicker("clearDates");
     });
     $( document ).ready(function() {
+        $('#alert_danger').hide();
+        $('#alert_warning').hide();
+
         if($('#end_date').val() == '' && $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
             var startdate = $('#end_date').datepicker('getDate', '+1d');
@@ -119,6 +136,42 @@
             if(jobCount == '0') {$('.no-result').show();}
             else {$('.no-result').hide();}
         });
-      });
+
       $('.dropdown-toggle').dropdown();
+
+        $('#submit_btn').click(function(event) {
+            if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
+                event.preventDefault();
+//                alert('Invalid date range input');
+                $('#alert_danger').show();
+                $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
+                    $("#alert_danger").hide();
+                });
+            }
+            else if(new Date($('#end_date').val()) > (new Date($.now()))){
+                event.preventDefault();
+                $('#alert_warning').show();
+                $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
+                    $("#alert_warning").hide();
+                });
+            }
+        });
+
+        $('#modal_btn').click(function(){
+        $.ajax({
+            type: "GET",
+            dataType: "html",
+            url: "/zipcodes#index",
+            success: function(data){
+                var arr = $.map(data, function(el) { return el.zip_code });
+//                console.log(arr[0].zip_code);
+                $( "#sign_in_zipcode" ).autocomplete({
+                    source: arr,
+                    delay: 0
+                });
+            }
+        });
+        });
+
+    });
 </script>
