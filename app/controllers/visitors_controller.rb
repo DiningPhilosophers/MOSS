@@ -23,7 +23,10 @@ class VisitorsController < ApplicationController
     end
 
     if !@start_date.blank? && !@end_date.blank?
-      @visitors = Visitor.where(:created_at => @start_date..@end_date)
+      @start_date = DateTime.strptime(@start_date,'%m/%d/%Y')
+      @end_date = DateTime.strptime(@end_date,'%m/%d/%Y')
+      @visitors = Visitor.where(:created_at => @start_date.beginning_of_day..@end_date.end_of_day)
+      # @visitors = Visitor.where("created_at >= ? AND created_at <= ?", @start_date, @end_date)
     else
       @visitors = Visitor.all
     end
