@@ -1,29 +1,24 @@
 <p id="notice"><%= notice %></p>
-<div class="content">
-  <div class="page-header">
-    <h1 class="visitor_title">Listing Visitors</h1>
+<div class="page-header">
+<h1 class="visitor_title">Listing Visitors</h1>
+</div>
+<form class="pull-right form-inline">
+<div class="form-group">
+  <div class="input-group input-daterange">
+    <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
+    <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
+    <span class="input-group-addon">to</span>
+    <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
+    <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
   </div>
-  <form class="pull-right form-inline">
-    <div class="form-group">
-      <div class="input-group input-daterange">
-        <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
-        <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
-        <span class="input-group-addon">to</span>
-        <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
-        <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
-      </div>
-    </div>
-    <button id="submit_btn" type="submit" class="btn btn-maroon" >Submit</button>
-  </form>
-  <br><br><br>
+</div>
+<button id="submit_btn" type="submit" class="btn btn-maroon" >Submit</button>
+</form>
+<br><br><br>
 
-  <div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
-    <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
-  </div>
-
-  <div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
-    <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
-  </div>
+<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+<strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
+</div>
 
   <!-- Button trigger modal -->
   <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
@@ -70,9 +65,13 @@
     <input type="text" class="search form-control" id="search_visitor" placeholder="Enter Zip Code">
   </div>
 
-  <div>
-  <table class="table table-bordered table-hover sortable results">
+<div class="form-group pull-right">
+<input type="text" class="search form-control" id="search_visitor" placeholder="Search">
+</div>
 
+<div>
+  <!--<table class="table table-bordered table-hover sortable results">-->
+<table id="visitors_table" class="sortable results">
     <thead>
       <tr>
         <th class="table_header">Last name</th>
@@ -83,7 +82,7 @@
         <th class="table_header">Contact</th>
         <th class="table_header">Zip code</th>
         <th class="table_header">Country</th>
-        <th class="table_header"colspan="3"></th>
+        <th class="table_header" colspan="3"></th>
       </tr>
     </thead>
 
@@ -105,8 +104,6 @@
       <% end %>
     </tbody>
   </table>
-  </div>
-  <!--<%= link_to 'New Visitor', new_visitor_path %>-->
 </div>
 
 <script>
@@ -170,5 +167,22 @@
                 });
             }
         });
+
+        $('#modal_btn').click(function(){
+        $.ajax({
+            type: "GET",
+            dataType: "html",
+            url: "/zipcodes#index",
+            success: function(data){
+                var arr = $.map(data, function(el) { return el.zip_code });
+//                console.log(arr[0].zip_code);
+                $( "#sign_in_zipcode" ).autocomplete({
+                    source: arr,
+                    delay: 0
+                });
+            }
+        });
+        });
+
     });
 </script>
