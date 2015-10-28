@@ -3,21 +3,23 @@
   <div class="page-header">
     <h1 class="visitor_title">Listing Visitors</h1>
   </div>
-  <form class="pull-right form-inline">
-    <div class="form-group">
-      <div class="input-group input-daterange">
-        <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
-        <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
-        <span class="input-group-addon">to</span>
-        <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
-        <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-maroon">Submit</button>
 
-  </form>
-  <br><br><br>
-</div>
+  <div>
+      <form class="pull-right form-inline">
+        <div class="form-group">
+          <div class="input-group input-daterange">
+            <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
+            <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
+            <span class="input-group-addon">to</span>
+            <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
+            <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-maroon">Submit</button>
+
+      </form>
+  </div>
+
 
 <div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
 <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
@@ -27,7 +29,7 @@
 <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
 </div>
 
-<div style="display: table; width: 100%">
+<div style="display: table; width: 100%; padding-top: 10px">
   <div class="form-group pull-left">
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle form-control" type="button" id="area-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -62,11 +64,12 @@
       <tr>
         <th class="table_header">Last name</th>
         <th class="table_header">First name</th>
-        <th class="table_header">Group</th>
+        <!--<th class="table_header">Group</th>-->
         <th class="table_header">Visit Date</th>
         <th class="table_header">Email</th>
         <th class="table_header">Contact</th>
         <th class="table_header">Zip code</th>
+        <th class="table_header">State</th>
         <th class="table_header">Country</th>
         <th class="table_header" colspan="3"></th>
       </tr>
@@ -77,11 +80,12 @@
         <tr>
           <td><%= visitor.last_name %></td>
           <td><%= visitor.first_name %></td>
-          <td><%= visitor.group_id %></td>
+          <!--<td><%= visitor.group_id %></td>-->
           <td><%= visitor.created_at %></td>
-          <td><%= visitor.email %></td>
+          <td style="word-wrap: break-word"><%= visitor.email %></td>
           <td><%= visitor.contact %></td>
           <td><%= visitor.zip_code %></td>
+          <td><%= Zipcode.find(visitor.zip_code).state %></td>
           <td><%= visitor.country.name %></td>
           <td><%= link_to 'Show', visitor, class: 'btn btn-info' %></td>
           <td><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning' %></td>
@@ -90,6 +94,7 @@
       <% end %>
     </tbody>
   </table>
+</div>
 </div>
 
 <script>
