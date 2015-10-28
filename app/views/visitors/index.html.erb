@@ -17,32 +17,7 @@
 
   </form>
   <br><br><br>
-
-
-  <div class="form-group pull-right">
-    <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle form-control" type="button" id="area-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      Choose Area
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="area-dropdown">
-      <li><%= link_to 'Austin', area: 'Austin' %></li>
-      <li><%= link_to 'College Station', area: 'College Sation' %></li>
-      <li><%= link_to 'Dallas/Fort Worth', area: 'DFW' %></li>
-      <li><%= link_to 'Houston', area: 'Houston' %></li>
-      <li><%= link_to 'San Antonio', area: 'San Antonio' %></li>
-      <li><%= link_to 'Other Cities in Texas', area: 'OtherTX' %></li>
-      <li><%= link_to 'Out of Texas', area: 'OutTX' %></li>
-      <li><%= link_to 'Out of Country', area: 'OutUS' %></li>
-    </ul>
-    </div>
-    <br>
-    <input type="text" class="search form-control" id="search_visitor" placeholder="Enter Zip Code">
-  </div>
 </div>
-<button id="submit_btn" type="submit" class="btn btn-maroon" >Submit</button>
-</form>
-<br><br><br>
 
 <div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
 <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
@@ -52,13 +27,37 @@
 <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
 </div>
 
-<div class="form-group pull-right">
-<input type="text" class="search form-control" id="search_visitor" placeholder="Search">
+<div style="display: table; width: 100%">
+  <div class="form-group pull-left">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle form-control" type="button" id="area-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Choose Area
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="area-dropdown">
+        <li><a href="/visitors?area=Austin">Austin</a></li>
+        <li><a href="/visitors?area=College+Sation">College Station</a></li>
+        <li><a href="/visitors?area=DFW">Dallas/Fort Worth</a></li>
+        <li><a href="/visitors?area=Houston">Houston</a></li>
+        <li><a href="/visitors?area=San+Antonio">San Antonio</a></li>
+        <li><a href="/visitors?area=OtherTX">Other Cities in Texas</a></li>
+        <li><a href="/visitors?area=OutTX">Out of Texas</a></li>
+        <li><a href="/visitors?area=OutUS">Out of Country</a></li>
+      </ul>
+    </div>
+    <!--<br>-->
+    <!--<input class="search form-control" id="search_zipcode" placeholder="Enter Zip Code" type="text">-->
+  </div>
+
+  <div class="form-group pull-right">
+    <input class="search form-control" id="search_visitor" placeholder="Search" type="text">
+  </div>
+
 </div>
 
-<div>
+<div style="margin: 0 auto; text-align:center; padding-bottom: 30px">
   <!--<table class="table table-bordered table-hover sortable results">-->
-<table id="visitors_table" class="sortable results">
+  <table id="visitors_table" class="sortable results">
     <thead>
       <tr>
         <th class="table_header">Last name</th>
@@ -142,7 +141,6 @@
         $('#submit_btn').click(function(event) {
             if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
                 event.preventDefault();
-//                alert('Invalid date range input');
                 $('#alert_danger').show();
                 $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
                     $("#alert_danger").hide();
@@ -164,7 +162,6 @@
             url: "/zipcodes#index",
             success: function(data){
                 var arr = $.map(data, function(el) { return el.zip_code });
-//                console.log(arr[0].zip_code);
                 $( "#sign_in_zipcode" ).autocomplete({
                     source: arr,
                     delay: 0
