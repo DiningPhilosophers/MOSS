@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @visitor.last_name %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @visitor.first_name %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @visitor.group_id %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @visitor.email %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @visitor.contact %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= Zipcode.find(@visitor.zip_code).city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= Zipcode.find(@visitor.zip_code).state %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @visitor.zip_code %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @visitor.country.name %>
+</p>
