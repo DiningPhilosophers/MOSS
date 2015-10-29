@@ -102,10 +102,10 @@
         <th class="table_header">Visit Date</th>
         <th class="table_header">Email</th>
         <th class="table_header">Contact</th>
-        <!--<th class="table_header">City</th>-->
+        <th class="table_header">City</th>
         <th class="table_header">Zip code</th>
-        <!--<th class="table_header">State</th>-->
-        <!--<th class="table_header">Country</th>-->
+        <th class="table_header">State</th>
+        <th class="table_header">Country</th>
         <th class="table_header" colspan="3"></th>
       </tr>
     </thead>
@@ -119,10 +119,10 @@
           <td><%= visitor.created_at %></td>
           <td style="word-wrap: break-word"><%= visitor.email %></td>
           <td style="text-align: center"><%= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>
-          <!--<td><%= Zipcode.find(visitor.zip_code).city %></td>-->
+          <td><%= Zipcode.find(visitor.zip_code).city %></td>
           <td style="text-align: center"><%= visitor.zip_code %></td>
-          <!--<td><%= Zipcode.find(visitor.zip_code).state %></td>-->
-          <!--<td style="word-wrap: break-word"><%= visitor.country.name %></td>-->
+          <td><%= Zipcode.find(visitor.zip_code).state %></td>
+          <td style="word-wrap: break-word"><%= visitor.country.name %></td>
           <!--<td><%= link_to 'Show', visitor, class: 'btn btn-info btn-xs' %></td>-->
           <td style="text-align: center"><button value='<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal">Show</button></td>
           <td style="text-align: center"><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
