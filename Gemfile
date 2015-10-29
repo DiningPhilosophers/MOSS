@@ -44,6 +44,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "cucumber-rails-training-wheels", :group => :test
 
+gem 'bootstrap-multiselect-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

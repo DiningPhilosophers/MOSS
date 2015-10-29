@@ -79,24 +79,38 @@
 
 <div style="display: table; width: 100%; padding-top: 10px">
   <div class="form-group pull-left">
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle form-control" type="button" id="area-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Choose Area
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="area-dropdown">
-        <li><a href="/visitors?area=Austin">Austin</a></li>
-        <li><a href="/visitors?area=College+Sation">College Station</a></li>
-        <li><a href="/visitors?area=DFW">Dallas/Fort Worth</a></li>
-        <li><a href="/visitors?area=Houston">Houston</a></li>
-        <li><a href="/visitors?area=San+Antonio">San Antonio</a></li>
-        <li><a href="/visitors?area=OtherTX">Other Cities in Texas</a></li>
-        <li><a href="/visitors?area=OutTX">Out of Texas</a></li>
-        <li><a href="/visitors?area=OutUS">Out of Country</a></li>
-      </ul>
-    </div>
+    <!--<div class="dropdown">-->
+      <!--<button class="btn btn-default dropdown-toggle form-control" type="button" id="area-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+        <!--Choose Area-->
+        <!--<span class="caret"></span>-->
+      <!--</button>-->
+      <!--<ul class="dropdown-menu" aria-labelledby="area-dropdown">-->
+        <!--<li><a href="/visitors?area=Austin">Austin</a></li>-->
+        <!--<li><a href="/visitors?area=College+Sation">College Station</a></li>-->
+        <!--<li><a href="/visitors?area=DFW">Dallas/Fort Worth</a></li>-->
+        <!--<li><a href="/visitors?area=Houston">Houston</a></li>-->
+        <!--<li><a href="/visitors?area=San+Antonio">San Antonio</a></li>-->
+        <!--<li><a href="/visitors?area=OtherTX">Other Cities in Texas</a></li>-->
+        <!--<li><a href="/visitors?area=OutTX">Out of Texas</a></li>-->
+        <!--<li><a href="/visitors?area=OutUS">Out of Country</a></li>-->
+      <!--</ul>-->
+    <!--</div>-->
     <!--<br>-->
     <!--<input class="search form-control" id="search_zipcode" placeholder="Enter Zip Code" type="text">-->
+    <!--<label for="sel_area">Choose Area:</label >-->
+    <!--<select class="multiselect" multiple="multiple" id="sel_area" name="options[]">-->
+      <!--<option value="Austin">Austin</option>-->
+      <!--<option value="College Station">College Station</option>-->
+      <!--<option value="Dallas/Fort Worth">Dallas/Fort Worth</option>-->
+      <!--<option value="San Antonio">San Antonio</option>-->
+      <!--<option value="other">Other Cities in Texas</option>-->
+      <!--<option value="oot">Out of Texas</option>-->
+      <!--<option value="ooc">Out of Country</option>-->
+    <!--</select>-->
+    <label for="sel_area">Choose Area:</label >
+    <%= select_tag("sel_area", options_for_select([['Austin', 'Austin'], ['College Station', 'College Station'], ['Dallas/Fort Worth', 4], ['San Antonio', 'San Antonio'], ['Other Cities in Texas', 6], ['Out of State', 7], ['Out of Country', 'N/A']], :selected => params[:area]),
+                   :class => "multiselect", :multiple => "multiple") %>
+
   </div>
 
   <div class="form-group pull-right">
@@ -105,7 +119,7 @@
 
 </div>
 
-<div style="margin: 0 auto; text-align:center; padding-bottom: 30px">
+<div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
   <!--<table class="table table-bordered table-hover sortable results">-->
   <table id="visitors_table" class="sortable results">
     <thead>
@@ -116,6 +130,7 @@
         <th class="table_header">Visit Date</th>
         <th class="table_header">Email</th>
         <th class="table_header">Contact</th>
+        <th class="table_header">City</th>
         <th class="table_header">Zip code</th>
         <th class="table_header">State</th>
         <th class="table_header">Country</th>
@@ -132,6 +147,7 @@
           <td><%= visitor.created_at %></td>
           <td style="word-wrap: break-word"><%= visitor.email %></td>
           <td><%= visitor.contact %></td>
+          <td><%= Zipcode.find(visitor.zip_code).city %></td>
           <td><%= visitor.zip_code %></td>
           <td><%= Zipcode.find(visitor.zip_code).state %></td>
           <td><%= visitor.country.name %></td>
@@ -146,12 +162,15 @@
 </div>
 
 <script>
-    $('.input-daterange input').each(function() {
-        //$(this).datepicker("clearDates");
-    });
+//    $('.input-daterange input').each(function() {
+//        //$(this).datepicker("clearDates");
+//    });
     $( document ).ready(function() {
         $('#alert_danger').hide();
         $('#alert_warning').hide();
+        $('#sel_area').multiselect({includeSelectAllOption: true});
+        $("#sel_area").multiselect('updateButtonText');
+        $('#sel_area').multiselect('select', 'austin', true);
 
         if($('#end_date').val() == '' && $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
@@ -163,6 +182,26 @@
             $('#start_date').datepicker();
             $('#end_date').datepicker();
         }
+
+        $('#sel_area').change(function(){
+            var selected = $('#sel_area').val()
+            if(selected != null){
+                $.ajax({
+                    type: "GET",
+                    dataType: "html",
+                    data:{
+                        area: selected,
+                        start_date: $('#start_date').val(),
+                        end_date: $('#end_date').val(),
+                    },
+                    url: "/filter_area",
+                    success: function(data){
+                        $('#div_table').empty();
+                        $('#div_table').append(data);
+                    }
+                });
+            }
+        });
 
         $(".search").keyup(function () {
             var searchTerm = $(".search").val();

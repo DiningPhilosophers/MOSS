@@ -15,6 +15,13 @@ Rails.application.routes.draw do
   resources :questions
   resources :groups
   resources :visitors
+
+  # resource :visitors do
+  #   get 'filter_area'
+  # end
+
+  get 'filter_area'  => 'visitors#filter_area'
+
   get 'homepage/index'
 
   root 'homepage#index'

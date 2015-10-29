@@ -19,4 +19,5 @@
 //= require bootstrap-datepicker
 //= require bootstrap
 //= require jquery.turbolinks
+//= require bootstrap-multiselect
 // require jquery-ui
