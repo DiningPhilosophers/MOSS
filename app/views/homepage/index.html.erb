@@ -1,15 +1,11 @@
-<div class="content">
-  <div class="page-header">
-    <h1>Museum of The American G.I</h1>
-  </div>
-  <!--<p class="lead">Welcome! This page is under construction</p>-->
-  <!--<img src="images/MAGI-Logo-2014-small.jpg" style="width:304px;height:228px;">-->
-  <div class="hp_image">
-    <%= image_tag 'MAGI-Logo-2014-xsmall-v2.png', :class => "homepage_image" %>
-  </div>
-  <div>
-<!--     <button type="button" class="btn btn-primary btn-lg">Sign In</button> -->
-<!--     <%= link_to '<button type="button" class="btn btn-primary btn-lg">Sign In</button>'.html_safe, sign_in_path %> -->
-  	<%= button_to "Sign In", sign_in_path, :class => "btn btn-primary btn-lg", :method => :get %>
-  </div>
+<div class="page-header">
+<h1>Museum of The American G.I</h1>
+</div>
+<!--<p class="lead">Welcome! This page is under construction</p>-->
+<!--<img src="images/MAGI-Logo-2014-small.jpg" style="width:304px;height:228px;">-->
+<div class="hp_image">
+<!--<%= image_tag 'MAGI-Logo-2014-xsmall-v2.png', :class => "homepage_image" %>-->
+</div>
+<div style="padding-bottom: 10px">
+<%= button_to "Sign In", sign_in_path, :class => 'btn btn-maroon btn-lg', :method => :get %>
 </div>

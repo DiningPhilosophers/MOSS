@@ -1,12 +1,45 @@
 # Add a declarative step here for populating the DB with movies.
 
-Given /the following movies exist/ do |movies_table|
-  movies_table.hashes.each do |movie|
+Given /the following visitors exist/ do |visitor_table|
+  visitor_table.hashes.each do |visitor|
     # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
+    # you should arrange to add that visitor to the database here.
 
-    # create movie in the database
-    Movie.create(movie)
+    # create visitor in the database
+    Visitor.create(visitor)
+  end
+  #fail "Unimplemented"
+end
+
+Given /the following groups exist/ do |group_table|
+  group_table.hashes.each do |group|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create visitor in the database
+    Group.create(group)
+  end
+  #fail "Unimplemented"
+end
+
+Given /the following zipcodes exist/ do |zipcode_table|
+  zipcode_table.hashes.each do |zipcode|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create visitor in the database
+    Zipcode.create(zipcode)
+  end
+  #fail "Unimplemented"
+end
+
+Given /the following countries exist/ do |country_table|
+  country_table.hashes.each do |country|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create visitor in the database
+    Country.create(country)
   end
   #fail "Unimplemented"
 end
@@ -51,20 +84,30 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   #fail "Unimplemented"
 end
 
-Then /I should see all the movies/ do
+Then /I should see all the visitors/ do
   # Make sure that all the movies in the app are visible in the table
 
   # count the number of movies in the database
-  number_of_movies = Movie.count
+  number_of_visitors = Visitor.count
 
   # count number of rows in the movies table displayed
-  number_of_rows = page.all('table#movies tbody tr').count
+  number_of_rows = page.all('table tbody tr').count
 
   # those numbers should be the same
-  number_of_rows.should == number_of_movies
+  number_of_rows.should == number_of_visitors
   #fail "Unimplemented"
 end
 
 Then /the director of "(.*)" should be "(.*)"/ do |title, director|
   Movie.find_by_title(title).director.should == director
+end
+
+Then /I should see country with ID "(.*)"/ do |country_id|
+  country_name = Country.find_by_id(country_id).name
+
+  if page.respond_to? :should
+    page.should have_content(country_name)
+  else
+    assert page.has_content?(country_name)
+  end
 end

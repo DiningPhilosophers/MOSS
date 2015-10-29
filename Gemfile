@@ -31,8 +31,26 @@ gem 'mysql2', '~> 0.3.18'
 
 gem 'bootstrap-datepicker-rails'
 
+# gem 'bootstrap-table-rails', '~> 1.8.1'
+
+gem 'jquery-turbolinks'
+
+gem 'jquery-ui-rails'
+
+gem 'simplecov'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
+gem "cucumber-rails-training-wheels", :group => :test
+
+gem 'bootstrap-multiselect-rails', '0.9.9'
+
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+
+gem 'pdfkit'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

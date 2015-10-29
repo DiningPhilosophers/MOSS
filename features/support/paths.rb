@@ -14,7 +14,7 @@ module NavigationHelpers
     case page_name
 
       when /^the home\s?page$/ then 'homepage/index'
-      when /^visitor index page$/ then '/visitors'
+      when /^the visitor index\s?page$/ then '/visitors'
       # when /^the (.*) page for "(.*)"$/
       #   movie = Movie.find_by_title($2)
       #
