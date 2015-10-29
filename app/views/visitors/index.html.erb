@@ -1,4 +1,13 @@
 <p id="notice"><%= notice %></p>
+
+<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+  <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
+</div>
+
+<div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
+  <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
+</div>
+
 <div class="content">
   <div class="page-header">
     <h1 class="visitor_title">Listing Visitors</h1>
@@ -15,19 +24,10 @@
             <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
           </div>
         </div>
-        <button type="submit" class="btn btn-maroon">Submit</button>
+        <button id="submit_btn" type="submit" class="btn btn-maroon">Submit</button>
 
       </form>
   </div>
-
-
-<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
-<strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
-</div>
-
-<div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
-<strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
-</div>
 
 <div style="display: table; width: 100%; padding-top: 10px">
   <div class="form-group pull-left">
@@ -114,15 +114,10 @@
 </div>
 
 <script>
-//    $('.input-daterange input').each(function() {
-//        //$(this).datepicker("clearDates");
-//    });
     $( document ).ready(function() {
         $('#alert_danger').hide();
         $('#alert_warning').hide();
         $('#sel_area').multiselect({includeSelectAllOption: true});
-        $("#sel_area").multiselect('updateButtonText');
-        $('#sel_area').multiselect('select', 'austin', true);
 
         if($('#end_date').val() == '' && $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
@@ -182,37 +177,22 @@
 
       $('.dropdown-toggle').dropdown();
 
-        $('#submit_btn').click(function(event) {
-            if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
-                event.preventDefault();
-                $('#alert_danger').show();
-                $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_danger").hide();
-                });
-            }
-            else if(new Date($('#end_date').val()) > (new Date($.now()))){
-                event.preventDefault();
-                $('#alert_warning').show();
-                $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_warning").hide();
-                });
-            }
-        });
-
-        $('#modal_btn').click(function(){
-        $.ajax({
-            type: "GET",
-            dataType: "html",
-            url: "/zipcodes#index",
-            success: function(data){
-                var arr = $.map(data, function(el) { return el.zip_code });
-                $( "#sign_in_zipcode" ).autocomplete({
-                    source: arr,
-                    delay: 0
-                });
-            }
-        });
-        });
+    $('#submit_btn').click(function(event) {
+        if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
+            event.preventDefault();
+            $('#alert_danger').show();
+            $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
+                $("#alert_danger").hide();
+            });
+        }
+        else if(new Date($('#end_date').val()) > (new Date($.now()))){
+            event.preventDefault();
+            $('#alert_warning').show();
+            $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
+                $("#alert_warning").hide();
+            });
+        }
+    });
 
     });
 </script>
