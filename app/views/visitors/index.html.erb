@@ -8,6 +8,26 @@
   <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
 </div>
 
+<!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
+  <!--Launch demo modal-->
+<!--</button>-->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Individual Information</h4>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="content">
   <div class="page-header">
     <h1 class="visitor_title">Listing Visitors</h1>
@@ -82,10 +102,10 @@
         <th class="table_header">Visit Date</th>
         <th class="table_header">Email</th>
         <th class="table_header">Contact</th>
-        <th class="table_header">City</th>
+        <!--<th class="table_header">City</th>-->
         <th class="table_header">Zip code</th>
-        <th class="table_header">State</th>
-        <th class="table_header">Country</th>
+        <!--<th class="table_header">State</th>-->
+        <!--<th class="table_header">Country</th>-->
         <th class="table_header" colspan="3"></th>
       </tr>
     </thead>
@@ -98,14 +118,15 @@
           <!--<td><%= visitor.group_id %></td>-->
           <td><%= visitor.created_at %></td>
           <td style="word-wrap: break-word"><%= visitor.email %></td>
-          <td><%= visitor.contact %></td>
-          <td><%= Zipcode.find(visitor.zip_code).city %></td>
-          <td><%= visitor.zip_code %></td>
-          <td><%= Zipcode.find(visitor.zip_code).state %></td>
-          <td><%= visitor.country.name %></td>
-          <td><%= link_to 'Show', visitor, class: 'btn btn-info' %></td>
-          <td><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning' %></td>
-          <td><%= link_to 'Destroy', visitor, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td style="text-align: center"><%= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>
+          <!--<td><%= Zipcode.find(visitor.zip_code).city %></td>-->
+          <td style="text-align: center"><%= visitor.zip_code %></td>
+          <!--<td><%= Zipcode.find(visitor.zip_code).state %></td>-->
+          <!--<td style="word-wrap: break-word"><%= visitor.country.name %></td>-->
+          <!--<td><%= link_to 'Show', visitor, class: 'btn btn-info btn-xs' %></td>-->
+          <td style="text-align: center"><button value='<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal">Show</button></td>
+          <td style="text-align: center"><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
+          <td style="text-align: center"><%= link_to 'Destroy', visitor, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -177,22 +198,35 @@
 
       $('.dropdown-toggle').dropdown();
 
-    $('#submit_btn').click(function(event) {
-        if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
-            event.preventDefault();
-            $('#alert_danger').show();
-            $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
-                $("#alert_danger").hide();
+        $('.show_btn').click(function() {
+            var val = $(this).attr("value")
+            $.ajax({
+                type: "GET",
+                dataType: "html",
+                url: "/visitors/"+val.toString(),
+                success: function(data){
+                    $('#modal-body').empty();
+                    $('#modal-body').append(data);
+                }
             });
-        }
-        else if(new Date($('#end_date').val()) > (new Date($.now()))){
-            event.preventDefault();
-            $('#alert_warning').show();
-            $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
-                $("#alert_warning").hide();
-            });
-        }
-    });
+        });
+
+        $('#submit_btn').click(function(event) {
+            if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
+                event.preventDefault();
+                $('#alert_danger').show();
+                $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
+                    $("#alert_danger").hide();
+                });
+            }
+            else if(new Date($('#end_date').val()) > (new Date($.now()))){
+                event.preventDefault();
+                $('#alert_warning').show();
+                $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
+                    $("#alert_warning").hide();
+                });
+            }
+        });
 
     });
 </script>

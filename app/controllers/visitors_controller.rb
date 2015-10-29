@@ -80,6 +80,8 @@ class VisitorsController < ApplicationController
     @visitors = Visitor.where(:created_at => @start_date..@end_date)
     if(@visitors.empty?)
       flash[:notice] = 'No visitors on that date ranges'
+    else
+      flash[:notice] = ''
     end
   end
 
@@ -133,6 +135,7 @@ class VisitorsController < ApplicationController
   # GET /visitors/1
   # GET /visitors/1.json
   def show
+    render :partial => 'visitors/show', :content_type => 'text/html'
   end
 
   # GET /visitors/new
