@@ -36,33 +36,51 @@ class VisitorsController < ApplicationController
   #   session[:ara] = @area
   # end
 
+  # def index
+  #   @start_date = params[:start_date]
+  #   @end_date = params[:end_date]
+  #
+  #   session.delete(:some_key)
+  #   start_date_remembered = @start_date.blank? && session[:start_date].present?
+  #   end_date_remembered = @end_date.blank? && session[:end_date].present?
+  #   if start_date_remembered || end_date_remembered
+  #     @start_date = session[:start_date] if start_date_remembered
+  #     @end_date = session[:end_date] if end_date_remembered
+  #
+  #     flash.keep
+  #     redirect_to :start_date => @start_date, :end_date => @end_date and return
+  #     #redirect_to :start_date => @start_date, :end_date => @end_date and return
+  #   end
+  #
+  #   if !@start_date.blank? && !@end_date.blank?
+  #     # @start_date = DateTime.strptime(@start_date,'%m/%d/%Y')
+  #     # @end_date = DateTime.strptime(@end_date,'%m/%d/%Y')
+  #     # @visitors = Visitor.where(:created_at => @start_date.beginning_of_day..@end_date.end_of_day)
+  #     @visitors = Visitor.where(:created_at => @start_date..@end_date)
+  #   else
+  #     @visitors = Visitor.all
+  #   end
+  #
+  #   session[:start_date] = @start_date
+  #   session[:end_date] = @end_date
+  # end
+
   def index
     @start_date = params[:start_date]
     @end_date = params[:end_date]
 
-    session.delete(:some_key)
-    start_date_remembered = @start_date.blank? && session[:start_date].present?
-    end_date_remembered = @end_date.blank? && session[:end_date].present?
-    if start_date_remembered || end_date_remembered
-      @start_date = session[:start_date] if start_date_remembered
-      @end_date = session[:end_date] if end_date_remembered
-
-      flash.keep
-      redirect_to :start_date => @start_date, :end_date => @end_date and return
-      #redirect_to :start_date => @start_date, :end_date => @end_date and return
-    end
-
-    if !@start_date.blank? && !@end_date.blank?
-      # @start_date = DateTime.strptime(@start_date,'%m/%d/%Y')
-      # @end_date = DateTime.strptime(@end_date,'%m/%d/%Y')
-      # @visitors = Visitor.where(:created_at => @start_date.beginning_of_day..@end_date.end_of_day)
-      @visitors = Visitor.where(:created_at => @start_date..@end_date)
+    if(@start_date.blank? || @end_date.blank?)
+      @end_date = DateTime.now.at_end_of_day
+      @start_date = (DateTime.now - 15.days)
+      @start_date = @start_date.at_end_of_day
     else
-      @visitors = Visitor.all
+      @start_date = DateTime.strptime(@start_date,'%m/%d/%Y').at_beginning_of_day
+      @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
     end
-
-    session[:start_date] = @start_date
-    session[:end_date] = @end_date
+    @visitors = Visitor.where(:created_at => @start_date..@end_date)
+    if(@visitors.empty?)
+      flash[:notice] = 'No visitors on that date ranges'
+    end
   end
 
   def filter_area
@@ -74,7 +92,10 @@ class VisitorsController < ApplicationController
     @df <<'Addison'<<'Allen'<<'Carrollton'<<'Celina'<<'Coppell'<<'Flower Mound'<<'Plano'<<'Rockwall'<<'Frisco'<<'Irving'<<'Garland'<<'Sachse'<<'Grand Prairie'<<'The Colony'<<'Lewisville'<<'Lake Dallas'<<'Little Elm'<<'Mckinney'<<'Prosper'<<'Richardson'<<'Rowlett'<<'Wylie'<<'Bardwell'<<'Cedar Hill'<<'Crandall'<<'Desoto'<<'Duncanville'<<'Ennis'<<'Ferris'<<'Forney'<<'Fate'<<'Lancaster'<<'Caddo Mills'<<'Hutchins'<<'Kaufman'<<'Mabank'<<'Mesquite'<<'Palmer'<<'Red Oak'<<'Rosser'<<'Scurry'<<'Seagoville'<<'Terrell'<<'Josephine'<<'Waxahachie'<<'Lavon'<<'Wilmer'<<'Nevada'<<'Sunnyvale'<<'Royse City'<<'Dallas'<<'Greenville'<<'Princeton'<<'Anna'<<'Ben Franklin'<<'Campbell'<<'Celeste'<<'Blue Ridge'<<'Commerce'<<'Cooper'<<'Enloe'<<'Farmersville'<<'Klondike'<<'Lake Creek'<<'Lone Oak'<<'Melissa'<<'Pecan Gap'<<'Quinlan'<<'Wolfe City'<<'Arlington'<<'Aledo'<<'Alvarado'<<'Azle'<<'Bedford'<<'Boyd'<<'Burleson'<<'Cleburne'<<'Colleyville'<<'Crowley'<<'Euless'<<'Forreston'<<'Godley'<<'Grandview'<<'Grapevine'<<'Haslet'<<'Hurst'<<'Joshua'<<'Keene'<<'Kennedale'<<'Lillian'<<'Mansfield'<<'Maypearl'<<'Midlothian'<<'Millsap'<<'Newark'<<'Paradise'<<'Rhome'<<'Springtown'<<'Venus'<<'Weatherford'<<'Southlake'<<'Rio Vista'<<'Fort Worth'<<'Haltom City'<<'Naval Air Station/ Jrb'<<'North Richland Hills'<<'Denton'<<'Alvord'<<'Argyle'<<'Aubrey'<<'Decatur'<<'Keller'<<'Justin'<<'Krum'<<'Pilot Point'<<'Ponder'<<'Roanoke'<<'Sanger'<<'Bridgeport'<<'Chico'<<'Poolville'<<'Whitt'<<'Avalon'<<'Italy'<<'Milford'
 
     @start_date=params[:start_date]
+    @start_date = DateTime.strptime(@start_date,'%m/%d/%Y').at_beginning_of_day
     @end_date=params[:end_date]
+    @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
+
     @area=params[:area]
     if(@area.size == 7)
       @visitors = Visitor.where(:created_at => @start_date..@end_date)
@@ -83,17 +104,15 @@ class VisitorsController < ApplicationController
         @area << 'College Station' << 'Bryan'
       end
       if(@area.include?('df'))
-        @area.delete('df')
-        # @area <<'Addison'<<'Allen'<<'Carrollton'<<'Celina'<<'Coppell'<<'Flower Mound'<<'Plano'<<'Rockwall'<<'Frisco'<<'Irving'<<'Garland'<<'Sachse'<<'Grand Prairie'<<'The Colony'<<'Lewisville'<<'Lake Dallas'<<'Little Elm'<<'Mckinney'<<'Prosper'<<'Richardson'<<'Rowlett'<<'Wylie'<<'Bardwell'<<'Cedar Hill'<<'Crandall'<<'Desoto'<<'Duncanville'<<'Ennis'<<'Ferris'<<'Forney'<<'Fate'<<'Lancaster'<<'Caddo Mills'<<'Hutchins'<<'Kaufman'<<'Mabank'<<'Mesquite'<<'Palmer'<<'Red Oak'<<'Rosser'<<'Scurry'<<'Seagoville'<<'Terrell'<<'Josephine'<<'Waxahachie'<<'Lavon'<<'Wilmer'<<'Nevada'<<'Sunnyvale'<<'Royse City'<<'Dallas'<<'Greenville'<<'Princeton'<<'Anna'<<'Ben Franklin'<<'Campbell'<<'Celeste'<<'Blue Ridge'<<'Commerce'<<'Cooper'<<'Enloe'<<'Farmersville'<<'Klondike'<<'Lake Creek'<<'Lone Oak'<<'Melissa'<<'Pecan Gap'<<'Quinlan'<<'Wolfe City'<<'Arlington'<<'Aledo'<<'Alvarado'<<'Azle'<<'Bedford'<<'Boyd'<<'Burleson'<<'Cleburne'<<'Colleyville'<<'Crowley'<<'Euless'<<'Forreston'<<'Godley'<<'Grandview'<<'Grapevine'<<'Haslet'<<'Hurst'<<'Joshua'<<'Keene'<<'Kennedale'<<'Lillian'<<'Mansfield'<<'Maypearl'<<'Midlothian'<<'Millsap'<<'Newark'<<'Paradise'<<'Rhome'<<'Springtown'<<'Venus'<<'Weatherford'<<'Southlake'<<'Rio Vista'<<'Fort Worth'<<'Haltom City'<<'Naval Air Station/ Jrb'<<'North Richland Hills'<<'Denton'<<'Alvord'<<'Argyle'<<'Aubrey'<<'Decatur'<<'Keller'<<'Justin'<<'Krum'<<'Pilot Point'<<'Ponder'<<'Roanoke'<<'Sanger'<<'Bridgeport'<<'Chico'<<'Poolville'<<'Whitt'<<'Avalon'<<'Italy'<<'Milford'
+        # @area.delete('df')
+        @area = @area - ['df']
         @area << @df
       end
       if(@area.include?('ocit'))
-        @area.delete('ocit')
-        # @temp = Array.new
-        # @temp << @df
+        # @area.delete('ocit')
+        @area = @area - ['ocit']
         @temp = @df
         @temp << 'Austin' << 'College Station' << 'San Antonio' << 'Bryan'
-        # @other = TexasZipcode.select(:city).not(:city => @temp).uniq
         @other = TexasZipcode.uniq.pluck(:city)
         @other = @other - @temp
         @area << @other

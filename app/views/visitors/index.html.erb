@@ -1,15 +1,16 @@
 <p id="notice"><%= notice %></p>
-<div class="page-header">
-<h1 class="visitor_title">Listing Visitors</h1>
+
+<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+  <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
 </div>
-<form class="pull-right form-inline">
-<div class="form-group">
-  <div class="input-group input-daterange">
-    <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
-    <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
-    <span class="input-group-addon">to</span>
-    <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
-    <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
+
+<div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
+  <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
+</div>
+
+<div class="content">
+  <div class="page-header">
+    <h1 class="visitor_title">Listing Visitors</h1>
   </div>
 
   <div>
@@ -23,58 +24,9 @@
             <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
           </div>
         </div>
-        <button type="submit" class="btn btn-maroon">Submit</button>
+        <button id="submit_btn" type="submit" class="btn btn-maroon">Submit</button>
 
       </form>
-  </div>
-
-<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
-<strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
-</div>
-
-  <!-- Button trigger modal -->
-  <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
-    <!--Launch demo modal-->
-  <!--</button>-->
-
-  <!-- Modal -->
-  <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
-    <!--<div class="modal-dialog" role="document">-->
-      <!--<div class="modal-content">-->
-        <!--<div class="modal-header">-->
-          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-          <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
-        <!--</div>-->
-        <!--<div class="modal-body">-->
-          <!--...-->
-        <!--</div>-->
-        <!--<div class="modal-footer">-->
-          <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <div class="form-group pull-right">
-    <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle form-control" type="button" id="area-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      Choose Area
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="area-dropdown">
-      <li><%= link_to 'Austin', area: 'Austin' %></li>
-      <li><%= link_to 'College Station', area: 'College Sation' %></li>
-      <li><%= link_to 'Dallas/Fort Worth', area: 'DFW' %></li>
-      <li><%= link_to 'Houston', area: 'Houston' %></li>
-      <li><%= link_to 'San Antonio', area: 'San Antonio' %></li>
-      <li><%= link_to 'Other Cities in Texas', area: 'OtherTX' %></li>
-      <li><%= link_to 'Out of Texas', area: 'OutTX' %></li>
-      <li><%= link_to 'Out of Country', area: 'OutUS' %></li>
-    </ul>
-    </div>
-    <br>
-    <input type="text" class="search form-control" id="search_visitor" placeholder="Enter Zip Code">
   </div>
 
 <div style="display: table; width: 100%; padding-top: 10px">
@@ -162,15 +114,10 @@
 </div>
 
 <script>
-//    $('.input-daterange input').each(function() {
-//        //$(this).datepicker("clearDates");
-//    });
     $( document ).ready(function() {
         $('#alert_danger').hide();
         $('#alert_warning').hide();
         $('#sel_area').multiselect({includeSelectAllOption: true});
-        $("#sel_area").multiselect('updateButtonText');
-        $('#sel_area').multiselect('select', 'austin', true);
 
         if($('#end_date').val() == '' && $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
@@ -228,37 +175,24 @@
             else {$('.no-result').hide();}
         });
 
-        $('#submit_btn').click(function(event) {
-            if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
-                event.preventDefault();
-                $('#alert_danger').show();
-                $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_danger").hide();
-                });
-            }
-            else if(new Date($('#end_date').val()) > (new Date($.now()))){
-                event.preventDefault();
-                $('#alert_warning').show();
-                $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_warning").hide();
-                });
-            }
-        });
+      $('.dropdown-toggle').dropdown();
 
-        $('#modal_btn').click(function(){
-        $.ajax({
-            type: "GET",
-            dataType: "html",
-            url: "/zipcodes#index",
-            success: function(data){
-                var arr = $.map(data, function(el) { return el.zip_code });
-                $( "#sign_in_zipcode" ).autocomplete({
-                    source: arr,
-                    delay: 0
-                });
-            }
-        });
-        });
+    $('#submit_btn').click(function(event) {
+        if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
+            event.preventDefault();
+            $('#alert_danger').show();
+            $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
+                $("#alert_danger").hide();
+            });
+        }
+        else if(new Date($('#end_date').val()) > (new Date($.now()))){
+            event.preventDefault();
+            $('#alert_warning').show();
+            $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
+                $("#alert_warning").hide();
+            });
+        }
+    });
 
     });
 </script>
