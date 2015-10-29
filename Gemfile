@@ -52,6 +52,8 @@ gem 'wkhtmltopdf-binary'
 
 gem 'pdfkit'
 
+gem 'font-awesome-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
