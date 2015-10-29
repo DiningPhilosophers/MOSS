@@ -33,7 +33,7 @@ class VisitorsController < ApplicationController
 
     session[:start_date] = @start_date
     session[:end_date] = @end_date
-    session[:ara] = @area
+    session[:area] = @area
   end
 
   # GET /visitors/1

@@ -1,9 +1,6 @@
 
 <%= form_for(@visitor) do |f| %>
-  <br />
-  <br />
-  <br />
-  <br />
+ 
 
   <div class="field">
     <%= f.label :first_name %>
@@ -40,7 +37,7 @@
    </div> 
 
   <div class="actions">
-    <%= f.submit "submit"%>
+    <%= f.submit "submit", class: "btn btn-maroon"%>
   </div>
 <% end %>
 
