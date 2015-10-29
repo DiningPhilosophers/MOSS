@@ -1,0 +1,37 @@
+<table id="visitors_table" class="sortable results">
+  <thead>
+  <tr>
+    <th class="table_header">Last name</th>
+    <th class="table_header">First name</th>
+    <!--<th class="table_header">Group</th>-->
+    <th class="table_header">Visit Date</th>
+    <th class="table_header">Email</th>
+    <th class="table_header">Contact</th>
+    <th class="table_header">City</th>
+    <th class="table_header">Zip code</th>
+    <th class="table_header">State</th>
+    <th class="table_header">Country</th>
+    <th class="table_header" colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @visitors.each do |visitor| %>
+      <tr>
+        <td><%= visitor.last_name %></td>
+        <td><%= visitor.first_name %></td>
+        <!--<td><%= visitor.group_id %></td>-->
+        <td><%= visitor.created_at %></td>
+        <td style="word-wrap: break-word"><%= visitor.email %></td>
+        <td><%= visitor.contact %></td>
+        <td><%= Zipcode.find(visitor.zip_code).city %></td>
+        <td><%= visitor.zip_code %></td>
+        <td><%= Zipcode.find(visitor.zip_code).state %></td>
+        <td><%= visitor.country.name %></td>
+        <td><%= link_to 'Show', visitor, class: 'btn btn-info' %></td>
+        <td><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', visitor, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
