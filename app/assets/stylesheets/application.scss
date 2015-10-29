@@ -20,6 +20,11 @@
 @import "visitors";
 @import "bootstrap-datepicker3";
 @import "bootstrap-multiselect";
+@import "sb-admin-2";
+@import "timeline";
+@import "metisMenu";
+//@import "morris";
+@import "font-awesome";
 
 html {
   position: relative;
@@ -148,71 +153,71 @@ fieldset[disabled] .btn-maroon:active, fieldset[disabled] .btn-maroon.active {
   background-color: #fff;
 }
 
-nav a {
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
-  font-size: 18px;
-}
+//nav a {
+//  padding-top: 20px !important;
+//  padding-bottom: 20px !important;
+//  font-size: 18px;
+//}
+//
+//nav .navbar-toggle {
+//  margin: 13px 15px 13px 0;
+//}
+//
+//.navbar-brand {
+//  font-size: 20px;
+//}
+//
+//nav.navbar.shrink {
+//  min-height: 35px;
+//}
+//
+//nav.shrink a {
+//  padding-top: 10px !important;
+//  padding-bottom: 10px !important;
+//  font-size: 15px;
+//}
+//
+//nav.shrink .navbar-brand {
+//  font-size: 25px;
+//}
+//
+//nav.shrink .navbar-toggle {
+//  padding: 4px 5px;
+//  margin: 8px 15px 8px 0;
+//}
+//
+//.navbar {
+//  //position: absolute;
+//  width: 100%;
+//  //height: 60px;
+//  background-color: #3E0001;
+//}
+//
+//#nav_menu_ul li a {
+//  background: none;
+//  //color: #FFFFFF;
+//}
+//
+//#nav_menu_ul li a:hover {
+//  background-color: #2D0000;
+//}
+//
+//#nav_menu_ul li a:active  {
+//  color: #3E0001;
+//  background-color: #2D0000;
+//}
+//
+//.navbar-static-top {
+//  margin-bottom:20px;
+//}
 
-nav .navbar-toggle {
-  margin: 13px 15px 13px 0;
-}
+//i {
+//  font-size:16px;
+//}
 
-.navbar-brand {
-  font-size: 20px;
-}
-
-nav.navbar.shrink {
-  min-height: 35px;
-}
-
-nav.shrink a {
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
-  font-size: 15px;
-}
-
-nav.shrink .navbar-brand {
-  font-size: 25px;
-}
-
-nav.shrink .navbar-toggle {
-  padding: 4px 5px;
-  margin: 8px 15px 8px 0;
-}
-
-.navbar {
-  //position: absolute;
-  width: 100%;
-  //height: 60px;
-  background-color: #3E0001;
-}
-
-#nav_menu_ul li a {
-  background: none;
-  //color: #FFFFFF;
-}
-
-#nav_menu_ul li a:hover {
-  background-color: #2D0000;
-}
-
-#nav_menu_ul li a:active  {
-  color: #3E0001;
-  background-color: #2D0000;
-}
-
-.navbar-static-top {
-  margin-bottom:20px;
-}
-
-i {
-  font-size:16px;
-}
-
-.nav > li > a {
-  color:#787878;
-}
+//.nav > li > a {
+//  color:#787878;
+//}
 
 /* count indicator near icons */
 .nav>li .count {

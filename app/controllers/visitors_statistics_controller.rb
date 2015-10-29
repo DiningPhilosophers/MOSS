@@ -12,5 +12,6 @@ class VisitorsStatisticsController < ApplicationController
       @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
     end
     @total_visitors = Visitor.where(:created_at => @start_date..@end_date).size;
+    render :layout => 'admin'
   end
 end

@@ -83,6 +83,7 @@ class VisitorsController < ApplicationController
     else
       flash[:notice] = ''
     end
+    render :layout => 'admin'
   end
 
   def filter_area
