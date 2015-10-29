@@ -3,87 +3,20 @@ class VisitorsController < ApplicationController
 
   # GET /visitors
   # GET /visitors.json
-  # def index
-  #   @start_date = params[:start_date]
-  #   @end_date = params[:end_date]
-  #   @area = params[:area]
-  #
-  #   session.delete(:some_key)
-  #   start_date_remembered = @start_date.blank? && session[:start_date].present?
-  #   end_date_remembered = @end_date.blank? && session[:end_date].present?
-  #   area_remembered = @area.blank? && session[:area].present?
-  #   if start_date_remembered || end_date_remembered || area_remembered
-  #     @start_date = session[:start_date] if start_date_remembered
-  #     @end_date = session[:end_date] if end_date_remembered
-  #     @area = session[:area] if area_remembered
-  #
-  #     flash.keep
-  #     redirect_to :area => @area, :start_date => @start_date, :end_date => @end_date and return
-  #     #redirect_to :start_date => @start_date, :end_date => @end_date and return
-  #   end
-  #
-  #   if !@start_date.blank? && !@end_date.blank?
-  #     # @start_date = DateTime.strptime(@start_date,'%m/%d/%Y')
-  #     # @end_date = DateTime.strptime(@end_date,'%m/%d/%Y')
-  #     # @visitors = Visitor.where(:created_at => @start_date.beginning_of_day..@end_date.end_of_day)
-  #     @visitors = Visitor.where(:created_at => @start_date..@end_date)
-  #   else
-  #     @visitors = Visitor.all
-  #   end
-  #
-  #   session[:start_date] = @start_date
-  #   session[:end_date] = @end_date
-  #   session[:ara] = @area
-  # end
-
-  # def index
-  #   @start_date = params[:start_date]
-  #   @end_date = params[:end_date]
-  #
-  #   session.delete(:some_key)
-  #   start_date_remembered = @start_date.blank? && session[:start_date].present?
-  #   end_date_remembered = @end_date.blank? && session[:end_date].present?
-  #   if start_date_remembered || end_date_remembered
-  #     @start_date = session[:start_date] if start_date_remembered
-  #     @end_date = session[:end_date] if end_date_remembered
-  #
-  #     flash.keep
-  #     redirect_to :start_date => @start_date, :end_date => @end_date and return
-  #     #redirect_to :start_date => @start_date, :end_date => @end_date and return
-  #   end
-  #
-  #   if !@start_date.blank? && !@end_date.blank?
-  #     # @start_date = DateTime.strptime(@start_date,'%m/%d/%Y')
-  #     # @end_date = DateTime.strptime(@end_date,'%m/%d/%Y')
-  #     # @visitors = Visitor.where(:created_at => @start_date.beginning_of_day..@end_date.end_of_day)
-  #     @visitors = Visitor.where(:created_at => @start_date..@end_date)
-  #   else
-  #     @visitors = Visitor.all
-  #   end
-  #
-  #   session[:start_date] = @start_date
-  #   session[:end_date] = @end_date
-  # end
 
   def index
     @start_date = params[:start_date]
     @end_date = params[:end_date]
 
-<<<<<<< HEAD
     session.delete(:some_key)
     start_date_remembered = @start_date.blank? && session[:start_date].present?
     end_date_remembered = @end_date.blank? && session[:end_date].present?
     if start_date_remembered || end_date_remembered
       @start_date = session[:start_date] if start_date_remembered
       @end_date = session[:end_date] if end_date_remembered
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> master
       flash.keep
       redirect_to :start_date => @start_date, :end_date => @end_date and return
-=======
+
     if(@start_date.blank? || @end_date.blank?)
       @end_date = DateTime.now.at_end_of_day
       @start_date = (DateTime.now - 15.days)
@@ -91,7 +24,7 @@ class VisitorsController < ApplicationController
     else
       @start_date = DateTime.strptime(@start_date,'%m/%d/%Y').at_beginning_of_day
       @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
->>>>>>> origin/development
+
     end
     @visitors = Visitor.where(:created_at => @start_date..@end_date)
     if(@visitors.empty?)
@@ -144,18 +77,12 @@ class VisitorsController < ApplicationController
       @zipcodes = Zipcode.where(:city => @area)
       @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:zip_code => @zipcodes)
     end
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> master
     session[:start_date] = @start_date
     session[:end_date] = @end_date
-=======
 
     render :partial => 'visitors/filter_area', :content_type => 'text/html'
->>>>>>> origin/development
+
   end
 
   # GET /visitors/1
