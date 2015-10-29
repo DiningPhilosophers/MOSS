@@ -42,10 +42,14 @@ Rails.application.configure do
 
   # Mailer settings
   config.action_mailer.default_url_options = {:host => "localhost:3000"}
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :address => "localhost",
-      :port => 25,
-      :domain => "domain.com",
+      :user_name => 'moss_development',
+      :password => 'j!e12cJgk<x8ysS',
+      :domain => 'americangimuseum.org',
+      :address => 'smtp.sendgrid.net',
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true
   }
 end
