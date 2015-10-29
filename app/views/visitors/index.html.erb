@@ -108,7 +108,7 @@
       <!--<option value="ooc">Out of Country</option>-->
     <!--</select>-->
     <label for="sel_area">Choose Area:</label >
-    <%= select_tag("sel_area", options_for_select([['Austin', 'Austin'], ['College Station', 'College Station'], ['Dallas/Fort Worth', 4], ['San Antonio', 'San Antonio'], ['Other Cities in Texas', 6], ['Out of State', 7], ['Out of Country', 'N/A']], :selected => params[:area]),
+    <%= select_tag("sel_area", options_for_select([['Austin', 'Austin'], ['Bryan/College Station', 'bcs'], ['Dallas/Fort Worth', 'df'], ['San Antonio', 'San Antonio'], ['Other Cities in Texas', 'ocit'], ['Out of State', 'oos'], ['Out of Country', 'N/A']], :selected => params[:area]),
                    :class => "multiselect", :multiple => "multiple") %>
 
   </div>
