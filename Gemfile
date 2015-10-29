@@ -44,6 +44,16 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "cucumber-rails-training-wheels", :group => :test
 
+gem 'bootstrap-multiselect-rails', '0.9.9'
+
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+
+gem 'pdfkit'
+
+gem 'font-awesome-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

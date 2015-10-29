@@ -26,3 +26,80 @@
   padding:8px;
   color:#ccc;
 }
+
+//table---------------
+
+#visitors_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+/* Zebra striping */
+#visitors_table tr:nth-of-type(odd) {
+  background: #eee;
+}
+#visitors_table th {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+#visitors_table td, th {
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+/*
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+  /* Force table to not be like tables anymore */
+  #visitors_table table, #visitors_table thead, #visitors_table tbody, #visitors_table th, #visitors_table td, #visitors_table tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #visitors_table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  #visitors_table tr { border: 1px solid #ccc; }
+
+  #visitors_table td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  #visitors_table td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  /*
+  Label the data
+  */
+  #visitors_table td:nth-of-type(1):before { content: "Last Name"; }
+  #visitors_table td:nth-of-type(2):before { content: "First Name"; }
+  //#visitors_table td:nth-of-type(3):before { content: "Group"; }
+  #visitors_table td:nth-of-type(4):before { content: "Visit Date"; }
+  #visitors_table td:nth-of-type(5):before { content: "Email"; }
+  #visitors_table td:nth-of-type(6):before { content: "Contact"; }
+  #visitors_table td:nth-of-type(7):before { content: "Zipcode"; }
+  #visitors_table td:nth-of-type(8):before { content: "Email"; }
+  #visitors_table td:nth-of-type(9):before { content: ""; }
+}
