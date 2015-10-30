@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
+  #get 'password_resets/new'
+
+  #get 'password_resets/edit'
+
   get 'visitors_statistics/show'
   get 'session/new'
 
   # TODO we should remove those resources or make them available to admins only
-  resources :admins # TODO We should probably remove this and do this manualy. We do not want somebody to get admins' data by visiting /admins/2
+  resources :admins, only: [:create, :edit, :update, :new] # TODO We should probably remove this and do this manualy. We do not want somebody to get admins' data by visiting /admins/2
   resources :countries
   resources :zipcodes
   resources :surveys
@@ -34,4 +38,7 @@ Rails.application.routes.draw do
 
   # Visitor sing in
   get 'signin' => 'groups#new', as: 'sign_in'
+
+  # Password reset
+  resources :password_resets, only: [:create, :edit, :update]
 end
