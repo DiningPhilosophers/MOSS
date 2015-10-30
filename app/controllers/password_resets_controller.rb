@@ -30,7 +30,7 @@ class PasswordResetsController < ApplicationController
     elsif @admin.update_attributes(admin_params)
       log_in @admin
       flash[:success] = "Password has been reset."
-      redirect_to @admin
+      redirect_to visitors_path
     else
       render 'edit'
     end

@@ -1,5 +1,6 @@
 class VisitorsController < ApplicationController
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
 
   # GET /visitors
   # GET /visitors.json
@@ -197,5 +198,12 @@ class VisitorsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def visitor_params
     params.require(:visitor).permit(:last_name, :first_name, :group_id, :email, :contact, :zip_code, :country_id)
+  end
+
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
   end
 end
