@@ -44,6 +44,18 @@ Given /the following countries exist/ do |country_table|
   #fail "Unimplemented"
 end
 
+Given /the following admins exist/ do |admin_table|
+
+  admin_table.hashes.each do |admin|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create visitor in the database
+    Admin.create(admin)
+  end
+  #fail "Unimplemented"
+end
+
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
