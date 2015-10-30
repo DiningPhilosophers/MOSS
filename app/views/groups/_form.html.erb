@@ -13,11 +13,11 @@
 
     <%= f.fields_for :visitors do |visitor| %>
         <div class="field">
-          <%= visitor.label :first_name %>
-          <%= visitor.text_field :first_name, class: 'form-control' %>
+          <%= visitor.label :first_name%>
+          <%= visitor.text_field :first_name, class: 'form-control', placeholder: 'Enter First Name'%>
         </div>
         <div class="field">
-          <%= visitor.label :last_name, class: 'sign_in_field_label' %>
+          <%= visitor.label :last_name %>
           <%= visitor.text_field :last_name, class: 'form-control' %>
         </div>
         <div class="field">
@@ -36,7 +36,7 @@
           <%= visitor.label :country_id %>
           <%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'}, class: 'form-control' %>
         </div>
-    <% end %> 
+    <% end %>
 
     <div class="field">
       <%= f.label :group_size %>
@@ -47,9 +47,9 @@
         <div class="field">
           <%= survey.label :did_you_stay_in_a_hotel? %>
           <%= survey.radio_button :answer, 0, label: "no", checked: true, inline: true%>
-          <%= survey.label :answer_no, "no" %> 
+          <%= survey.label :answer_no, "no" %>
           <%= survey.radio_button :answer, 1, label: "yes"%>
-          <%= survey.label :answer_yes, "yes" %>  
+          <%= survey.label :answer_yes, "yes" %>
         </div>
 
         <div class="field">
@@ -66,7 +66,7 @@
           <%= survey.label :how_did_you_hear_about_us? %>
           <%= survey.text_field :answer, class: 'form-control' %>
         </div>
-     <% end %>  
+     <% end %>
 
     <div class="field hidden">
       <%= f.label :visit_date %>
