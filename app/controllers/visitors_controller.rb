@@ -100,7 +100,7 @@ class VisitorsController < ApplicationController
     @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
 
     @area=params[:area]
-    if(@area.size == 7)
+    if(@area.size == 7 || @area.size == 0)
       @visitors = Visitor.where(:created_at => @start_date..@end_date)
     else
       if(@area.include?('bcs'))

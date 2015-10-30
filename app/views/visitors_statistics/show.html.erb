@@ -1,5 +1,13 @@
 <!--<h1>VisitorsStatistics#show</h1>-->
 <!--<p>Find me in app/views/visitors_statistics/show.html.erb</p>-->
+<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+  <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
+</div>
+
+<div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
+  <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
+</div>
+
   <div class="page-header">
     <h1>Visitors Statistics</h1>
   </div>
@@ -7,8 +15,8 @@
   <table>
     <thead>
     <tr>
-      <th style="border: none;"><label>From:</label> <input class="form-control" type="text" class="span2" value="" id="start_date"></th>
-      <th style="border: none;"><label>To:</label> <input class="form-control" type="text" class="span2" value="" id="end_date"></th>
+      <th style="border: none;"><label>From:</label><%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %></th>
+      <th style="border: none;"><label>To:</label><%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %></th>
 
     </tr>
     <tr>
@@ -78,7 +86,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="#" id="df_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -253,56 +261,108 @@
 
 <script>
     $(document).ready(function(){
-        if($('#end_date').val() == '' && $('#start_date').val()== '') {
+        $('#alert_danger').hide();
+        $('#alert_warning').hide();
+
+//        if($('#end_date').val() == '' || $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
             var startdate = $('#end_date').datepicker('getDate', '+1d');
             startdate.setDate(startdate.getDate() - 15);
             $('#start_date').datepicker("setDate", startdate);
-        }
-        else{
-            $('#start_date').datepicker();
-            $('#end_date').datepicker();
-        }
+//        }
+//        else{
+//            $('#start_date').datepicker();
+//            $('#end_date').datepicker();
+//        }
 
-        $('#statistics_btn').click(function(){
-            $.ajax({
-                type: "GET",
-                dataType: "html",
-                data:{
-                    start_date: $('#start_date').val(),
-                    end_date: $('#end_date').val(),
-                },
+//        $('#submit_btn').click(function(event) {
+//
+//        });
+
+        $('#df_details').click(function () {
+            window.location.replace(window.location.protocol + "//" +
+                    window.location.host + "/" + "visitors?start_date=" + $('#start_date').val() +
+                    "&end_date=" + $('#end_date').val());
+            
+
+//            $.ajax({
+//                type: "GET",
+//                dataType: "html",
+//                data:{
+//                    area: ['df'],
+//                    start_date: $('#start_date').val(),
+//                    end_date: $('#end_date').val(),
+//                },
+//                url: "/filter_area",
+//                success: function(data){
+//                    window.location.replace(window.location.protocol + "//" + window.location.host + "/" + "visitors");
+//                    $('#div_table').empty();
+//                    $('#div_table').append(data);
+//                }
+//            });
+        });
+
+        $('#statistics_btn').click(function(event){
+            if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
+                event.preventDefault();
+                $('#alert_danger').show();
+                $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
+                    $("#alert_danger").hide();
+                });
+            }
+            else if(new Date($('#end_date').val()) > (new Date($.now()))){
+                event.preventDefault();
+                $('#alert_warning').show();
+                $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
+                    $("#alert_warning").hide();
+                });
+            }
+            else{
+                $.ajax({
+                    type: "GET",
+                    dataType: "html",
+                    data:{
+                        start_date: $('#start_date').val(),
+                        end_date: $('#end_date').val(),
+                    },
 //                url: "/update_show",
-                url: "/visitors_statistics/show",
-                success: function(data){
-                    $('#ooc').empty();
-                    $('#ooc').append($(data).find('#ooc').html());
+                    url: "/visitors_statistics/show",
+                    success: function(data){
+                        $('#ooc').empty();
+                        $('#ooc').append($(data).find('#ooc').html());
 
-                    $('#df').empty();
-                    $('#df').append($(data).find('#df').html());
+                        $('#df').empty();
+                        $('#df').append($(data).find('#df').html());
 
-                    $('#austin').empty();
-                    $('#austin').append($(data).find('#austin').html());
+                        $('#austin').empty();
+                        $('#austin').append($(data).find('#austin').html());
 
-                    $('#ocit').empty();
-                    $('#ocit').append($(data).find('#ocit').html());
+                        $('#ocit').empty();
+                        $('#ocit').append($(data).find('#ocit').html());
 
-                    $('#bcs').empty();
-                    $('#bcs').append($(data).find('#bcs').html());
+                        $('#bcs').empty();
+                        $('#bcs').append($(data).find('#bcs').html());
 
-                    $('#os').empty();
-                    $('#os').append($(data).find('#os').html());
+                        $('#os').empty();
+                        $('#os').append($(data).find('#os').html());
 
-                    $('#sa').empty();
-                    $('#sa').append($(data).find('#sa').html());
+                        $('#sa').empty();
+                        $('#sa').append($(data).find('#sa').html());
 
-                    $('#houston').empty();
-                    $('#houston').append($(data).find('#houston').html());
+                        $('#houston').empty();
+                        $('#houston').append($(data).find('#houston').html());
 
-                    $('#total_note').empty();
-                    $('#total_note').append($(data).find('#total_note').html());
-                }
-            });
+                        $('#total_note').empty();
+                        $('#total_note').append($(data).find('#total_note').html());
+
+                        $('#start_date').empty();
+                        $('#start_date').append($(data).find('#start_date').html());
+
+                        $('#end_date').empty();
+                        $('#end_date').append($(data).find('#end_date').html());
+                    }
+                });
+            }
         })
 
     });
