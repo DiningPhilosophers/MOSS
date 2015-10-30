@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   #get 'password_resets/edit'
 
-  get 'visitors_statistics/show'
+  get 'visitors_statistics/show', as: 'visitors_statistics'
   get 'session/new'
 
   # TODO we should remove those resources or make them available to admins only

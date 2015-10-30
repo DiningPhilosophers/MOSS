@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if admin && admin.authenticate(params[:session][:password])
       log_in admin
       params[:session][:remember_me] == '1' ? remember(admin) : forget(admin)
-      redirect_to visitors_path
+      redirect_to visitors_statistics_path
     else
       flash.now[:danger] = 'Invalid user name/password combination'
       render 'new'
