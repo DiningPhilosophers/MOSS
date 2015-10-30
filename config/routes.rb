@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get 'filter_area'  => 'visitors#filter_area'
 
+  # get 'update_show' => 'visitors_statistics#update_show'
+
   get 'homepage/index'
 
   root 'homepage#index'
