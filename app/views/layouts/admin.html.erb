@@ -34,7 +34,7 @@
         <span class="icon-bar"></span>
       </button>
       <!--<a class="navbar-brand" href="index.html">MOSS ADMINISTRATION</a>-->
-      <%= link_to 'MOSS ADMINISTRATION', visitors_statistics_show_path, :class => 'navbar-brand'%>
+      <%= link_to 'MOSS ADMINISTRATION', visitors_statistics_path, :class => 'navbar-brand'%>
     </div>
     <!-- /.navbar-header -->
 
@@ -266,7 +266,7 @@
           <!--</li>-->
           <li>
             <!--<a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>-->
-            <%= link_to visitors_statistics_show_path do %>
+            <%= link_to visitors_statistics_path do %>
                 <i class="fa fa-dashboard fa-fw"></i> Dashboard
             <% end %>
           </li>
