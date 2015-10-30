@@ -33,43 +33,6 @@
     <div class="alert alert-success" role="alert">
       <p id="total_note" style="text-align: center; font-size: 150%;">Total Number of Visitors: <%= @total_visitors %></p>
     </div>
-      <!--<div id="statistic_bars">-->
-        <!--<div class="progress">-->
-          <!--<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">-->
-            <!--<span class="sr-only">40% Complete (success)</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="progress">-->
-          <!--<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">-->
-            <!--<span class="sr-only">20% Complete</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="progress">-->
-          <!--<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">-->
-            <!--<span class="sr-only">60% Complete (warning)</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="progress">-->
-          <!--<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">-->
-            <!--<span class="sr-only">80% Complete (danger)</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="progress">-->
-          <!--<div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 30%">-->
-            <!--<span class="sr-only">30% Complete (danger)</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="progress">-->
-          <!--<div class="progress-bar progress-bar-orange" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 100%">-->
-            <!--<span class="sr-only">100% Complete (danger)</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="progress">-->
-          <!--<div class="progress-bar progress-bar-maroon" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 70%">-->
-            <!--<span class="sr-only">70% Complete (danger)</span>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
 
     <div class="row">
       <div class="col-lg-3 col-md-6">
@@ -109,7 +72,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="#" id="austin_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -132,7 +95,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="#" id="ocit_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -155,7 +118,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="#" id="inter_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -178,7 +141,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="#" id="bc_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -201,7 +164,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="#" id="os_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -224,7 +187,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="#" id="sa_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -247,7 +210,7 @@
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="#" id="houston_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -264,16 +227,19 @@
         $('#alert_danger').hide();
         $('#alert_warning').hide();
 
-//        if($('#end_date').val() == '' || $('#start_date').val()== '') {
+//        $('#start_date').datepicker();
+//        $('#end_date').datepicker();
+
+        if($('#end_date').val() == '' || $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
             var startdate = $('#end_date').datepicker('getDate', '+1d');
             startdate.setDate(startdate.getDate() - 15);
             $('#start_date').datepicker("setDate", startdate);
-//        }
-//        else{
-//            $('#start_date').datepicker();
-//            $('#end_date').datepicker();
-//        }
+        }
+        else{
+            $('#start_date').datepicker();
+            $('#end_date').datepicker();
+        }
 
 //        $('#submit_btn').click(function(event) {
 //
@@ -283,7 +249,7 @@
             window.location.replace(window.location.protocol + "//" +
                     window.location.host + "/" + "visitors?start_date=" + $('#start_date').val() +
                     "&end_date=" + $('#end_date').val());
-            
+
 
 //            $.ajax({
 //                type: "GET",

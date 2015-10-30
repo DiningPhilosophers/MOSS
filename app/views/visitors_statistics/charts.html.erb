@@ -1,0 +1,128 @@
+<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+  <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
+</div>
+
+<div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
+  <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th style="border: none;"><label>From:</label><%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %></th>
+    <th style="border: none;"><label>To:</label><%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %></th>
+
+  </tr>
+  <tr>
+    <th style="border: none;"><button class="btn btn-maroon btn-large" id="statistics_btn">Submit</button></th>
+  </tr>
+  </thead>
+</table>
+
+<div id="charts" style="display: table; width: 100%">
+    <div id="donut-chart" style="width: 50%; height: auto; display: table-cell"></div>
+    <div id="bar-chart" style="width: 50%; height: auto; display: table-cell"></div>
+</div>
+
+<script>
+    $('#alert_danger').hide();
+    $('#alert_warning').hide();
+
+    if($('#end_date').val() == '' || $('#start_date').val()== '') {
+        $('#end_date').datepicker("setDate", new Date());
+        var startdate = $('#end_date').datepicker('getDate', '+1d');
+        startdate.setDate(startdate.getDate() - 15);
+        $('#start_date').datepicker("setDate", startdate);
+    }
+    else{
+        $('#start_date').datepicker();
+        $('#end_date').datepicker();
+    }
+
+    var austin = -1;
+    var df = -1;
+    var inter = -1;
+    var bcs = -1;
+    var sa = -1;
+    var houston = -1;
+    var ocit = -1;
+    var os = -1;
+
+    $('#statistics_btn').click(function(event){
+        if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
+            event.preventDefault();
+            $('#alert_danger').show();
+            $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
+                $("#alert_danger").hide();
+            });
+        }
+        else if(new Date($('#end_date').val()) > (new Date($.now()))){
+            event.preventDefault();
+            $('#alert_warning').show();
+            $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
+                $("#alert_warning").hide();
+            });
+        }
+        else{
+            $.ajax({
+                type: "GET",
+                dataType: "html",
+                data:{
+                    start_date: $('#start_date').val(),
+                    end_date: $('#end_date').val(),
+                },
+                url: "/visitors_statistics/show",
+                success: function(data){
+                    inter = $(data).find('#ooc').html();
+
+                    df = $(data).find('#df').html();
+
+                    austin = $(data).find('#austin').html();
+
+                    ocit = $(data).find('#ocit').html();
+
+                    bcs = $(data).find('#bcs').html();
+
+                    os = $(data).find('#os').html();
+
+                    sa = $(data).find('#sa').html();
+
+                    houston = $(data).find('#houston').html();
+
+                    $('#donut-chart').empty();
+                    $('#bar-chart').empty();
+
+                    new Morris.Donut({
+                        element: 'donut-chart',
+                        data: [
+                            {label: "Bryan / College Station", value: bcs.toString()},
+                            {label: "Houston", value: houston.toString()},
+                            {label: "Austin", value: austin.toString()},
+                            {label: "San Antonio", value: sa.toString()},
+                            {label: "Dallas / Fort Worth", value: df.toString()},
+                            {label: "Other Cities in Texas", value: ocit.toString()},
+                            {label: "Out of States", value: os.toString()},
+                            {label: "International", value: inter.toString()},
+                        ]
+                    });
+
+                    new Morris.Bar({
+                        element: 'bar-chart',
+                        data: [
+                            { y: '2006', a: 100, b: 90 },
+                            { y: '2007', a: 75,  b: 65 },
+                            { y: '2008', a: 50,  b: 40 },
+                            { y: '2009', a: 75,  b: 65 },
+                            { y: '2010', a: 50,  b: 40 },
+                            { y: '2011', a: 75,  b: 65 },
+                            { y: '2012', a: 100, b: 90 }
+                        ],
+                        xkey: 'y',
+                        ykeys: ['a', 'b'],
+                        labels: ['Series A', 'Series B']
+                    });
+                }
+            });
+        }
+    })
+</script>

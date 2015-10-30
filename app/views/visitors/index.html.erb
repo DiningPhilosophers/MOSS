@@ -8,10 +8,6 @@
   <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
 </div>
 
-<!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
-<!--Launch demo modal-->
-<!--</button>-->
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -51,36 +47,12 @@
 
   <div style="display: table; width: 100%; padding-top: 10px">
     <div class="form-group pull-left">
-      <!--<div class="dropdown">-->
-      <!--<button class="btn btn-default dropdown-toggle form-control" type="button" id="area-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
-      <!--Choose Area-->
-      <!--<span class="caret"></span>-->
-      <!--</button>-->
-      <!--<ul class="dropdown-menu" aria-labelledby="area-dropdown">-->
-      <!--<li><a href="/visitors?area=Austin">Austin</a></li>-->
-      <!--<li><a href="/visitors?area=College+Sation">College Station</a></li>-->
-      <!--<li><a href="/visitors?area=DFW">Dallas/Fort Worth</a></li>-->
-      <!--<li><a href="/visitors?area=Houston">Houston</a></li>-->
-      <!--<li><a href="/visitors?area=San+Antonio">San Antonio</a></li>-->
-      <!--<li><a href="/visitors?area=OtherTX">Other Cities in Texas</a></li>-->
-      <!--<li><a href="/visitors?area=OutTX">Out of Texas</a></li>-->
-      <!--<li><a href="/visitors?area=OutUS">Out of Country</a></li>-->
-      <!--</ul>-->
-      <!--</div>-->
-      <!--<br>-->
-      <!--<input class="search form-control" id="search_zipcode" placeholder="Enter Zip Code" type="text">-->
-      <!--<label for="sel_area">Choose Area:</label >-->
-      <!--<select class="multiselect" multiple="multiple" id="sel_area" name="options[]">-->
-      <!--<option value="Austin">Austin</option>-->
-      <!--<option value="College Station">College Station</option>-->
-      <!--<option value="Dallas/Fort Worth">Dallas/Fort Worth</option>-->
-      <!--<option value="San Antonio">San Antonio</option>-->
-      <!--<option value="other">Other Cities in Texas</option>-->
-      <!--<option value="oot">Out of Texas</option>-->
-      <!--<option value="ooc">Out of Country</option>-->
-      <!--</select>-->
       <label for="sel_area">Choose Area:</label >
-      <%= select_tag("sel_area", options_for_select([['Austin', 'Austin'], ['Bryan/College Station', 'bcs'], ['Dallas/Fort Worth', 'df'], ['San Antonio', 'San Antonio'], ['Other Cities in Texas', 'ocit'], ['Out of State', 'oos'], ['Out of Country', 'N/A']], :selected => params[:area]),
+      <%= select_tag("sel_area", options_for_select([['Austin', 'Austin'], ['Houston', 'Houston'],
+                                                     ['Bryan/College Station', 'bcs'], ['Dallas/Fort Worth', 'df'],
+                                                     ['San Antonio', 'San Antonio'], ['Other Cities in Texas', 'ocit'],
+                                                     ['Out of State', 'oos'], ['Out of Country', 'N/A']],
+                                                    :selected => params[:area]),
                      :class => "multiselect", :multiple => "multiple") %>
 
     </div>
@@ -140,7 +112,7 @@
         $('#alert_warning').hide();
         $('#sel_area').multiselect({includeSelectAllOption: true});
 
-        if($('#end_date').val() == '' && $('#start_date').val()== '') {
+        if($('#end_date').val() == '' || $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
             var startdate = $('#end_date').datepicker('getDate', '+1d');
             startdate.setDate(startdate.getDate() - 15);
