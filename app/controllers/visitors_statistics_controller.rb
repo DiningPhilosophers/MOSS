@@ -1,4 +1,6 @@
 class VisitorsStatisticsController < ApplicationController
+  before_action :logged_in_user
+
   def show
     @start_date = params[:start_date]
     @end_date = params[:end_date]
@@ -46,4 +48,12 @@ class VisitorsStatisticsController < ApplicationController
 
     render :layout => 'admin'
   end
+
+  private
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
 end
