@@ -11,19 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025051302) do
+ActiveRecord::Schema.define(version: 20151009013532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
-    t.string   "user_name",       null: false
-    t.string   "password_digest", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "remember_digest"
-    t.string   "reset_digest"
-    t.datetime "reset_sent_at"
+    t.string   "user_name"
+    t.string   "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "countries", force: :cascade do |t|
@@ -53,24 +50,20 @@ ActiveRecord::Schema.define(version: 20151025051302) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "surveys", ["person_id", "question_id"], name: "ck_survey", unique: true, using: :btree
-
   create_table "visitors", force: :cascade do |t|
     t.string   "last_name"
     t.string   "first_name"
     t.integer  "group_id",   null: false
     t.string   "email"
-    t.boolean  "contact",    null: false
+    t.boolean  "contact"
+    t.string   "zip_code",   null: false
     t.integer  "country_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "zip_code",   null: false
   end
 
-  add_index "visitors", ["country_id"], name: "index_visitors_on_country_id", using: :btree
-  add_index "visitors", ["group_id"], name: "index_visitors_on_group_id", using: :btree
-
-  create_table "zipcodes", primary_key: "zip_code", force: :cascade do |t|
+  create_table "zipcodes", id: false, force: :cascade do |t|
+    t.string   "zip_code",   null: false
     t.string   "city",       null: false
     t.string   "county"
     t.datetime "created_at", null: false
@@ -79,7 +72,4 @@ ActiveRecord::Schema.define(version: 20151025051302) do
 
   add_index "zipcodes", ["zip_code"], name: "index_zipcodes_on_zip_code", unique: true, using: :btree
 
-  add_foreign_key "visitors", "countries", name: "fk_country_id"
-  add_foreign_key "visitors", "groups", name: "fk_group_id"
-  add_foreign_key "visitors", "zipcodes", column: "zip_code", primary_key: "zip_code", name: "fk_zipcode"
 end
