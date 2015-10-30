@@ -9,7 +9,7 @@
 </div>
 
 <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
-  <!--Launch demo modal-->
+<!--Launch demo modal-->
 <!--</button>-->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -34,43 +34,43 @@
   </div>
 
   <div>
-      <form class="pull-right form-inline">
-        <div class="form-group">
-          <div class="input-group input-daterange">
-            <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
-            <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
-            <span class="input-group-addon">to</span>
-            <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
-            <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
-          </div>
+    <form class="pull-right form-inline">
+      <div class="form-group">
+        <div class="input-group input-daterange">
+          <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
+          <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
+          <span class="input-group-addon">to</span>
+          <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
+          <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
         </div>
-        <button id="submit_btn" type="submit" class="btn btn-maroon">Submit</button>
+      </div>
+      <button id="submit_btn" type="submit" class="btn btn-maroon">Submit</button>
 
-      </form>
+    </form>
   </div>
 
-<div style="display: table; width: 100%; padding-top: 10px">
-  <div class="form-group pull-left">
-    <!--<div class="dropdown">-->
+  <div style="display: table; width: 100%; padding-top: 10px">
+    <div class="form-group pull-left">
+      <!--<div class="dropdown">-->
       <!--<button class="btn btn-default dropdown-toggle form-control" type="button" id="area-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
-        <!--Choose Area-->
-        <!--<span class="caret"></span>-->
+      <!--Choose Area-->
+      <!--<span class="caret"></span>-->
       <!--</button>-->
       <!--<ul class="dropdown-menu" aria-labelledby="area-dropdown">-->
-        <!--<li><a href="/visitors?area=Austin">Austin</a></li>-->
-        <!--<li><a href="/visitors?area=College+Sation">College Station</a></li>-->
-        <!--<li><a href="/visitors?area=DFW">Dallas/Fort Worth</a></li>-->
-        <!--<li><a href="/visitors?area=Houston">Houston</a></li>-->
-        <!--<li><a href="/visitors?area=San+Antonio">San Antonio</a></li>-->
-        <!--<li><a href="/visitors?area=OtherTX">Other Cities in Texas</a></li>-->
-        <!--<li><a href="/visitors?area=OutTX">Out of Texas</a></li>-->
-        <!--<li><a href="/visitors?area=OutUS">Out of Country</a></li>-->
+      <!--<li><a href="/visitors?area=Austin">Austin</a></li>-->
+      <!--<li><a href="/visitors?area=College+Sation">College Station</a></li>-->
+      <!--<li><a href="/visitors?area=DFW">Dallas/Fort Worth</a></li>-->
+      <!--<li><a href="/visitors?area=Houston">Houston</a></li>-->
+      <!--<li><a href="/visitors?area=San+Antonio">San Antonio</a></li>-->
+      <!--<li><a href="/visitors?area=OtherTX">Other Cities in Texas</a></li>-->
+      <!--<li><a href="/visitors?area=OutTX">Out of Texas</a></li>-->
+      <!--<li><a href="/visitors?area=OutUS">Out of Country</a></li>-->
       <!--</ul>-->
-    <!--</div>-->
-    <!--<br>-->
-    <!--<input class="search form-control" id="search_zipcode" placeholder="Enter Zip Code" type="text">-->
-    <!--<label for="sel_area">Choose Area:</label >-->
-    <!--<select class="multiselect" multiple="multiple" id="sel_area" name="options[]">-->
+      <!--</div>-->
+      <!--<br>-->
+      <!--<input class="search form-control" id="search_zipcode" placeholder="Enter Zip Code" type="text">-->
+      <!--<label for="sel_area">Choose Area:</label >-->
+      <!--<select class="multiselect" multiple="multiple" id="sel_area" name="options[]">-->
       <!--<option value="Austin">Austin</option>-->
       <!--<option value="College Station">College Station</option>-->
       <!--<option value="Dallas/Fort Worth">Dallas/Fort Worth</option>-->
@@ -78,23 +78,23 @@
       <!--<option value="other">Other Cities in Texas</option>-->
       <!--<option value="oot">Out of Texas</option>-->
       <!--<option value="ooc">Out of Country</option>-->
-    <!--</select>-->
-    <label for="sel_area">Choose Area:</label >
-    <%= select_tag("sel_area", options_for_select([['Austin', 'Austin'], ['Bryan/College Station', 'bcs'], ['Dallas/Fort Worth', 'df'], ['San Antonio', 'San Antonio'], ['Other Cities in Texas', 'ocit'], ['Out of State', 'oos'], ['Out of Country', 'N/A']], :selected => params[:area]),
-                   :class => "multiselect", :multiple => "multiple") %>
+      <!--</select>-->
+      <label for="sel_area">Choose Area:</label >
+      <%= select_tag("sel_area", options_for_select([['Austin', 'Austin'], ['Bryan/College Station', 'bcs'], ['Dallas/Fort Worth', 'df'], ['San Antonio', 'San Antonio'], ['Other Cities in Texas', 'ocit'], ['Out of State', 'oos'], ['Out of Country', 'N/A']], :selected => params[:area]),
+                     :class => "multiselect", :multiple => "multiple") %>
+
+    </div>
+
+    <div class="form-group pull-right">
+      <input class="search form-control" id="search_visitor" placeholder="Search" type="text">
+    </div>
 
   </div>
 
-  <div class="form-group pull-right">
-    <input class="search form-control" id="search_visitor" placeholder="Search" type="text">
-  </div>
-
-</div>
-
-<div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
-  <!--<table class="table table-bordered table-hover sortable results">-->
-  <table id="visitors_table" class="sortable results">
-    <thead>
+  <div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
+    <!--<table class="table table-bordered table-hover sortable results">-->
+    <table id="visitors_table" class="sortable results">
+      <thead>
       <tr>
         <th class="table_header">Last name</th>
         <th class="table_header">First name</th>
@@ -108,30 +108,30 @@
         <th class="table_header">Country</th>
         <th class="table_header" colspan="3"></th>
       </tr>
-    </thead>
+      </thead>
 
-    <tbody>
+      <tbody>
       <% @visitors.each do |visitor| %>
-        <tr>
-          <td><%= visitor.last_name %></td>
-          <td><%= visitor.first_name %></td>
-          <!--<td><%= visitor.group_id %></td>-->
-          <td><%= visitor.created_at %></td>
-          <td style="word-wrap: break-word"><%= visitor.email %></td>
-          <td style="text-align: center"><%= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>
-          <td><%= Zipcode.find(visitor.zip_code).city %></td>
-          <td style="text-align: center"><%= visitor.zip_code %></td>
-          <td><%= Zipcode.find(visitor.zip_code).state %></td>
-          <td style="word-wrap: break-word"><%= visitor.country.name %></td>
-          <!--<td><%= link_to 'Show', visitor, class: 'btn btn-info btn-xs' %></td>-->
-          <td style="text-align: center"><button value='<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal">Show</button></td>
-          <td style="text-align: center"><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
-          <td style="text-align: center"><%= link_to 'Destroy', visitor, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+          <tr>
+            <td><%= visitor.last_name %></td>
+            <td><%= visitor.first_name %></td>
+            <!--<td><%= visitor.group_id %></td>-->
+            <td><%= visitor.created_at %></td>
+            <td style="word-wrap: break-word"><%= visitor.email %></td>
+            <td style="text-align: center"><%= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>
+            <td><%= Zipcode.find(visitor.zip_code).city %></td>
+            <td style="text-align: center"><%= visitor.zip_code %></td>
+            <td><%= Zipcode.find(visitor.zip_code).state %></td>
+            <td style="word-wrap: break-word"><%= visitor.country.name %></td>
+            <!--<td><%= link_to 'Show', visitor, class: 'btn btn-info btn-xs' %></td>-->
+            <td style="text-align: center"><button value='<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal">Show</button></td>
+            <td style="text-align: center"><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
+            <td style="text-align: center"><%= link_to 'Destroy', visitor, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
       <% end %>
-    </tbody>
-  </table>
-</div>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <script>
@@ -196,7 +196,7 @@
             else {$('.no-result').hide();}
         });
 
-      $('.dropdown-toggle').dropdown();
+        $('.dropdown-toggle').dropdown();
 
         $('.show_btn').click(function() {
             var val = $(this).attr("value")
