@@ -39,4 +39,17 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Mailer settings
+  config.action_mailer.default_url_options = {:host => "localhost:3000"}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :user_name => 'moss_development',
+      :password => 'j!e12cJgk<x8ysS',
+      :domain => 'americangimuseum.org',
+      :address => 'smtp.sendgrid.net',
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  }
 end

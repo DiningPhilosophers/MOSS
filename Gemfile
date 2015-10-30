@@ -54,6 +54,9 @@ gem 'pdfkit'
 
 gem 'font-awesome-rails'
 
+gem 'morrisjs-rails'
+gem 'raphael-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

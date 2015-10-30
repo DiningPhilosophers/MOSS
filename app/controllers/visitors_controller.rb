@@ -1,5 +1,6 @@
 class VisitorsController < ApplicationController
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
 
   # GET /visitors
   # GET /visitors.json
@@ -92,7 +93,23 @@ class VisitorsController < ApplicationController
     # @start_date = session[:start_date] if start_date_remembered
     # @end_date = session[:end_date] if end_date_remembered
     @df = Array.new
-    @df <<'Addison'<<'Allen'<<'Carrollton'<<'Celina'<<'Coppell'<<'Flower Mound'<<'Plano'<<'Rockwall'<<'Frisco'<<'Irving'<<'Garland'<<'Sachse'<<'Grand Prairie'<<'The Colony'<<'Lewisville'<<'Lake Dallas'<<'Little Elm'<<'Mckinney'<<'Prosper'<<'Richardson'<<'Rowlett'<<'Wylie'<<'Bardwell'<<'Cedar Hill'<<'Crandall'<<'Desoto'<<'Duncanville'<<'Ennis'<<'Ferris'<<'Forney'<<'Fate'<<'Lancaster'<<'Caddo Mills'<<'Hutchins'<<'Kaufman'<<'Mabank'<<'Mesquite'<<'Palmer'<<'Red Oak'<<'Rosser'<<'Scurry'<<'Seagoville'<<'Terrell'<<'Josephine'<<'Waxahachie'<<'Lavon'<<'Wilmer'<<'Nevada'<<'Sunnyvale'<<'Royse City'<<'Dallas'<<'Greenville'<<'Princeton'<<'Anna'<<'Ben Franklin'<<'Campbell'<<'Celeste'<<'Blue Ridge'<<'Commerce'<<'Cooper'<<'Enloe'<<'Farmersville'<<'Klondike'<<'Lake Creek'<<'Lone Oak'<<'Melissa'<<'Pecan Gap'<<'Quinlan'<<'Wolfe City'<<'Arlington'<<'Aledo'<<'Alvarado'<<'Azle'<<'Bedford'<<'Boyd'<<'Burleson'<<'Cleburne'<<'Colleyville'<<'Crowley'<<'Euless'<<'Forreston'<<'Godley'<<'Grandview'<<'Grapevine'<<'Haslet'<<'Hurst'<<'Joshua'<<'Keene'<<'Kennedale'<<'Lillian'<<'Mansfield'<<'Maypearl'<<'Midlothian'<<'Millsap'<<'Newark'<<'Paradise'<<'Rhome'<<'Springtown'<<'Venus'<<'Weatherford'<<'Southlake'<<'Rio Vista'<<'Fort Worth'<<'Haltom City'<<'Naval Air Station/ Jrb'<<'North Richland Hills'<<'Denton'<<'Alvord'<<'Argyle'<<'Aubrey'<<'Decatur'<<'Keller'<<'Justin'<<'Krum'<<'Pilot Point'<<'Ponder'<<'Roanoke'<<'Sanger'<<'Bridgeport'<<'Chico'<<'Poolville'<<'Whitt'<<'Avalon'<<'Italy'<<'Milford'
+    @df <<'Addison'<<'Allen'<<'Carrollton'<<'Celina'<<'Coppell'<<'Flower Mound'<<'Plano'<<
+        'Rockwall'<<'Frisco'<<'Irving'<<'Garland'<<'Sachse'<<'Grand Prairie'<<'The Colony'<<
+        'Lewisville'<<'Lake Dallas'<<'Little Elm'<<'Mckinney'<<'Prosper'<<'Richardson'<<'Rowlett'<<
+        'Wylie'<<'Bardwell'<<'Cedar Hill'<<'Crandall'<<'Desoto'<<'Duncanville'<<'Ennis'<<'Ferris'<<
+        'Forney'<<'Fate'<<'Lancaster'<<'Caddo Mills'<<'Hutchins'<<'Kaufman'<<'Mabank'<<'Mesquite'<<
+        'Palmer'<<'Red Oak'<<'Rosser'<<'Scurry'<<'Seagoville'<<'Terrell'<<'Josephine'<<'Waxahachie'<<
+        'Lavon'<<'Wilmer'<<'Nevada'<<'Sunnyvale'<<'Royse City'<<'Dallas'<<'Greenville'<<'Princeton'<<
+        'Anna'<<'Ben Franklin'<<'Campbell'<<'Celeste'<<'Blue Ridge'<<'Commerce'<<'Cooper'<<'Enloe'<<
+        'Farmersville'<<'Klondike'<<'Lake Creek'<<'Lone Oak'<<'Melissa'<<'Pecan Gap'<<'Quinlan'<<
+        'Wolfe City'<<'Arlington'<<'Aledo'<<'Alvarado'<<'Azle'<<'Bedford'<<'Boyd'<<'Burleson'<<
+        'Cleburne'<<'Colleyville'<<'Crowley'<<'Euless'<<'Forreston'<<'Godley'<<'Grandview'<<
+        'Grapevine'<<'Haslet'<<'Hurst'<<'Joshua'<<'Keene'<<'Kennedale'<<'Lillian'<<'Mansfield'<<
+        'Maypearl'<<'Midlothian'<<'Millsap'<<'Newark'<<'Paradise'<<'Rhome'<<'Springtown'<<'Venus'<<
+        'Weatherford'<<'Southlake'<<'Rio Vista'<<'Fort Worth'<<'Haltom City'<<'Naval Air Station/ Jrb'<<
+        'North Richland Hills'<<'Denton'<<'Alvord'<<'Argyle'<<'Aubrey'<<'Decatur'<<'Keller'<<'Justin'<<
+        'Krum'<<'Pilot Point'<<'Ponder'<<'Roanoke'<<'Sanger'<<'Bridgeport'<<'Chico'<<'Poolville'<<
+        'Whitt'<<'Avalon'<<'Italy'<<'Milford'
 
     @start_date=params[:start_date]
     @start_date = DateTime.strptime(@start_date,'%m/%d/%Y').at_beginning_of_day
@@ -100,7 +117,10 @@ class VisitorsController < ApplicationController
     @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
 
     @area=params[:area]
-    if(@area.size == 7)
+
+    # begin of "This part is not optimized and can be improved"
+
+    if(@area.size == 7 || @area.size == 0)
       @visitors = Visitor.where(:created_at => @start_date..@end_date)
     else
       if(@area.include?('bcs'))
@@ -115,7 +135,7 @@ class VisitorsController < ApplicationController
         # @area.delete('ocit')
         @area = @area - ['ocit']
         @temp = @df
-        @temp << 'Austin' << 'College Station' << 'San Antonio' << 'Bryan'
+        @temp << 'Austin' << 'College Station' << 'San Antonio' << 'Bryan' << 'Houston'
         @other = TexasZipcode.uniq.pluck(:city)
         @other = @other - @temp
         @area << @other
@@ -128,6 +148,8 @@ class VisitorsController < ApplicationController
       end
       @zipcodes = Zipcode.where(:city => @area)
       @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:zip_code => @zipcodes)
+
+      # end of "This part is not optimized and can be improved"
     end
 
     render :partial => 'visitors/filter_area', :content_type => 'text/html'
@@ -189,13 +211,20 @@ class VisitorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_visitor
-      @visitor = Visitor.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_visitor
+    @visitor = Visitor.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def visitor_params
-      params.require(:visitor).permit(:last_name, :first_name, :group_id, :email, :contact, :zip_code, :country_id)
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def visitor_params
+    params.require(:visitor).permit(:last_name, :first_name, :group_id, :email, :contact, :zip_code, :country_id)
+  end
+
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in."
+      redirect_to login_url
     end
+  end
 end
