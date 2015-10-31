@@ -17,18 +17,7 @@ module NavigationHelpers
       when /^visitors? statistics? page$/ then '/visitors_statistics/show'
       when /^log\s?in page$/ then '/login'
       when /^(the)? visitors? index\s?page$/ then '/visitors'
-      # when /^the (.*) page for "(.*)"$/
-      #   movie = Movie.find_by_title($2)
-      #
-      #   if $1 == 'edit' then
-      #     edit_movie_path(movie)
-      #   elsif $1 == 'details' then
-      #     movie_path(movie)
-      #   elsif $1 == 'Similar Movies' then
-      #     director_path(movie)
-      #   else
-      #     raise "Unsupported page #{$1} for #{$2}"
-      #   end
+      when /^admins? password change\s?page$/ then '/admins/1/edit'
 
       else
         begin

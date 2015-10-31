@@ -64,3 +64,41 @@ Scenario: I should be able to access a protected page being logged in
   And I press "log_in_button"
   And I go to the visitors index page
   Then I should be on the visitors index page
+
+Scenario: I should be able to change my password
+  When I follow "Administration"
+  And I fill in "session_password" with "aaaaaa"
+  And I press "log_in_button"
+  And I follow "settings"
+  Then I should be on admin password change page
+  When I fill in "admin_password" with "cccccc"
+  And I fill in "admin_password_confirmation" with "cccccc"
+  And I press "Change password"
+  Then I should be on visitors statistics page
+  When I follow "logout"
+  And I follow "Administration"
+  And I fill in "session_password" with "cccccc"
+  And I press "log_in_button"
+  Then I should be on visitors statistics page
+
+Scenario: I should not be able to change my password to a password of less than 6 characters
+  When I follow "Administration"
+  And I fill in "session_password" with "aaaaaa"
+  And I press "log_in_button"
+  And I follow "settings"
+  Then I should be on admin password change page
+  When I fill in "admin_password" with "ccccc"
+  And I fill in "admin_password_confirmation" with "ccccc"
+  And I press "Change password"
+  Then I should see "Password is too short"
+
+Scenario: I should not be able to change my password when password confirmation does not match
+  When I follow "Administration"
+  And I fill in "session_password" with "aaaaaa"
+  And I press "log_in_button"
+  And I follow "settings"
+  Then I should be on admin password change page
+  When I fill in "admin_password" with "cccccc"
+  And I fill in "admin_password_confirmation" with "dddddd"
+  And I press "Change password"
+  Then I should see "Password confirmation doesn't match Password"
