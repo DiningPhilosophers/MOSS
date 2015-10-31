@@ -57,6 +57,8 @@ gem 'font-awesome-rails'
 gem 'morrisjs-rails'
 gem 'raphael-rails'
 
+gem 'test-unit'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
