@@ -30,7 +30,7 @@ Feature: view visitors by date
     Given the following visitors exist:
       | last_name | first_name | group_id | email            | contact | zip_code | country_id | created_at                 |
       | Doe       | Joe        | 1        | joe@doe.com      | true    | 77840    | 1          | 2015-09-09 21:09:41.580495 |
-      | Bond      | James      | 2        | james@bond.co.uk | false   | 77830    | 1          | 2015-09-11 13:23:45.347628 |
+      | Bond      | James      | 2        | james@bond.co.uk | false   | 77840    | 1          | 2015-09-11 13:23:45.347628 |
       | Presley   | Elvis      | 3        | elvis@singer.com | true    | 77836    | 2          | 2014-09-09 01:03:23.137289 |
 
     Given I am on the home page
