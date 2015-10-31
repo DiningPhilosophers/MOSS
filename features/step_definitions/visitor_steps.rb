@@ -96,6 +96,10 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   #fail "Unimplemented"
 end
 
+Given /^(?:|I ) go to (the)? (.+)$/ do |page_name|
+  visit path_to(page_name)
+end
+
 Then /I should see all the visitors/ do
   # Make sure that all the movies in the app are visible in the table
 

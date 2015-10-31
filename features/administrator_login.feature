@@ -46,3 +46,21 @@ Scenario: I log in with the incorrect password
   And I fill in "session_password" with "bbbbbb"
   And I press "log_in_button"
   Then I should be on login page
+
+Scenario: I log out from the administration section and attempt to access it without beeing logged in
+  When I follow "Administration"
+  And I fill in "session_password" with "aaaaaa"
+  And I press "log_in_button"
+  And I follow "logout"
+  Then I should be on the home page
+
+Scenario: I should not be able to access a protected page without being logged in
+  When I go to the visitors statistics page
+  Then I should be on the login page
+
+Scenario: I should be able to access a protected page being logged in
+  When I follow "Administration"
+  And I fill in "session_password" with "aaaaaa"
+  And I press "log_in_button"
+  And I go to the visitors index page
+  Then I should be on the visitors index page
