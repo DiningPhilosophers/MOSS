@@ -96,6 +96,11 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   #fail "Unimplemented"
 end
 
+# This is used for clicking of JavaScript buttons
+When /^(?:|I )click on "([^"]*)"$/ do |selector|
+  click_on selector
+end
+
 Given /^(?:|I ) go to (the)? (.+)$/ do |page_name|
   visit path_to(page_name)
 end
