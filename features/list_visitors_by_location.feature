@@ -53,7 +53,8 @@ Feature: list visitors by location (ZIP codes)
       And I click on "Submit"
 
   Scenario: I can see all visitors by default
-    Then I should see "Jacobs"
+    Then I should be on the visitors index page
+    And I should see "Jacobs"
     And I should see "Roberson"
     And I should see "Kelley"
     And I should see "Pittman"
@@ -64,8 +65,8 @@ Feature: list visitors by location (ZIP codes)
 
   Scenario: I can see visitors from Austin
     Then I should see "Choose Area:"
-    When I click on "None selected "
-    And I click on "Austin"
+    # TODO not working. Either it does not click on a propper option, or all visitors are shown and are hidden only by JavaScript, or the filtering does not work properly on the test database.
+    When I select option "Austin" in "sel_area"
     Then I should be on the visitors index page
     And I should see "Kelley"
     And I should not see "Jacobs"

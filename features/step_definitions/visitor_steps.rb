@@ -101,6 +101,12 @@ When /^(?:|I )click on "([^"]*)"$/ do |selector|
   click_on selector
 end
 
+When /^(?:|I )select option "([^"]*)" in "([^"]*)"$/ do |option, id|
+  within "##{id}" do
+    find("option[value='#{option}']").click
+  end
+end
+
 Given /^(?:|I ) go to (the)? (.+)$/ do |page_name|
   visit path_to(page_name)
 end
