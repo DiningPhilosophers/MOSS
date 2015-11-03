@@ -22,7 +22,7 @@
               </div>
           <% end %>
 
-          <%= f.fields_for :visitors do |visitor| %>
+          <%= f.fields_for :visitors, @group.visitors.new do |visitor| %>
               <div class="field">
                 <%= visitor.label :first_name %>
                 <%= visitor.text_field :first_name, class: 'form-control' %>
