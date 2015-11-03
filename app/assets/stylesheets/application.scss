@@ -243,25 +243,168 @@ fieldset[disabled] .btn-maroon:active, fieldset[disabled] .btn-maroon.active {
   background-color: #3E0001;
 }
 
-.footer > .footer_container {
-  padding-right: 15px;
-  padding-left: 15px;
-  height: 30px;
+//.footer > .footer_container {
+//  padding-right: 15px;
+//  padding-left: 15px;
+//  height: 30px;
+//}
+//
+//.footer > .footer_container div p, a {
+//  display: inline-table;
+//}
+//
+//.footer > .footer_container a {
+//  float: right;
+//  color: #FFFFFF;
+//}
+//
+//.footer > .footer_container a:hover {
+//  background-color: #2D0000;
+//}
+//
+//.footer > .footer_container > .text-muted {
+//  color: #FFFFFF;
+//}
+
+footer {
+  padding: 25px 0;
+  text-align: center;
+  background-color: #222;
 }
 
-.footer > .footer_container div p, a {
-  display: inline-table;
+footer span.copyright {
+  text-transform: uppercase;
+  text-transform: none;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 40px;
 }
 
-.footer > .footer_container a {
-  float: right;
-  color: #FFFFFF;
+footer ul.quicklinks {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-transform: none;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 40px;
 }
 
-.footer > .footer_container a:hover {
-  background-color: #2D0000;
+ul.list-inline {
+  margin-top: 0;
+  margin-bottom: 30px;
 }
 
-.footer > .footer_container > .text-muted {
-  color: #FFFFFF;
+ul.social-buttons {
+  margin-bottom: 0;
+}
+
+ul.social-buttons li a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  font-size: 20px;
+  line-height: 40px;
+  outline: 0;
+  color: #fff;
+  background-color: #222;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+}
+
+ul.social-buttons li a:hover,
+ul.social-buttons li a:focus,
+ul.social-buttons li a:active {
+  background-color: #fed136;
+}
+
+header {
+  text-align: center;
+  color: #fff;
+  background-attachment: scroll;
+  background-image: image-url('flags_of_our_fathers-001.jpg');
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+header .intro-text {
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+header .intro-text .intro-lead-in {
+  margin-bottom: 25px;
+  font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 22px;
+}
+
+header .intro-text .intro-heading {
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 50px;
+}
+
+//.navbar-brand {
+//  font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+//  color: #fed136;
+//}
+
+.btn-signin {
+  padding: 20px 40px;
+  border-color: #fed136;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #fed136;
+}
+
+.btn-signin:hover,
+.btn-signin:focus,
+.btn-signin:active,
+.btn-signin.active,
+.open .dropdown-toggle.btn-signin {
+  border-color: #f6bf01;
+  color: #fff;
+  background-color: #fec503;
+}
+
+.btn-signin:active,
+.btn-signin.active,
+.open .dropdown-toggle.btn-signin {
+  background-image: none;
+}
+
+.btn-signin.disabled,
+.btn-signin[disabled],
+fieldset[disabled] .btn-signin,
+.btn-signin.disabled:hover,
+.btn-signin[disabled]:hover,
+fieldset[disabled] .btn-signin:hover,
+.btn-signin.disabled:focus,
+.btn-signin[disabled]:focus,
+fieldset[disabled] .btn-signin:focus,
+.btn-signin.disabled:active,
+.btn-signin[disabled]:active,
+fieldset[disabled] .btn-signin:active,
+.btn-signin.disabled.active,
+.btn-signin[disabled].active,
+fieldset[disabled] .btn-signin.active {
+  border-color: #fed136;
+  background-color: #fed136;
+}
+
+.btn-signin .badge {
+  color: #fed136;
+  background-color: #fff;
 }

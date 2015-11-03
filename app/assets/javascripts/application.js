@@ -24,5 +24,10 @@
 //= require metisMenu
 //= require raphael
 //= require morris
+
+//= require agency
+//= require cbpAnimatedHeader
+//= require classie
+
 // require morris-data
 // require jquery-ui

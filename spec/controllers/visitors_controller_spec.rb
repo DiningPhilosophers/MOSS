@@ -203,17 +203,17 @@ RSpec.describe VisitorsController, type: :controller do
     # end
   end
 
-  describe 'login to administration page' do
-    # it 'should generate routing for login' do
-    #   expect({:post => login_path(:password => 'aaaaaa')}).to route_to(:controller => 'sessions', :action => 'create', :password => 'aaaaaa')
-    # end
-    # it 'should route to the statistics page' do
-    #   get :create, :password => 'aaaaaa'
-    #   expect(response).to redirect_to(visitors_statistics_path)
-    # end
-    it 'should login' do
-      get:post => login_path(:password => 'aaaaaa')}).to redirect_to(visitors_statistics_path)
-    end
-  end
+  # describe 'login to administration page' do
+  #   # it 'should generate routing for login' do
+  #   #   expect({:post => login_path(:password => 'aaaaaa')}).to route_to(:controller => 'sessions', :action => 'create', :password => 'aaaaaa')
+  #   # end
+  #   # it 'should route to the statistics page' do
+  #   #   get :create, :password => 'aaaaaa'
+  #   #   expect(response).to redirect_to(visitors_statistics_path)
+  #   # end
+  #   it 'should login' do
+  #     get:post => login_path(:password => 'aaaaaa')}).to redirect_to(visitors_statistics_path)
+  #   end
+  # end
 
 end
