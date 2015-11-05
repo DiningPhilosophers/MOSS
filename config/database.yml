@@ -18,34 +18,34 @@
 ##  pool: 5
 ##  timeout: 5000
 #
-development:
-#  <<: *default
-  adapter: postgresql
-  timeout: 5000
-  database: moss
-  encoding: utf8
-  host: mossdevelopment.c9gazzpy3zya.us-west-2.rds.amazonaws.com
-  port: 5432
-  username: knn1989
-  password: rrg-Lsu-VNY-KA4
-  min_messages: warning
-  pool: 5
-  timeout: 5000
-
-
 #development:
 ##  <<: *default
-#  adapter: mysql2
+#  adapter: postgresql
 #  timeout: 5000
-#  database: mossmysql
+#  database: moss
 #  encoding: utf8
-#  host: localhost
-#  port: 3306
-#  username: root
-#  password: 0934084534
+#  host: mossdevelopment.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+#  port: 5432
+#  username: knn1989
+#  password: rrg-Lsu-VNY-KA4
 #  min_messages: warning
 #  pool: 5
 #  timeout: 5000
+
+
+development:
+#  <<: *default
+  adapter: mysql2
+  timeout: 5000
+  database: mossmysql
+  encoding: utf8
+  host: localhost
+  port: 3306
+  username: root
+  password: 0934084534
+  min_messages: warning
+  pool: 5
+  timeout: 5000
 
 ## Warning: The database defined as "test" will be erased and
 ## re-generated from your development database when you run "rake".
