@@ -25,6 +25,9 @@
 @import "metisMenu";
 @import "morris";
 @import "font-awesome";
+//@import "dataTables/jquery.dataTables";
+@import "dataTables/extras/dataTables.responsive";
+@import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
 
 html {
   position: relative;

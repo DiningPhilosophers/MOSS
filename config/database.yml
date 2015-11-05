@@ -1,23 +1,23 @@
-# SQLite version 3.x
-#   gem install sqlite3
+## SQLite version 3.x
+##   gem install sqlite3
+##
+##   Ensure the SQLite 3 gem is defined in your Gemfile
+##   gem 'sqlite3'
+##
 #
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
+##default: &default
+##  adapter: postgresql
+##  timeout: 5000
+##  database: moss
+##  encoding: utf8
+##  host: moss1.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+##  port: 5432
+##  username: knn1989
+##  password: rrg-Lsu-VNY-KA4
+##  min_messages: warning
+##  pool: 5
+##  timeout: 5000
 #
-
-#default: &default
-#  adapter: postgresql
-#  timeout: 5000
-#  database: moss
-#  encoding: utf8
-#  host: moss1.c9gazzpy3zya.us-west-2.rds.amazonaws.com
-#  port: 5432
-#  username: knn1989
-#  password: rrg-Lsu-VNY-KA4
-#  min_messages: warning
-#  pool: 5
-#  timeout: 5000
-
 development:
 #  <<: *default
   adapter: postgresql
@@ -32,47 +32,62 @@ development:
   pool: 5
   timeout: 5000
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test: &test
-  adapter: postgresql
-  timeout: 5000
-  database: moss
-  encoding: utf8
-  host: aa122fghwng5b24.c9gazzpy3zya.us-west-2.rds.amazonaws.com
-  port: 5432
-  username: knn1989
-  password: rrg-Lsu-VNY-KA4
-  min_messages: warning
-  pool: 5
-  timeout: 5000
 
-production:
-  # <<: *default
-  # database: db/production.sqlite3
-  adapter: postgresql
-  adapter: postgresql
-  timeout: 5000
-  database: moss
-  encoding: utf8
-  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com:5432
-  port: 5432
-  username: knn1989
-  password: 0934084534
-  min_messages: warning
-  pool: 5
-  timeout: 5000
+#development:
+##  <<: *default
+#  adapter: mysql2
+#  timeout: 5000
+#  database: mossmysql
+#  encoding: utf8
+#  host: localhost
+#  port: 3306
+#  username: root
+#  password: 0934084534
+#  min_messages: warning
+#  pool: 5
+#  timeout: 5000
 
-cucumber:
-  adapter: postgresql
-  timeout: 5000
-  database: moss
-  encoding: utf8
-  host: moss1.c9gazzpy3zya.us-west-2.rds.amazonaws.com
-  port: 5432
-  username: knn1989
-  password: rrg-Lsu-VNY-KA4
-  min_messages: warning
-  pool: 5
-  timeout: 5000
+## Warning: The database defined as "test" will be erased and
+## re-generated from your development database when you run "rake".
+## Do not set this db to the same as development or production.
+#test: &test
+#  adapter: postgresql
+#  timeout: 5000
+#  database: moss
+#  encoding: utf8
+#  host: aa122fghwng5b24.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+#  port: 5432
+#  username: knn1989
+#  password: rrg-Lsu-VNY-KA4
+#  min_messages: warning
+#  pool: 5
+#  timeout: 5000
+#
+#production:
+#  # <<: *default
+#  # database: db/production.sqlite3
+#  adapter: postgresql
+#  adapter: postgresql
+#  timeout: 5000
+#  database: moss
+#  encoding: utf8
+#  host: mydbinstance.c9gazzpy3zya.us-west-2.rds.amazonaws.com:5432
+#  port: 5432
+#  username: knn1989
+#  password: 0934084534
+#  min_messages: warning
+#  pool: 5
+#  timeout: 5000
+#
+#cucumber:
+#  adapter: postgresql
+#  timeout: 5000
+#  database: moss
+#  encoding: utf8
+#  host: moss1.c9gazzpy3zya.us-west-2.rds.amazonaws.com
+#  port: 5432
+#  username: knn1989
+#  password: rrg-Lsu-VNY-KA4
+#  min_messages: warning
+#  pool: 5
+#  timeout: 5000
