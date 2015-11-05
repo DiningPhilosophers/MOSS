@@ -57,6 +57,18 @@
             <%= f.label :created_at %>
             <%= f.datetime_select :created_at, class: 'form-control' %>
           </div>
+
+          <% @questions.each do |question| %>
+              <%= f.fields_for :surveys, @group.surveys.new do |survey| %>
+                  <%= survey.label "#{question.question}"%>
+                  <%= survey.text_field :answer, class: 'form-control'%>
+                  <div class="field hidden">
+                  <%= survey.label :question_id %>
+                  <%= survey.number_field :question_id, class: 'form-control', value: question.id %>
+                  </div>
+              <% end %>
+          <% end %>
+
           <div class="action">
             <%= f.submit "Submit", class: "btn btn-maroon" %>
           </div>

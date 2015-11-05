@@ -14,8 +14,13 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
+    # Get the questions for the survey from the database
+    @questions = Question.all
+
     @group = Group.new
     @group.visitors.new
+
+    @group.surveys.new
   end
 
   # GET /groups/1/edit
@@ -73,6 +78,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:group_size, :visit_date, visitors_attributes: [:last_name, :first_name, :group_id, :email, :contact, :zip_code, :country_id])
+      params.require(:group).permit(:group_size, :visit_date, visitors_attributes: [:last_name, :first_name, :group_id, :email, :contact, :zip_code, :country_id], surveys_attributes: [:group_id, :question_id, :answer])
     end
 end
