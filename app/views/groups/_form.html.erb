@@ -24,46 +24,49 @@
 
           <%= f.fields_for :visitors, @group.visitors.new do |visitor| %>
               <div class="field">
-                <%= visitor.label :first_name %>
-                <%= visitor.text_field :first_name, class: 'form-control' %>
+                <!% visitor.label :first_name %>
+                <%= visitor.text_field :first_name, class: 'form-control', placeholder: :first_name %>
               </div>
               <div class="field">
-                <%= visitor.label :last_name, class: 'sign_in_field_label' %>
-                <%= visitor.text_field :last_name, class: 'form-control' %>
+                <!% visitor.label :last_name, class: 'sign_in_field_label' %>
+                <%= visitor.text_field :last_name, class: 'form-control', placeholder: :last_name %>
               </div>
               <div class="field">
-                <%= visitor.label :email %>
-                <%= visitor.text_field :email, class: 'form-control' %>
+                <!% visitor.label :email %>
+                <%= visitor.text_field :email, class: 'form-control', placeholder: :email %>
               </div>
               <div class="field">
-                <%= visitor.label :contact %>
-                <%= visitor.check_box :contact, {checked: true}, class: 'form-control' %>
+                May we contact you?
+                <%= visitor.check_box :contact, {checked: true}, class: 'form-control', placeholder: :contact, style: "float:left; display: inline-block; word-wrap:break-word" %>
               </div>
               <div class="field">
-                <%= visitor.label :zip_code %>
-                <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode" %>
+                <!% visitor.label :zip_code %>
+                <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", placeholder: :zip_code %>
               </div>
               <div class="field">
-                <%= visitor.label :country_id %>
+                <!% visitor.label :country_id %>
                 <%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'}, class: 'form-control' %>
               </div>
           <% end %>
 
           <div class="field">
-            <%= f.label :group_size %>
-            <%= f.number_field :group_size, :value => 1, class: 'form-control' %>
+            <!% f.label :group_size %>
+            How many people are in your group?
+            <%= f.number_field :group_size, :value => 1, class: 'form-control', placeholder: :group_size %>
           </div>
           <div class="field hidden">
-            <%= f.label :created_at %>
+            <!% f.label :created_at %>
             <%= f.datetime_select :created_at, class: 'form-control' %>
           </div>
 
           <% @questions.each do |question| %>
               <%= f.fields_for :surveys, @group.surveys.new do |survey| %>
-                  <%= survey.label "#{question.question}"%>
-                  <%= survey.text_field :answer, class: 'form-control'%>
+                  <div class="field">
+                  <!% survey.label "#{question.question}"%>
+                  <%= survey.text_field :answer, class: 'form-control', placeholder: "#{question.question}" %>
+                  </div>
                   <div class="field hidden">
-                  <%= survey.label :question_id %>
+                    <!% survey.label :question_id %>
                   <%= survey.number_field :question_id, class: 'form-control', value: question.id %>
                   </div>
               <% end %>
