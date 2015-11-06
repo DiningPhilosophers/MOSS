@@ -57,9 +57,9 @@
 
     </div>
 
-    <div class="form-group pull-right">
-      <input class="search form-control" id="search_visitor" placeholder="Search" type="text">
-    </div>
+    <!--<div class="form-group pull-right">-->
+      <!--<input class="search form-control" id="search_visitor" placeholder="Search" type="text">-->
+    <!--</div>-->
 
   </div>
 
@@ -87,7 +87,9 @@
         <th class="table_header">Zip code</th>
         <th class="table_header">State</th>
         <th class="table_header">Country</th>
-        <th class="table_header" colspan="3"></th>
+        <th class="table_header"></th>
+        <th class="table_header"></th>
+        <th class="table_header"></th>
       </tr>
       </thead>
 
@@ -102,7 +104,9 @@
         <th class="table_header">Zip code</th>
         <th class="table_header">State</th>
         <th class="table_header">Country</th>
-        <th class="table_header" colspan="3"></th>
+        <th class="table_header"></th>
+        <th class="table_header"></th>
+        <th class="table_header"></th>
       </tr>
       </tfoot>
 
@@ -119,7 +123,6 @@
             <td style="text-align: center"><%= visitor.zip_code %></td>
             <td><%= Zipcode.find(visitor.zip_code).state %></td>
             <td style="word-wrap: break-word"><%= visitor.country.name %></td>
-            <!--<td><%= link_to 'Show', visitor, class: 'btn btn-info btn-xs' %></td>-->
             <td style="text-align: center"><button value='<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal">Show</button></td>
             <td style="text-align: center"><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
             <td style="text-align: center"><%= link_to 'Destroy', visitor, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
