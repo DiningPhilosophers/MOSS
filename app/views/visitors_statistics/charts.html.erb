@@ -129,20 +129,50 @@
                         ]
                     });
 
-                    new Morris.Bar({
-                        element: 'bar-chart',
-                        data: [
-                            { y: '2006', a: 100, b: 90 },
-                            { y: '2007', a: 75,  b: 65 },
-                            { y: '2008', a: 50,  b: 40 },
-                            { y: '2009', a: 75,  b: 65 },
-                            { y: '2010', a: 50,  b: 40 },
-                            { y: '2011', a: 75,  b: 65 },
-                            { y: '2012', a: 100, b: 90 }
-                        ],
-                        xkey: 'y',
-                        ykeys: ['a', 'b'],
-                        labels: ['Series A', 'Series B']
+                    var start = new Date($('#start_date').val());
+                    var end = new Date($('#end_date').val());
+                    var current = start;
+                    var between = [];
+
+//                    while (current <= end) {
+//                        between.push(new Date(current));
+//                        current.setDate(current.getDate() + 1);
+//                    }
+
+                    while (current <= end) {
+                        var date = new Date(current);
+                        var d = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+                        between.push(d);
+                        current.setDate(current.getDate() + 1);
+                    }
+
+                    $.ajax({
+                        type: "GET",
+                        dataType: "html",
+                        data: {
+                            dates: between,
+                        },
+                        url: "/visitors_statistics/visitors_in_date",
+                        success: function (data) {
+                            console.log(data);
+                            data = $.parseJSON(data);
+                            var da = [];
+                            $.each(data, function(i, item) {
+                                da.push({d: item.d, v: item.v});
+//                                console.log(item);
+                            });
+                            console.log(da);
+
+                            new Morris.Bar({
+                                element: 'bar-chart',
+                                data: da,
+                                xkey: 'd',
+                                ykeys: 'v',
+                                ymin: 0,
+                                gridIntegers: true,
+                                labels: ['Series V'],
+                            });
+                        }
                     });
                 }
             });

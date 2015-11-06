@@ -41,4 +41,8 @@ Rails.application.routes.draw do
 
   # Password reset
   resources :password_resets, only: [:create, :edit, :update]
+
+  resource :visitors_statistics do
+    get 'visitors_in_date'
+  end
 end
