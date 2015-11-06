@@ -44,3 +44,9 @@
   <strong>Country:</strong>
   <%= @visitor.country.name %>
 </p>
+
+<% @n_questions.each do |ques| %>
+    <p>
+      <strong><%= ques.question %></strong>
+    </p>
+<% end %>
