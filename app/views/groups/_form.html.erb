@@ -58,22 +58,31 @@
             <%= f.datetime_select :created_at, class: 'form-control' %>
           </div>
 
-          <!% Generates a text field for each question in the questions table. %>
-          <% @questions.each do |question| %>
-              <!% Answers are stored in surveys table, so we need to create fields for surveys. %>
-              <%= f.fields_for :surveys, @group.surveys.new do |survey| %>
-                  <div class="field">
-                    <!% survey.label "#{question.question}"%>
-                    <!% Question statement. %>
-                    <%= survey.text_field :answer, class: 'form-control', placeholder: "#{question.question}" %>
-                  </div>
-                  <div class="field hidden">
-                    <!% survey.label :question_id %>
-                    <!% Question id hidden to the user. %>
-                    <%= survey.number_field :question_id, class: 'form-control', value: question.id %>
-                  </div>
+          <!-- Survey Section -->
+          <div class="row">
+            <div class="col-lg-12 text-center">
+              <h2 class="section-heading">Survey</h2>
+              <h3 class="section-subheading text-muted">Survey Question.</h3>
+
+              <!% Generates a text field for each question in the questions table. %>
+              <% @questions.each do |question| %>
+                  <!% Answers are stored in surveys table, so we need to create fields for surveys. %>
+                  <%= f.fields_for :surveys, @group.surveys.new do |survey| %>
+                      <div class="field">
+                        <!% survey.label "#{question.question}"%>
+                        <!% Question statement. %>
+                        <%= survey.text_field :answer, class: 'form-control', placeholder: "#{question.question}" %>
+                      </div>
+                      <div class="field hidden">
+                        <!% survey.label :question_id %>
+                        <!% Question id hidden to the user. %>
+                        <%= survey.number_field :question_id, class: 'form-control', value: question.id %>
+                      </div>
+                  <% end %>
               <% end %>
-          <% end %>
+
+            </div>
+          </div>
 
           <div class="action">
             <%= f.submit "Submit", class: "btn btn-signin" %>
