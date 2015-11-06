@@ -26,7 +26,7 @@
   <!--</thead>-->
 <!--</table>-->
 
-<div style="padding-bottom: 80px">
+<div style="padding-bottom: 10px">
   <!--<form class="pull-right form-inline">-->
     <div class="form-group">
       <div class="input-group input-daterange">
@@ -42,9 +42,18 @@
   <!--</form>-->
 </div>
 
-<div id="charts" style="display: table; width: 100%">
-    <div id="donut-chart" style="width: 50%; height: auto; display: table-cell"></div>
-    <div id="bar-chart" style="width: 50%; height: auto; display: table-cell"></div>
+<!--<div id="charts" style="display: table; width: 100%">-->
+      <!--<h4 class="page-header">Donut Chart - Unit is in Percentage</h4>-->
+    <!--<div id="donut-chart" style="width: 50%; height: auto; display: table-cell"></div>-->
+      <!--<h4 class="page-header">Visitors Information</h4>-->
+    <!--<div id="bar-chart" style="width: 50%; height: auto; display: table-cell"></div>-->
+<!--</div>-->
+
+<div id="charts" style="padding-bottom: 40px">
+  <h3 id="h_donut" class="page-header"></h3>
+  <div id="donut-chart"></div>
+  <h3 id="h_bar" class="page-header"></h3>
+  <div id="bar-chart"></div>
 </div>
 
 <script>
@@ -112,21 +121,37 @@
 
                     houston = $(data).find('#houston').html();
 
+                    var tot = parseInt(inter) + parseInt(df) + parseInt(austin) +
+                            parseInt(ocit) + parseInt(bcs) + parseInt(os) + parseInt(sa) + parseInt(houston);
+                    console.log(tot);
+
                     $('#donut-chart').empty();
                     $('#bar-chart').empty();
+
+                    $('#h_donut').empty();
+                    $('#h_donut').append('Donut Chart - Unit is in Percentage (%)');
 
                     new Morris.Donut({
                         element: 'donut-chart',
                         data: [
-                            {label: "Bryan / College Station", value: bcs.toString()},
-                            {label: "Houston", value: houston.toString()},
-                            {label: "Austin", value: austin.toString()},
-                            {label: "San Antonio", value: sa.toString()},
-                            {label: "Dallas / Fort Worth", value: df.toString()},
-                            {label: "Other Cities in Texas", value: ocit.toString()},
-                            {label: "Out of States", value: os.toString()},
-                            {label: "International", value: inter.toString()},
-                        ]
+//                            {label: "Bryan / College Station", value: bcs.toString()},
+                            {label: "Bryan / College Station", value: ((parseInt(bcs)/tot)*100).toFixed(2)},
+//                            {label: "Houston", value: houston.toString()},
+                            {label: "Houston", value: ((parseInt(houston)/tot)*100).toFixed(2)},
+//                            {label: "Austin", value: austin.toString()},
+                            {label: "Austin", value: ((parseInt(austin)/tot)*100).toFixed(2)},
+//                            {label: "San Antonio", value: sa.toString()},
+                            {label: "San Antonio", value: ((parseInt(sa)/tot)*100).toFixed(2)},
+//                            {label: "Dallas / Fort Worth", value: df.toString()},
+                            {label: "Dallas / Fort Worth", value: ((parseInt(df)/tot)*100).toFixed(2)},
+//                            {label: "Other Cities in Texas", value: ocit.toString()},
+                            {label: "Other Cities in Texas", value: ((parseInt(ocit)/tot)*100).toFixed(2)},
+//                            {label: "Out of States", value: os.toString()},
+                            {label: "Out of States", value: ((parseInt(os)/tot)*100).toFixed(2)},
+//                            {label: "International", value: inter.toString()},
+                            {label: "International", value: ((parseInt(inter)/tot)*100).toFixed(2)},
+                        ],
+                        resize: true,
                     });
 
                     var start = new Date($('#start_date').val());
@@ -154,14 +179,16 @@
                         },
                         url: "/visitors_statistics/visitors_in_date",
                         success: function (data) {
-                            console.log(data);
+//                            console.log(data);
+                            $('#h_bar').empty();
+                            $('#h_bar').append('Bar Chart - Unit is in Number of Visitors');
+
                             data = $.parseJSON(data);
                             var da = [];
                             $.each(data, function(i, item) {
                                 da.push({d: item.d, v: item.v});
-//                                console.log(item);
                             });
-                            console.log(da);
+//                            console.log(da);
 
                             new Morris.Bar({
                                 element: 'bar-chart',
@@ -169,8 +196,10 @@
                                 xkey: 'd',
                                 ykeys: 'v',
                                 ymin: 0,
-                                gridIntegers: true,
-                                labels: ['Series V'],
+//                                yLabelFormat: function(y){return y != Math.round(y)?'':y;},
+//                                grid: false,
+                                labels: ['Total Visitors'],
+                                resize: true,
                             });
                         }
                     });

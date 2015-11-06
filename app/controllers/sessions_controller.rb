@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    # render :layout => false
   end
   def create
     # This is a master e-mail for loging in to administrator's section
