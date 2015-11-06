@@ -26,7 +26,8 @@ Rails.application.routes.draw do
 
   get 'homepage/index'
 
-  root 'homepage#index'
+  #root 'homepage#index'
+  root 'groups#new'
 
   # Routes for administrator login system
   get    'login'   => 'sessions#new'

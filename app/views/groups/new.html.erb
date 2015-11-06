@@ -1,12 +1,58 @@
 <!--<div class="content">-->
-  <!--<div class="page-header">-->
-    <!--<h1>Visitor Sign In</h1>-->
-  <!--</div>-->
+<!--<div class="page-header">-->
+<!--<h1>Visitor Sign In</h1>-->
+<!--</div>-->
 
-  <%= render 'groups/form', :@group => Group.new %>
-
-
-<%# We do not want to go back from the sign in form.
-<%#<%= link_to 'Back', groups_path %>
 
 <!--</div>-->
+
+<!--<div class="page-header">-->
+<!--<h1>Museum of The American G.I</h1>-->
+<!--</div>-->
+<!--&lt;!&ndash;<p class="lead">Welcome! This page is under construction</p>&ndash;&gt;-->
+<!--&lt;!&ndash;<img src="images/MAGI-Logo-2014-small.jpg" style="width:304px;height:228px;">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="hp_image">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;<%= image_tag 'MAGI-Logo-2014-xsmall-v2.png', :class => "homepage_image" %>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<div style="padding-bottom: 10px">-->
+<!--<%= button_to "Sign In", sign_in_path, :class => 'btn btn-maroon btn-lg', :method => :get %>-->
+<!--</div>-->
+
+<!-- Header -->
+<header style="padding-top: 40px; height: 768px">
+  <div class="container">
+    <div class="intro-text">
+      <!--<div class="intro-lead-in">Welcome To The Museum of American G.I.!</div>-->
+      <!--<div class="intro-heading">It's Nice To Meet You</div>-->
+      <div class="intro-heading">Welcome To The Museum of American G.I.!</div>
+      </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+      <a href="#services" class="page-scroll btn btn-signin">Sign In</a>
+    </div>
+  </div>
+</header>
+
+<!--&lt;!&ndash; Visitor Information Grid Section &ndash;&gt;-->
+<!--<section id="information" class="bg-light-gray">-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-lg-12 text-center">-->
+<!--<h2 class="section-heading">Information</h2>-->
+<!--<h3 class="section-subheading text-muted">Visitor Information.</h3>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</section>-->
+
+<%= render 'groups/form', :@group => Group.new %>
+
+<!-- Survey Section to be put in a survey view later -->
+<section id="survey">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Survey</h2>
+        <h3 class="section-subheading text-muted">Survey Question.</h3>
+      </div>
+    </div>
+  </div>
+</section>
