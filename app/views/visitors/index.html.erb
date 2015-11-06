@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
   <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
@@ -24,20 +24,37 @@
   </div>
 </div>
 
-<div class="content">
-  <div class="page-header">
-    <h1 class="visitor_title">Visitors Table</h1>
+<!--<div>-->
+  <!--<p id="notice"><%= notice %></p>-->
+<!--</div>-->
+
+
+<!--<div class="content">-->
+  <!--<div class="page-header">-->
+    <!--<h1 class="visitor_title">Visitors Information</h1>-->
+  <!--</div>-->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Visitors Information</h1>
+    </div>
+    <!-- /.col-lg-12 -->
   </div>
 
   <div>
     <form class="pull-right form-inline">
-      <div class="form-group">
+      <div class="form-group" style="padding-right: 10px">
         <div class="input-group input-daterange">
           <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
           <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
           <span class="input-group-addon">to</span>
           <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
           <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
+          <span class="input-group-addon">
+            Contactable ?
+            <!--<input type="checkbox" value="1" id="contactable" name="contactable" style="width: 30px">-->
+            <%= check_box_tag :contactable, 1, !!params[:contactable], :class => "check" %>
+          </span>
         </div>
       </div>
       <button id="submit_btn" type="submit" class="btn btn-maroon">Submit</button>
@@ -57,10 +74,6 @@
 
     </div>
 
-    <!--<div class="form-group pull-right">-->
-      <!--<input class="search form-control" id="search_visitor" placeholder="Search" type="text">-->
-    <!--</div>-->
-
   </div>
 
   <div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
@@ -70,7 +83,7 @@
       <div class="col-lg-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            DataTables Advanced Tables
+            <h3>Visitors Tables</h3>
           </div>
           <!-- /.panel-heading -->
           <div class="panel-body">
@@ -123,9 +136,9 @@
             <td style="text-align: center"><%= visitor.zip_code %></td>
             <td><%= Zipcode.find(visitor.zip_code).state %></td>
             <td style="word-wrap: break-word"><%= visitor.country.name %></td>
-            <td style="text-align: center"><button value='<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal">Show</button></td>
-            <td style="text-align: center"><%= link_to 'Edit', edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
-            <td style="text-align: center"><%= link_to 'Destroy', visitor, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td style="text-align: center"><button value='<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye fa-1"></i></button></td>
+            <td style="text-align: center"><%= link_to '<i class="fa fa-pencil fa-1"></i>'.html_safe, edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
+            <td style="text-align: center"><%= link_to '<i class="fa fa-trash-o fa-1"></i>'.html_safe, visitor, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
       <% end %>
       </tbody>
@@ -142,13 +155,17 @@
     <!-- /.row -->
 
   </div>
-</div>
+<!--</div>-->
 
 <script>
     $( document ).ready(function() {
-        $('#visitors_table').DataTable({
-            responsive: true
-        });
+
+        if ( $.fn.dataTable.isDataTable( '#visitors_table' ) ) {
+            table = $('#visitors_table').DataTable();
+        }
+        else {
+            table = $('#visitors_table').DataTable();
+        }
 
         $('#alert_danger').hide();
         $('#alert_warning').hide();
@@ -176,6 +193,7 @@
                         area: selected,
                         start_date: $('#start_date').val(),
                         end_date: $('#end_date').val(),
+                        contactable: $('#contactable').val(),
                     },
                     url: "/filter_area",
                     success: function(data){
