@@ -6,7 +6,7 @@ class CreateVisitors < ActiveRecord::Migration
       t.integer :group_id, null: false
       t.string :email
       t.boolean :contact
-      t.string :zipcode, null: false
+      t.string :zip_code, null: false
       t.integer :country_id, null: false
 
       t.timestamps null: false
