@@ -1,7 +1,7 @@
 Feature: single administrator login
- 
+
   As an administrator
-  So that I have acces to all information that users entered
+  So that I have access to all information that users entered
   I want to be able to login as an administrator
 
 Background: I am on the home page and I have a user account in the database
@@ -46,6 +46,7 @@ Scenario: I log in with the incorrect password
   And I fill in "session_password" with "bbbbbb"
   And I press "log_in_button"
   Then I should be on login page
+<<<<<<< Updated upstream
 
 Scenario: I log out from the administration section and attempt to access it without beeing logged in
   When I follow "Administration"
@@ -102,3 +103,5 @@ Scenario: I should not be able to change my password when password confirmation 
   And I fill in "admin_password_confirmation" with "dddddd"
   And I press "Change password"
   Then I should see "Password confirmation doesn't match Password"
+=======
+>>>>>>> Stashed changes
