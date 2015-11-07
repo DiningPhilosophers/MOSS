@@ -49,6 +49,6 @@
     <p>
       <strong><%= ques.question %></strong>
       <% @r = Survey.where(:group_id => @visitor.group_id).where(:question_id => ques.id)%>
-      <%= (@r.empty? == true)? "Not Answered" : @r[0].answer %>
+      <%= (@r.empty? == true)? "Not Answered" : ((ques.typ == 'choice')? Answer.find(@r[0].answer).answer : @r[0].answer) %>
     </p>
 <% end %>

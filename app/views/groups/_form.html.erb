@@ -51,8 +51,8 @@
 
       <div class="field">
         <!% f.label :group_size %>
-        How many people are in your group?
-        <%= f.number_field :group_size, :value => 1, class: 'form-control' %>
+        <label>How many people are in your group?</label>
+        <%= f.number_field :group_size, :value => 1, :min => 0, class: 'form-control' %>
       </div>
       <div class="field hidden">
         <!% f.label :created_at %>
@@ -73,18 +73,27 @@
         </div>
         <div style="padding-right: 10px; padding-left: 10px">
           <!% Generates a text field for each question in the questions table. %>
-          <% @questions.each do |question| %>
+          <% @questions.each do |ques| %>
               <!% Answers are stored in surveys table, so we need to create fields for surveys. %>
               <%= f.fields_for :surveys, @group.surveys.new do |survey| %>
                   <div class="field">
                     <!% survey.label "#{question.question}"%>
                     <!% Question statement. %>
-                    <%= survey.text_field :answer, class: 'form-control', placeholder: "#{question.question}" %>
+                    <!= survey.text_field :answer, class: 'form-control', placeholder: "#{ques.question}" %>
+                    <label><%= ques.question %></label>
+                    <% if(ques.typ == 'choice') %>
+                        <% @ans = Answer.where(:question_id => ques.id) %>
+                        <!= survey.select :answer, options_from_collection_for_select(@ans, "id", "answer") %>
+                        <%= survey.collection_select :answer, @ans, :id, :answer, {:selected => '215'}, class: 'form-control' %>
+                    <% elsif(ques.typ == 'number') %>
+                        <!= survey.text_field :answer, class: 'form-control', placeholder: "#{ques.question}" %>
+                        <%= survey.number_field :answer, :value => 1, :min => 0, class: 'form-control' %>
+                    <% end %>
                   </div>
                   <div class="field hidden">
                     <!% survey.label :question_id %>
                     <!% Question id hidden to the user. %>
-                    <%= survey.number_field :question_id, class: 'form-control', value: question.id %>
+                    <%= survey.number_field :question_id, class: 'form-control', value: ques.id %>
                   </div>
               <% end %>
           <% end %>
