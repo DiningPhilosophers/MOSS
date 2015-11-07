@@ -189,6 +189,7 @@ class VisitorsController < ApplicationController
 
   # GET /visitors/1/edit
   def edit
+    render :layout => 'admin'
   end
 
   # POST /visitors
