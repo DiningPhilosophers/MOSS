@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20151009013532) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "size",       limit: 4, null: false
+    t.integer  "group_size",       limit: 4, null: false
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20151009013532) do
   end
 
   create_table "surveys", force: :cascade do |t|
-    t.integer "visitor_id",  limit: 4,   null: false
+    t.integer "group_id",  limit: 4,   null: false
     t.integer "question_id", limit: 4,   null: false
     t.string  "answer",      limit: 255, null: false
   end
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20151009013532) do
     t.integer  "group_id",   limit: 4,   null: false
     t.string   "email",      limit: 255
     t.boolean  "contact"
-    t.string   "zipcode",    limit: 255, null: false
+    t.string   "zip_code",    limit: 255, null: false
     t.integer  "country_id", limit: 4,   null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
