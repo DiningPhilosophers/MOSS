@@ -22,10 +22,10 @@ Background: I am on the visitor index page and visitors have been added to datab
     | 2  | Australia   |
 
   Given the following zipcodes exist:
-    | zipcode   | city            | state |
-    | 75007     | Carrollton      | Texas |
-    | 77840     | College Station | Texas |
-    | 00000     | N/A             | N/A   |
+    | zip_code | city            | state |
+    | 75007    | Carrollton      | Texas |
+    | 77840    | College Station | Texas |
+    | 00000    | N/A             | N/A   |
 
   Given the following visitors exist:
     | last_name | first_name | group_id | email            | contact | country_id | created_at                 | updated_at                 | zip_code |

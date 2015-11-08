@@ -22,7 +22,7 @@ Feature: list visitors by location (ZIP codes)
       | 2  | Australia   |
 
     Given the following zipcodes exist:
-      | zipcode   | city            | state    |
+      | zip_code  | city            | state    |
       | 75007     | Carrollton      | Texas    |
       | 77840     | College Station | Texas    |
       | 73301     | Austin          | Texas    |

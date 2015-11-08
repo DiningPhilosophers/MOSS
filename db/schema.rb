@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20151009013532) do
   end
 
   create_table "texas_zipcodes", id: false, force: :cascade do |t|
-    t.string "zipcode", limit: 255, null: false
+    t.string "zip_code", limit: 255, null: false
     t.string "city",    limit: 255, null: false
     t.string "county",  limit: 255, null: false
   end
@@ -61,12 +61,12 @@ ActiveRecord::Schema.define(version: 20151009013532) do
   end
 
   create_table "zipcodes", id: false, force: :cascade do |t|
-    t.string "zipcode", limit: 255, null: false
+    t.string "zip_code", limit: 255, null: false
     t.string "city",    limit: 255, null: false
     t.string "state",   limit: 255, null: false
   end
 
-  add_index "zipcodes", ["zipcode"], name: "index_zipcodes_on_zipcode", unique: true, using: :btree
-  add_index "zipcodes", ["zipcode"], name: "pk_zipcode", unique: true, using: :btree
+  add_index "zipcodes", ["zip_code"], name: "index_zipcodes_on_zip_code", unique: true, using: :btree
+  add_index "zipcodes", ["zip_code"], name: "pk_zip_code", unique: true, using: :btree
 
 end
