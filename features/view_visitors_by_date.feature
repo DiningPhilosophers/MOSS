@@ -43,7 +43,7 @@ Feature: view visitors by date
     When I fill in "start_date" with "09/08/2015"
     And I fill in "end_date" with "09/10/2015"
     Then I should be on the visitors index page
-    When I click on "Submit"
+    When I click on "submit_btn"
     Then I should see "Doe"
     And I should not see "Bond"
     And I should not see "Presley"
