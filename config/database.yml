@@ -101,6 +101,7 @@ test:
   port: 3306
   username: root
   password: 0934084534
+  password: rootpw
   min_messages: warning
   pool: 5
   timeout: 5000
@@ -113,7 +114,6 @@ development:
   host: 127.0.0.1
   port: 3306
   username: root
-  password: 0934084534
   min_messages: warning
   pool: 5
   timeout: 5000
