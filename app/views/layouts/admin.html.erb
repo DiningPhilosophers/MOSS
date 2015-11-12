@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>MOSS Administration Page</title>
+  <title>M.O.S.S Administration Page</title>
 
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -34,7 +34,7 @@
         <span class="icon-bar"></span>
       </button>
       <!--<a class="navbar-brand" href="index.html">MOSS ADMINISTRATION</a>-->
-      <%= link_to 'MOSS ADMINISTRATION', visitors_statistics_path, :class => 'navbar-brand'%>
+      <%= link_to 'M.O.S.S ADMINISTRATION', visitors_statistics_path, :class => 'navbar-brand'%>
     </div>
     <!-- /.navbar-header -->
 
@@ -237,11 +237,11 @@
           <%# <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>%>
           <%# </li>%>
           <li>
-            <%= link_to raw('<i class="fa fa-gear fa-fw"></i> Settings'), edit_admin_path(current_admin) %>
+            <%= link_to raw('<i class="fa fa-gear fa-fw"></i> Settings'), edit_admin_path(current_admin), id: "settings" %>
           </li>
           <%# <li class="divider"></li>%>
           <li>
-            <%= link_to raw('<i class="fa fa-sign-out fa-fw"></i> Logout'), logout_path, method: "delete" %>
+            <%= link_to raw('<i class="fa fa-sign-out fa-fw"></i> Logout'), logout_path, method: "delete", id: "logout" %>
           </li>
         </ul>
         <!-- /.dropdown-user -->
@@ -274,7 +274,7 @@
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
               <li>
-                <a href="flot.html">Flot Charts</a>
+                <a href="#">Flot Charts</a>
               </li>
               <li>
                 <!--<a href="morris.html">Morris.js Charts</a>-->
