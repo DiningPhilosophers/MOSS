@@ -19,33 +19,32 @@
 @import "visitors_statistics";
 @import "visitors";
 @import "bootstrap-datepicker3";
+@import "bootstrap-multiselect";
+@import "sb-admin-2";
+@import "timeline";
+@import "metisMenu";
+@import "morris";
+@import "font-awesome";
+//@import "dataTables/jquery.dataTables";
+@import "dataTables/extras/dataTables.responsive";
+@import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
 
 html {
   position: relative;
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+html, body {
+  margin: 0;
+  height: 100%;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #3E0001;
-}
-.navbar {
-  position: absolute;
-  width: 100%;
-  //height: 60px;
-  background-color: #3E0001;
-}
-
-//nav > .container {
+//#footer {
+//  //position: absolute;
+//  bottom: 0px;
+//  width: 100%;
+//  /* Set the fixed height of the footer here */
+//  height: 60px;
 //  background-color: #3E0001;
 //}
 
@@ -54,60 +53,28 @@ body {
 /* Not required for template or sticky footer method. */
 
 body > .container {
-  padding: 60px 15px 0;
+  padding: 30px 15px 0;
+  width: 90%;
 }
 .container .text-muted {
   margin: 20px 0;
 }
 
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
-}
 
-.footer > .container p, a {
-  display: inline-table;
-}
 
-.footer > .container a {
-  float: right;
-  color: #FFFFFF;
-}
-
-.footer > .container a:hover {
-  background-color: #2D0000;
-}
-
-.footer > .container > .text-muted {
-  color: #FFFFFF;
-}
-
-#navbar a {
-  color: #FFFFFF;
-}
-
-#navbar a:hover {
-  background-color: #2D0000;
-}
-
-#navbar a:active  {
-  color: #3E0001;
-  background-color: #2D0000;
-}
-
-#navbar a  {
-  background: none;
-}
+//.footer, .push {
+//  height: 4em;
+//}
 
 code {
   font-size: 80%;
 }
 
-.content {
-  padding-top: 50px;
-  width: 80%;
+#content {
+  padding-top: 10px;
+  width: 85%;
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 #logo {
@@ -115,9 +82,9 @@ code {
   overflow:hidden;
 }
 
-#navbar > .navbar-nav li a {
-  line-height: 40px;
-}
+//#navbar > .navbar-nav li a {
+//  line-height: 40px;
+//}
 
 .field_with_errors {
   @extend .has-error;
@@ -187,4 +154,267 @@ fieldset[disabled] .btn-maroon:active, fieldset[disabled] .btn-maroon.active {
 .btn-maroon .badge {
   color: #337ab7;
   background-color: #fff;
+}
+
+//nav a {
+//  padding-top: 20px !important;
+//  padding-bottom: 20px !important;
+//  font-size: 18px;
+//}
+//
+//nav .navbar-toggle {
+//  margin: 13px 15px 13px 0;
+//}
+//
+//.navbar-brand {
+//  font-size: 20px;
+//}
+//
+//nav.navbar.shrink {
+//  min-height: 35px;
+//}
+//
+//nav.shrink a {
+//  padding-top: 10px !important;
+//  padding-bottom: 10px !important;
+//  font-size: 15px;
+//}
+//
+//nav.shrink .navbar-brand {
+//  font-size: 25px;
+//}
+//
+//nav.shrink .navbar-toggle {
+//  padding: 4px 5px;
+//  margin: 8px 15px 8px 0;
+//}
+//
+//.navbar {
+//  //position: absolute;
+//  width: 100%;
+//  //height: 60px;
+//  background-color: #3E0001;
+//}
+//
+//#nav_menu_ul li a {
+//  background: none;
+//  //color: #FFFFFF;
+//}
+//
+//#nav_menu_ul li a:hover {
+//  background-color: #2D0000;
+//}
+//
+//#nav_menu_ul li a:active  {
+//  color: #3E0001;
+//  background-color: #2D0000;
+//}
+//
+//.navbar-static-top {
+//  margin-bottom:20px;
+//}
+
+//i {
+//  font-size:16px;
+//}
+
+//.nav > li > a {
+//  color:#787878;
+//}
+
+/* count indicator near icons */
+.nav>li .count {
+  position: absolute;
+  bottom: 12px;
+  right: 6px;
+  font-size: 9px;
+  background: rgba(51,200,51,0.55);
+  color: rgba(255,255,255,0.9);
+  line-height: 1em;
+  padding: 2px 4px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.footer {
+  margin-top:20px;
+  padding-top:20px;
+  padding-bottom:20px;
+  background-color: #3E0001;
+}
+
+//.footer > .footer_container {
+//  padding-right: 15px;
+//  padding-left: 15px;
+//  height: 30px;
+//}
+//
+//.footer > .footer_container div p, a {
+//  display: inline-table;
+//}
+//
+//.footer > .footer_container a {
+//  float: right;
+//  color: #FFFFFF;
+//}
+//
+//.footer > .footer_container a:hover {
+//  background-color: #2D0000;
+//}
+//
+//.footer > .footer_container > .text-muted {
+//  color: #FFFFFF;
+//}
+
+footer {
+  padding: 25px 0;
+  text-align: center;
+  background-color: #222;
+}
+
+footer span.copyright {
+  text-transform: uppercase;
+  text-transform: none;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 40px;
+}
+
+footer ul.quicklinks {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-transform: none;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 40px;
+}
+
+ul.list-inline {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+ul.social-buttons {
+  margin-bottom: 0;
+}
+
+ul.social-buttons li a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  font-size: 20px;
+  line-height: 40px;
+  outline: 0;
+  color: #fff;
+  background-color: #222;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+}
+
+ul.social-buttons li a:hover,
+ul.social-buttons li a:focus,
+ul.social-buttons li a:active {
+  background-color: #fed136;
+}
+
+header {
+  text-align: center;
+  color: #fff;
+  background-attachment: scroll;
+  background-image: image-url('flags_of_our_fathers-001.jpg');
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+header .intro-text {
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+header .intro-text .intro-lead-in {
+  margin-bottom: 25px;
+  font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 22px;
+}
+
+header .intro-text .intro-heading {
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 50px;
+}
+
+//.navbar-brand {
+//  font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+//  color: #fed136;
+//}
+
+.btn-signin {
+  padding: 20px 40px;
+  border-color: #fed136;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #fed136;
+}
+
+.btn-signin:hover,
+.btn-signin:focus,
+.btn-signin:active,
+.btn-signin.active,
+.open .dropdown-toggle.btn-signin {
+  border-color: #f6bf01;
+  color: #fff;
+  background-color: #fec503;
+}
+
+.btn-signin:active,
+.btn-signin.active,
+.open .dropdown-toggle.btn-signin {
+  background-image: none;
+}
+
+.btn-signin.disabled,
+.btn-signin[disabled],
+fieldset[disabled] .btn-signin,
+.btn-signin.disabled:hover,
+.btn-signin[disabled]:hover,
+fieldset[disabled] .btn-signin:hover,
+.btn-signin.disabled:focus,
+.btn-signin[disabled]:focus,
+fieldset[disabled] .btn-signin:focus,
+.btn-signin.disabled:active,
+.btn-signin[disabled]:active,
+fieldset[disabled] .btn-signin:active,
+.btn-signin.disabled.active,
+.btn-signin[disabled].active,
+fieldset[disabled] .btn-signin.active {
+  border-color: #fed136;
+  background-color: #fed136;
+}
+
+.btn-signin .badge {
+  color: #fed136;
+  background-color: #fff;
+}
+
+#alert {
+    padding-top: 70px;
+    width: 85%;
+    margin: 0 auto;
+    padding-bottom: 10px;
 }

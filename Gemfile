@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use Haml as the templating library
 gem 'haml'
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '4.0.4'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -43,6 +43,26 @@ gem 'simplecov'
 gem 'bcrypt', '~> 3.1.7'
 
 gem "cucumber-rails-training-wheels", :group => :test
+
+gem 'bootstrap-multiselect-rails', '0.9.9'
+
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+
+gem 'pdfkit'
+
+gem 'font-awesome-rails'
+
+gem 'morrisjs-rails'
+gem 'raphael-rails'
+
+gem 'test-unit'
+
+# gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'jquery-datatables-rails'
+
+# gem 'mysql2'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

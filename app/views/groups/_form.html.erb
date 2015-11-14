@@ -1,78 +1,126 @@
+
 <%= form_for @group, :html => {:id => 'form'} do |f| %>
-    <% if @group.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+  <!-- Visitor Information Grid Section -->
+  <section id="information" class="bg-light-gray" style='min-height: 1000px; padding-top: 50px; '>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <!--<h2 class="section-heading">Information</h2>-->
+          <h3 class="section-subheading text-muted">Visitor Information.</h3>
+        </div>
+      </div>
+      <div class="row" style="padding-right: 10px; padding-left: 10px">
+      <% if @group.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
-          <ul>
-            <% @group.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+            <ul>
+              <% @group.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
 
-    <%= f.fields_for :visitors do |visitor| %>
-        <div class="field">
-          <%= visitor.label :last_name, class: 'sign_in_field_label' %>
-          <%= visitor.text_field :last_name, class: 'form-control' %>
-        </div>
-        <div class="field">
-          <%= visitor.label :first_name %>
-          <%= visitor.text_field :first_name, class: 'form-control' %>
-        </div>
-        <div class="field">
-          <%= visitor.label :email %>
-          <%= visitor.text_field :email, class: 'form-control' %>
-        </div>
-        <div class="field">
-          <%= visitor.label :contact %>
-          <%= visitor.check_box :contact, {checked: true}, class: 'form-control' %>
-        </div>
-        <div class="field">
-          <%= visitor.label :zip_code %>
-          <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode" %>
-        </div>
-        <div class="field">
-          <%= visitor.label :country_id %>
-          <%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'}, class: 'form-control' %>
-        </div>
-    <% end %>
+      <%= f.fields_for :visitors, @group.visitors.new do |visitor| %>
+          <div class="field">
+            <!% visitor.label :first_name %>
+            <%= visitor.text_field :first_name, class: 'form-control', placeholder: :first_name %>
+          </div>
+          <div class="field">
+            <!% visitor.label :last_name, class: 'sign_in_field_label' %>
+            <%= visitor.text_field :last_name, class: 'form-control', placeholder: :last_name %>
+          </div>
+          <div class="field">
+            <!% visitor.label :email %>
+            <%= visitor.text_field :email, class: 'form-control', placeholder: :email %>
+          </div>
+          <div class="field">
+            <label>May we contact you?</label>
+            <%= visitor.check_box :contact, {checked: true}, 1, class: "form-control" %>
+          </div>
+          <div class="field">
+            <!% visitor.label :zip_code %>
+            <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", placeholder: :zip_code %>
+          </div>
+          <div class="field">
+            <!% visitor.label :country_id %>
+            <%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'}, class: 'form-control' %>
+          </div>
+      <% end %>
 
-    <div class="field">
-      <%= f.label :group_size %>
-      <%= f.number_field :group_size, :value => 1, class: 'form-control' %>
+      <div class="field">
+        <!% f.label :group_size %>
+        <label>How many people are in your group?</label>
+        <%= f.number_field :group_size, :value => 1, :min => 0, class: 'form-control' %>
+      </div>
+      <div class="field hidden">
+        <!% f.label :created_at %>
+        <%= f.datetime_select :created_at, class: 'form-control' %>
+      </div>
+
+      </div>
     </div>
-    <div class="field hidden">
-      <%= f.label :visit_date %>
-      <%= f.datetime_select :visit_date, class: 'form-control' %>
+    <a href="#survey" class="page-scroll btn btn-signin" style="width: 170px; display: block; margin: 0 auto;">Next</a>
+  </section>
+
+  <!-- Survey Section -->
+  <section id="survey"  style="min-height: 1000px; padding-top: 50px">
+    <div class="container">
+      <div class="row">
+        <div class="text-center">
+          <!--<h2 class="section-heading">Survey</h2>-->
+          <h3 class="section-subheading text-muted">Survey Question.</h3>
+        </div>
+        <div style="padding-right: 10px; padding-left: 10px">
+          <!% Generates a text field for each question in the questions table. %>
+          <% @questions.each do |ques| %>
+              <!% Answers are stored in surveys table, so we need to create fields for surveys. %>
+              <%= f.fields_for :surveys, @group.surveys.new do |survey| %>
+                  <div class="field">
+                    <!% survey.label "#{question.question}"%>
+                    <!% Question statement. %>
+                    <!= survey.text_field :answer, class: 'form-control', placeholder: "#{ques.question}" %>
+                    <label><%= ques.question %></label>
+                    <% if(ques.typ == 'choice') %>
+                        <% @ans = Answer.where(:question_id => ques.id) %>
+                        <!= survey.select :answer, options_from_collection_for_select(@ans, "id", "answer") %>
+                        <%= survey.collection_select :answer, @ans, :id, :answer, {:selected => '215'}, class: 'form-control' %>
+                    <% elsif(ques.typ == 'number') %>
+                        <!= survey.text_field :answer, class: 'form-control', placeholder: "#{ques.question}" %>
+                        <%= survey.number_field :answer, :value => 1, :min => 0, class: 'form-control' %>
+                    <% end %>
+                  </div>
+                  <div class="field hidden">
+                    <!% survey.label :question_id %>
+                    <!% Question id hidden to the user. %>
+                    <%= survey.number_field :question_id, class: 'form-control', value: ques.id %>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="action">
-      <%= f.submit "Submit", class: "btn btn-maroon" %>
+    <div class="action" style="padding: 30px 30px">
+      <%= f.submit "Submit", class: "btn btn-signin", :style => "width: 170px; display: block; margin: 0 auto;" %>
     </div>
+  </section>
 <% end %>
 
-<%# One form is used so this is not necessary
-<script type="text/javascript">
-    $("#button_submit").click(function () {
-        $("#form").submit();
-    });
-</script>
-%>
-
 <script>
-    $( document ).ready(function() {
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: "/zipcodes#index",
-            success: function(data){
-                var arr = $.map(data, function(el) { return el.zip_code });
-//                console.log(arr[0].zip_code);
-                $( "#sign_in_zipcode" ).autocomplete({
-                    source: arr,
-                    delay: 0
-                });
-            }
-        });
-    });
+//    $( document ).ready(function() {
+//        $.ajax({
+//            type: "GET",
+//            dataType: "json",
+//            url: "/zipcodes#index",
+//            success: function(data){
+//                var arr = $.map(data, function(el) { return el.zip_code });
+////                console.log(arr[0].zip_code);
+//                $( "#sign_in_zipcode" ).autocomplete({
+//                    source: arr,
+//                    delay: 0
+//                });
+//            }
+//        });
+//    });
 </script>

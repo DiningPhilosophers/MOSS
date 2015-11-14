@@ -77,4 +77,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Mailer settings
+  config.action_mailer.default_url_options = {:host => "warm-refuge-8672.heroku.com"} # TODO PRODUCTION change to final production url
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { # TODO PRODUCTION change to final production SMPT server
+      :user_name => 'moss_development',
+      :password => 'j!e12cJgk<x8ysS',
+      :domain => 'americangimuseum.org',
+      :address => 'smtp.sendgrid.net',
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  }
 end

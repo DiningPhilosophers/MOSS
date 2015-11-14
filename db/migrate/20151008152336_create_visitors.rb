@@ -1,8 +1,8 @@
 class CreateVisitors < ActiveRecord::Migration
   def change
     create_table :visitors do |t|
-      t.string :last_name
       t.string :first_name
+      t.string :last_name
       t.integer :group_id, null: false
       t.string :email
       t.boolean :contact

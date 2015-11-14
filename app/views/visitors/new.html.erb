@@ -1,5 +1,48 @@
-<h1>New Visitor</h1>
 
-<%= render 'form' %>
+<%= form_for(@visitor) do |f| %>
+  <br />
+  <br />
+  <br />
+  <br />
 
-<%= link_to 'Back', visitors_path %>
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :zip_code %>
+    <%= f.text_field :zip_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :group_id %>
+    <%= f.number_field :group_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :country_id %>
+    <%= f.number_field :country_id %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :contact%>
+    <%= f.radio_button :contact, 0, label: "no", checked: true, inline: true%>
+    <%= f.label :contact_no, "no" %> 
+    <%= f.radio_button :contact, 1, label: "yes"%>
+    <%= f.label :contact_yes, "yes" %>     
+   </div> 
+
+  <div class="actions">
+    <%= f.submit "submit"%>
+  </div>
+<% end %>
+
+<!-- </body>
+</html> -->

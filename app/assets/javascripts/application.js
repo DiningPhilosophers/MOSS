@@ -12,11 +12,26 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require dataTables/jquery.dataTables
+//= require dataTables/extras/dataTables.responsive
 //= require turbolinks
 //= require_tree .
 //= require jquery
-//= require bootstrap-sprockets
+// require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require bootstrap
 //= require jquery.turbolinks
+//= require bootstrap-multiselect
+//= require sb-admin-2
+//= require metisMenu
+//= require raphael
+//= require morris
+
+// require agency
+// require cbpAnimatedHeader
+// require classie
+
+// require morris-data
 // require jquery-ui
