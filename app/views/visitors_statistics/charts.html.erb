@@ -6,22 +6,54 @@
   <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
 </div>
 
-<table>
-  <thead>
-  <tr>
-    <th style="border: none;"><label>From:</label><%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %></th>
-    <th style="border: none;"><label>To:</label><%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %></th>
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Statistics Charts</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
 
-  </tr>
-  <tr>
-    <th style="border: none;"><button class="btn btn-maroon btn-large" id="statistics_btn">Submit</button></th>
-  </tr>
-  </thead>
-</table>
+<!--<table>-->
+  <!--<thead>-->
+  <!--<tr>-->
+    <!--<th style="border: none;"><label>From:</label><%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %></th>-->
+    <!--<th style="border: none;"><label>To:</label><%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %></th>-->
 
-<div id="charts" style="display: table; width: 100%">
-    <div id="donut-chart" style="width: 50%; height: auto; display: table-cell"></div>
-    <div id="bar-chart" style="width: 50%; height: auto; display: table-cell"></div>
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<th style="border: none;"><button class="btn btn-maroon btn-large" id="statistics_btn">Submit</button></th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+<!--</table>-->
+
+<div style="padding-bottom: 10px">
+  <!--<form class="pull-right form-inline">-->
+    <div class="form-group">
+      <div class="input-group input-daterange">
+        <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
+        <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
+        <span class="input-group-addon">to</span>
+        <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
+        <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
+      </div>
+    </div>
+    <button id="charts_btn" class="btn btn-maroon">Submit</button>
+
+  <!--</form>-->
+</div>
+
+<!--<div id="charts" style="display: table; width: 100%">-->
+      <!--<h4 class="page-header">Donut Chart - Unit is in Percentage</h4>-->
+    <!--<div id="donut-chart" style="width: 50%; height: auto; display: table-cell"></div>-->
+      <!--<h4 class="page-header">Visitors Information</h4>-->
+    <!--<div id="bar-chart" style="width: 50%; height: auto; display: table-cell"></div>-->
+<!--</div>-->
+
+<div id="charts" style="padding-bottom: 40px">
+  <h3 id="h_donut" class="page-header"></h3>
+  <div id="donut-chart"></div>
+  <h3 id="h_bar" class="page-header"></h3>
+  <div id="bar-chart"></div>
 </div>
 
 <script>
@@ -48,7 +80,7 @@
     var ocit = -1;
     var os = -1;
 
-    $('#statistics_btn').click(function(event){
+    $('#charts_btn').click(function(event){
         if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
             event.preventDefault();
             $('#alert_danger').show();
@@ -89,37 +121,87 @@
 
                     houston = $(data).find('#houston').html();
 
+                    var tot = parseInt(inter) + parseInt(df) + parseInt(austin) +
+                            parseInt(ocit) + parseInt(bcs) + parseInt(os) + parseInt(sa) + parseInt(houston);
+                    console.log(tot);
+
                     $('#donut-chart').empty();
                     $('#bar-chart').empty();
+
+                    $('#h_donut').empty();
+                    $('#h_donut').append('Donut Chart - Unit is in Percentage (%)');
 
                     new Morris.Donut({
                         element: 'donut-chart',
                         data: [
-                            {label: "Bryan / College Station", value: bcs.toString()},
-                            {label: "Houston", value: houston.toString()},
-                            {label: "Austin", value: austin.toString()},
-                            {label: "San Antonio", value: sa.toString()},
-                            {label: "Dallas / Fort Worth", value: df.toString()},
-                            {label: "Other Cities in Texas", value: ocit.toString()},
-                            {label: "Out of States", value: os.toString()},
-                            {label: "International", value: inter.toString()},
-                        ]
+//                            {label: "Bryan / College Station", value: bcs.toString()},
+                            {label: "Bryan / College Station", value: ((parseInt(bcs)/tot)*100).toFixed(2)},
+//                            {label: "Houston", value: houston.toString()},
+                            {label: "Houston", value: ((parseInt(houston)/tot)*100).toFixed(2)},
+//                            {label: "Austin", value: austin.toString()},
+                            {label: "Austin", value: ((parseInt(austin)/tot)*100).toFixed(2)},
+//                            {label: "San Antonio", value: sa.toString()},
+                            {label: "San Antonio", value: ((parseInt(sa)/tot)*100).toFixed(2)},
+//                            {label: "Dallas / Fort Worth", value: df.toString()},
+                            {label: "Dallas / Fort Worth", value: ((parseInt(df)/tot)*100).toFixed(2)},
+//                            {label: "Other Cities in Texas", value: ocit.toString()},
+                            {label: "Other Cities in Texas", value: ((parseInt(ocit)/tot)*100).toFixed(2)},
+//                            {label: "Out of States", value: os.toString()},
+                            {label: "Out of States", value: ((parseInt(os)/tot)*100).toFixed(2)},
+//                            {label: "International", value: inter.toString()},
+                            {label: "International", value: ((parseInt(inter)/tot)*100).toFixed(2)},
+                        ],
+                        resize: true,
                     });
 
-                    new Morris.Bar({
-                        element: 'bar-chart',
-                        data: [
-                            { y: '2006', a: 100, b: 90 },
-                            { y: '2007', a: 75,  b: 65 },
-                            { y: '2008', a: 50,  b: 40 },
-                            { y: '2009', a: 75,  b: 65 },
-                            { y: '2010', a: 50,  b: 40 },
-                            { y: '2011', a: 75,  b: 65 },
-                            { y: '2012', a: 100, b: 90 }
-                        ],
-                        xkey: 'y',
-                        ykeys: ['a', 'b'],
-                        labels: ['Series A', 'Series B']
+                    var start = new Date($('#start_date').val());
+                    var end = new Date($('#end_date').val());
+                    var current = start;
+                    var between = [];
+
+//                    while (current <= end) {
+//                        between.push(new Date(current));
+//                        current.setDate(current.getDate() + 1);
+//                    }
+
+                    while (current <= end) {
+                        var date = new Date(current);
+                        var d = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+                        between.push(d);
+                        current.setDate(current.getDate() + 1);
+                    }
+
+                    $.ajax({
+                        type: "GET",
+                        dataType: "html",
+                        data: {
+                            dates: between,
+                        },
+                        url: "/visitors_statistics/visitors_in_date",
+                        success: function (data) {
+//                            console.log(data);
+                            $('#h_bar').empty();
+                            $('#h_bar').append('Bar Chart - Unit is in Number of Visitors');
+
+                            data = $.parseJSON(data);
+                            var da = [];
+                            $.each(data, function(i, item) {
+                                da.push({d: item.d, v: item.v});
+                            });
+//                            console.log(da);
+
+                            new Morris.Bar({
+                                element: 'bar-chart',
+                                data: da,
+                                xkey: 'd',
+                                ykeys: 'v',
+                                ymin: 0,
+//                                yLabelFormat: function(y){return y != Math.round(y)?'':y;},
+//                                grid: false,
+                                labels: ['Total Visitors'],
+                                resize: true,
+                            });
+                        }
                     });
                 }
             });

@@ -11,65 +11,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009013532) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20151108061516) do
 
   create_table "admins", force: :cascade do |t|
-    t.string   "user_name"
-    t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "user_name",       limit: 255, null: false
+    t.string   "password_digest", limit: 255, null: false
+    t.string   "remember_digest", limit: 255
+    t.string   "reset_digest",    limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.integer "question_id", limit: 4,   null: false
+    t.string  "answer",      limit: 255, null: false
   end
 
   create_table "countries", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", limit: 255, null: false
   end
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "group_size", null: false
-    t.datetime "visit_date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "group_size", limit: 4, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.text     "question",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text   "question", limit: 65535, null: false
+    t.string "typ",      limit: 255,   null: false
   end
 
   create_table "surveys", force: :cascade do |t|
-    t.integer  "person_id",   null: false
-    t.integer  "question_id", null: false
-    t.string   "answer",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer "group_id",    limit: 4,   null: false
+    t.integer "question_id", limit: 4,   null: false
+    t.string  "answer",      limit: 255, null: false
+  end
+
+  create_table "texas_zipcodes", id: false, force: :cascade do |t|
+    t.string "zip_code", limit: 255, null: false
+    t.string "city",     limit: 255, null: false
+    t.string "county",   limit: 255, null: false
   end
 
   create_table "visitors", force: :cascade do |t|
-    t.string   "last_name"
-    t.string   "first_name"
-    t.integer  "group_id",   null: false
-    t.string   "email"
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.integer  "group_id",   limit: 4,   null: false
+    t.string   "email",      limit: 255
     t.boolean  "contact"
-    t.string   "zip_code",   null: false
-    t.integer  "country_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "zip_code",   limit: 255, null: false
+    t.integer  "country_id", limit: 4,   null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "zipcodes", id: false, force: :cascade do |t|
-    t.string   "zip_code",   null: false
-    t.string   "city",       null: false
-    t.string   "county"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "zip_code", limit: 255, null: false
+    t.string "city",     limit: 255, null: false
+    t.string "state",    limit: 255, null: false
   end
 
   add_index "zipcodes", ["zip_code"], name: "index_zipcodes_on_zip_code", unique: true, using: :btree
+  add_index "zipcodes", ["zip_code"], name: "pk_zip_code", unique: true, using: :btree
 
 end

@@ -1,56 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Museum of American G.I</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>M.O.S.S</title>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
 </head>
-<body>
-<div id="wrapper" style="height: 100%;">
-<!-- header -->
-<div id="top-nav" class="navbar navbar-inverse navbar-static-top" style="height: 5%">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+<body id="page-top" class="index">
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" style="border-color: transparent; background-color: #222;">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Home', homepage_index_path, :class => "navbar-brand" %>
+      <a class="navbar-brand page-scroll" href="#page-top" style="font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive; color: #fed136;">Museum of American G.I</a>
     </div>
-    <div class="navbar-collapse collapse">
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
-          <ul id="g-account-menu" class="dropdown-menu" role="menu">
-            <li><a href="#">My Profile</a></li>
-          </ul>
+        <li class="hidden">
+          <a href="#page-top"></a>
         </li>
-        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+        <li>
+          <a class="page-scroll" href="#information">Information</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#survey">Survey</a>
+        </li>
       </ul>
     </div>
+    <!-- /.navbar-collapse -->
   </div>
-  <!-- /container -->
-</div>
-<!-- /Header -->
+  <!-- /.container-fluid -->
+</nav>
 
-<div class="container" style="width: 95%; height: 83%">
+
+  <% flash.each do |message_type, message| %>
+    <div id="alert">
+      <div class="alert alert-<%= message_type %>">
+        <%= message %>
+      </div>
+    </div>
+  <% end %>
+
+<div>
   <%= yield %>
 </div>
 
-<footer class="footer" style="height: 7%">
-  <div class="footer_container">
-    <div style="float:left; width:50%; padding-top:5px; padding-bottom:5px">
-        <p class="text-muted">The Dining Philosophers - Copyright (c) 2015.</p>
-    </div>
-    <!--<div style="float:right; width:50%;  padding-top:5px; padding-bottom:5px">-->
-    <div style="float:right; width:50%; vertical-align: middle">
-        <%= link_to "Administration", login_path, :style => "font-size: 20px; text-decoration: none;" %>
-    <% #%a.navbar-brand{:href => "#admin_login"} Administration %>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <span class="copyright" style="color: #fed136">Copyright &copy; The Dining Philosophers <%= (Date.today>>1).strftime("%Y") %></span>
+      </div>
+      <div class="col-md-4">
+        <!--<ul class="list-inline social-buttons">-->
+        <!--<li><a href="#"><i class="fa fa-twitter"></i></a>-->
+        <!--</li>-->
+        <!--<li><a href="#"><i class="fa fa-facebook"></i></a>-->
+        <!--</li>-->
+        <!--<li><a href="#"><i class="fa fa-linkedin"></i></a>-->
+        <!--</li>-->
+        <!--</ul>-->
+      </div>
+      <div class="col-md-4">
+        <ul class="list-inline quicklinks">
+          <!--<li><a href="#">Privacy Policy</a>-->
+          <!--</li>-->
+          <!--<li><a href="#">Terms of Use</a>-->
+          <!--</li>-->
+          <li><a href="login" style="color: #fed136; font-size: 15px">Administration</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </footer>
-</div>
+
 </body>
+<<<<<<< HEAD
+=======
+
+>>>>>>> development
 </html>

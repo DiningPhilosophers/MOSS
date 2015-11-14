@@ -8,22 +8,45 @@
   <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
 </div>
 
-  <div class="page-header">
-    <h1>Visitors Statistics</h1>
-  </div>
+  <!--<div class="page-header">-->
+    <!--<h1>Visitors Statistics</h1>-->
+  <!--</div>-->
 
-  <table>
-    <thead>
-    <tr>
-      <th style="border: none;"><label>From:</label><%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %></th>
-      <th style="border: none;"><label>To:</label><%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %></th>
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">Visitors Statistics</h1>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
 
-    </tr>
-    <tr>
-      <th style="border: none;"><button class="btn btn-maroon btn-large" id="statistics_btn">Submit</button></th>
-    </tr>
-    </thead>
-  </table>
+  <!--<table>-->
+    <!--<thead>-->
+    <!--<tr>-->
+      <!--<th style="border: none;"><label>From:</label><%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %></th>-->
+      <!--<th style="border: none;"><label>To:</label><%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %></th>-->
+
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<th style="border: none;"><button class="btn btn-maroon btn-large" id="statistics_btn">Submit</button></th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+  <!--</table>-->
+
+    <div style="padding-bottom: 10px">
+      <!--<form class="pull-right form-inline">-->
+        <div class="form-group" style="width: 300px">
+          <div class="input-group input-daterange">
+            <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
+            <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
+            <span class="input-group-addon">to</span>
+            <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
+            <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
+          </div>
+        </div>
+        <button id="statistics_btn" type="submit" class="btn btn-maroon">Submit</button>
+
+      <!--</form>-->
+    </div>
 </br>
 <!--<div class="table">-->
     <!--<div style="display: table-cell">From: <input type="text" class="span2" value="" id="start_date"></div>-->
@@ -91,7 +114,7 @@
               </div>
               <div class="col-xs-9 text-right">
                 <div id="ocit" class="huge"><%= @n_ocit_visitors %></div>
-                <div>Other Cities in Texas</div>
+                <div style="white-space:nowrap;">Other Cities in Texas</div>
               </div>
             </div>
           </div>

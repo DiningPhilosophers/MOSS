@@ -70,6 +70,19 @@ class VisitorsStatisticsController < ApplicationController
     render :layout => 'admin'
   end
 
+  def visitors_in_date
+    @dates_result = []
+    @dates = params[:dates]
+    @dates.each do |date|
+      @s = DateTime.strptime(date,'%m/%d/%Y').at_beginning_of_day
+      @e = DateTime.strptime(date,'%m/%d/%Y').at_end_of_day
+      @dates_result.push(d:date,v:Visitor.where(:created_at => @s..@e).size)
+    end
+
+    # render :json => @dates
+    render :json => @dates_result
+  end
+
   private
     def logged_in_user
       unless logged_in?

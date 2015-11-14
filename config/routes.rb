@@ -26,7 +26,8 @@ Rails.application.routes.draw do
 
   get 'homepage/index'
 
-  root 'homepage#index'
+  #root 'homepage#index'
+  root 'groups#new'
 
   # Routes for administrator login system
   get    'login'   => 'sessions#new'
@@ -41,4 +42,8 @@ Rails.application.routes.draw do
 
   # Password reset
   resources :password_resets, only: [:create, :edit, :update]
+
+  resource :visitors_statistics do
+    get 'visitors_in_date'
+  end
 end

@@ -44,6 +44,42 @@ Given /the following countries exist/ do |country_table|
   #fail "Unimplemented"
 end
 
+Given /the following admins exist/ do |admin_table|
+
+  admin_table.hashes.each do |admin|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create visitor in the database
+    Admin.create(admin)
+  end
+  #fail "Unimplemented"
+end
+
+Given /the following questions exist/ do |question_table|
+
+  question_table.hashes.each do |question|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create question in the database
+    Question.create(question)
+  end
+  #fail "Unimplemented"
+end
+
+Given /the following answers exist/ do |answer_table|
+
+  answer_table.hashes.each do |answer|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create question in the database
+    Answer.create(answer)
+  end
+  #fail "Unimplemented"
+end
+
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
@@ -82,6 +118,26 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   end
 
   #fail "Unimplemented"
+end
+
+# This is used for clicking of JavaScript buttons
+When /^(?:|I )click on "([^"]*)"$/ do |selector|
+  click_on selector
+end
+
+When /^(?:|I )view details for "([^"]*)"$/ do |last_name|
+  id = Visitor.find_by_last_name(last_name).id
+  click_on "show_info_#{id}"
+end
+
+When /^(?:|I )select option "([^"]*)" in "([^"]*)"$/ do |option, id|
+  within "##{id}" do
+    find("option[value='#{option}']").click
+  end
+end
+
+Given /^(?:|I ) go to (the)? (.+)$/ do |page_name|
+  visit path_to(page_name)
 end
 
 Then /I should see all the visitors/ do

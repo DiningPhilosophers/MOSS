@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<div class="modal-header">
+  <h2>
+    <%= @visitor.first_name + " " + @visitor.last_name %>
+  </h2>
+</div> 
+<!--
 <p>
   <strong>Last name:</strong>
   <%= @visitor.last_name %>
@@ -8,8 +14,9 @@
 <p>
   <strong>First name:</strong>
   <%= @visitor.first_name %>
-</p>
-
+</p> 
+-->
+<p></p>
 <p>
   <strong>Group:</strong>
   <%= @visitor.group_id %>
@@ -44,3 +51,11 @@
   <strong>Country:</strong>
   <%= @visitor.country.name %>
 </p>
+
+<% @n_questions.each do |ques| %>
+    <p>
+      <strong><%= ques.question %></strong>
+      <% @r = Survey.where(:group_id => @visitor.group_id).where(:question_id => ques.id)%>
+      <%= (@r.empty? == true)? "Not Answered" : ((ques.typ == 'choice')? Answer.find(@r[0].answer).answer : @r[0].answer) %>
+    </p>
+<% end %>

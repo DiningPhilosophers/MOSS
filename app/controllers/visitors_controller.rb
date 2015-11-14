@@ -69,6 +69,7 @@ class VisitorsController < ApplicationController
   def index
     @start_date = params[:start_date]
     @end_date = params[:end_date]
+    @contactable = params[:contactable]
 
     if(@start_date.blank? || @end_date.blank?)
       @end_date = DateTime.now.at_end_of_day
@@ -78,12 +79,19 @@ class VisitorsController < ApplicationController
       @start_date = DateTime.strptime(@start_date,'%m/%d/%Y').at_beginning_of_day
       @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
     end
-    @visitors = Visitor.where(:created_at => @start_date..@end_date)
-    if(@visitors.empty?)
-      flash[:notice] = 'No visitors on that date ranges'
+    if(@contactable == "1")
+      @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:contact => true)
     else
-      flash[:notice] = ''
+      @visitors = Visitor.where(:created_at => @start_date..@end_date)
     end
+
+    # @visitors = Visitor.where(:contact => true)
+
+    # if(@visitors.empty?)
+    #   flash[:notice] = 'No visitors on that date ranges'
+    # else
+    #   flash[:notice] = ''
+    # end
     render :layout => 'admin'
   end
 
@@ -117,11 +125,17 @@ class VisitorsController < ApplicationController
     @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
 
     @area=params[:area]
+    @contactable=params[:contactable]
 
     # begin of "This part is not optimized and can be improved"
 
     if(@area.size == 7 || @area.size == 0)
-      @visitors = Visitor.where(:created_at => @start_date..@end_date)
+      # @visitors = Visitor.where(:created_at => @start_date..@end_date)
+      if(@contactable == "1")
+        @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:contact => true)
+      else
+        @visitors = Visitor.where(:created_at => @start_date..@end_date)
+      end
     else
       if(@area.include?('bcs'))
         @area << 'College Station' << 'Bryan'
@@ -147,7 +161,12 @@ class VisitorsController < ApplicationController
         @area << (@osc - @other)
       end
       @zipcodes = Zipcode.where(:city => @area)
-      @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:zip_code => @zipcodes)
+      # @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:zip_code => @zipcodes)
+      if(@contactable == "1")
+        @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:contact => true).where(:zip_code => @zipcodes)
+      else
+        @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:zip_code => @zipcodes)
+      end
 
       # end of "This part is not optimized and can be improved"
     end
@@ -158,6 +177,7 @@ class VisitorsController < ApplicationController
   # GET /visitors/1
   # GET /visitors/1.json
   def show
+    @n_questions = Question.all #number of questions in the database
     render :partial => 'visitors/show', :content_type => 'text/html'
   end
 
@@ -168,6 +188,7 @@ class VisitorsController < ApplicationController
 
   # GET /visitors/1/edit
   def edit
+    render :layout => 'admin'
   end
 
   # POST /visitors

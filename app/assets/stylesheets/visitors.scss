@@ -1,53 +1,53 @@
-// Place all the styles related to the visitors controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-.visitor_title
-{
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-.table_header
-{
-	background-color: rgb(141,0,0);
-	color: white;
-}
-
-.results tr[visible='false'],
-.no-result{
-  display:none;
-}
-
-.results tr[visible='true']{
-  display:table-row;
-}
-
-.counter{
-  padding:8px;
-  color:#ccc;
-}
-
-//table---------------
-
-#visitors_table {
-  width: 100%;
-  border-collapse: collapse;
-}
-/* Zebra striping */
-#visitors_table tr:nth-of-type(odd) {
-  background: #eee;
-}
-#visitors_table th {
-  background: #333;
-  color: white;
-  font-weight: bold;
-}
-#visitors_table td, th {
-  padding: 6px;
-  border: 1px solid #ccc;
-  text-align: left;
-}
-
+//// Place all the styles related to the visitors controller here.
+//// They will automatically be included in application.css.
+//// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+//.visitor_title
+//{
+//	font-family: Arial, Helvetica, sans-serif;
+//}
+//
+//.table_header
+//{
+//	background-color: rgb(141,0,0);
+//	color: white;
+//}
+//
+//.results tr[visible='false'],
+//.no-result{
+//  display:none;
+//}
+//
+//.results tr[visible='true']{
+//  display:table-row;
+//}
+//
+//.counter{
+//  padding:8px;
+//  color:#ccc;
+//}
+//
+////table---------------
+//
+//#visitors_table {
+//  width: 100%;
+//  border-collapse: collapse;
+//}
+///* Zebra striping */
+//#visitors_table tr:nth-of-type(odd) {
+//  background: #eee;
+//}
+//#visitors_table th {
+//  background: #333;
+//  color: white;
+//  font-weight: bold;
+//}
+//#visitors_table td, th {
+//  padding: 6px;
+//  border: 1px solid #ccc;
+//  text-align: left;
+//}
+//
 /*
 Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
@@ -64,6 +64,12 @@ only screen and (max-width: 760px),
 
   /* Hide table headers (but not display: none;, for accessibility) */
   #visitors_table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  #visitors_table tfoot tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
@@ -102,4 +108,8 @@ only screen and (max-width: 760px),
   #visitors_table td:nth-of-type(7):before { content: "Zipcode"; }
   #visitors_table td:nth-of-type(8):before { content: "Email"; }
   #visitors_table td:nth-of-type(9):before { content: ""; }
+}
+
+.check {
+  width: 30px;
 }
