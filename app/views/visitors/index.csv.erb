@@ -1,0 +1,6 @@
+<%- headers = ['Last Name', 'First Name'] -%>
+<%= CSV.generate_line(headers,:col_sep => ?\t) %>
+<%- @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:zip_code => @zipcodes) -%>
+<%- @visitors.each do |visitor| -%>
+<%= CSV.generate_line([visitor.last_name, visitor.first_name],:col_sep => ?\t) -%>
+<%- end -%>

@@ -1,4 +1,5 @@
 class VisitorsController < ApplicationController
+  require 'csv'
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
 
@@ -85,6 +86,26 @@ class VisitorsController < ApplicationController
       @visitors = Visitor.where(:created_at => @start_date..@end_date)
     end
 
+    # respond_to do |format|
+    #   format.html
+    #   format.csv do
+    #     headers['Content-Disposition'] = "attachment; filename=\"visitors-list\""
+    #     headers['Content-Type'] ||= 'text/csv'
+    #   end
+    # end
+    # return
+  #   csv_string = CSV.generate do |csv|
+  #        csv << ["Fist Name", "Last Name"]
+  #        @visitors.each do |visitor|
+  #          csv << [visitor.first_name,visitor.last_name]
+  #        end
+  #   end
+   #
+  #  send_data csv_string,
+  #  :type => 'text/csv; charset=iso-8859-1; header=present',
+  #  :disposition => "attachment; filename=users.csv"
+
+    render :layout => 'admin'
     # @visitors = Visitor.where(:contact => true)
 
     # if(@visitors.empty?)
@@ -92,8 +113,34 @@ class VisitorsController < ApplicationController
     # else
     #   flash[:notice] = ''
     # end
-    render :layout => 'admin'
   end
+
+
+  def export_to_csv
+    # csv_string = CSV.generate do |csv|
+    #      csv << ["First Name", "Last Name"]
+    #      @visitor.each do |visitor|
+    #        csv << [visitor.first_name, visitor.last_name]
+    #      end
+    # end
+    #
+    #  send_data csv_string,
+    #  :type => 'text/csv; charset=iso-8859-1; header=present',
+    #  :disposition => "attachment; filename=users.csv"
+    @start_date=params[:start_date]
+    #@start_date = DateTime.strptime(@start_date,'%m/%d/%Y').at_beginning_of_day
+    @end_date=params[:end_date]
+    #@end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
+
+    @area=params[:area]
+    @zipcodes = Zipcode.where(:city => @area)
+    # @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:zip_code => @zipcodes)
+    @visitors = Visitor.where(:zip_code => @zipcodes)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @visitors.to_csv({}, @start_date, @end_date), :filename => "visitors" + ".csv" }
+    end
+   end
 
   def filter_area
     # start_date_remembered = @start_date.blank? && session[:start_date].present?
@@ -172,12 +219,17 @@ class VisitorsController < ApplicationController
     end
 
     render :partial => 'visitors/filter_area', :content_type => 'text/html'
+
+
   end
+
+
 
   # GET /visitors/1
   # GET /visitors/1.json
   def show
     @n_questions = Question.all #number of questions in the database
+
     render :partial => 'visitors/show', :content_type => 'text/html'
   end
 
