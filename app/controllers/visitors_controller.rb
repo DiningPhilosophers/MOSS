@@ -71,17 +71,6 @@ class VisitorsController < ApplicationController
     @end_date = params[:end_date]
     @contactable = params[:contactable]
 
-<<<<<<< HEAD
-    session.delete(:some_key)
-    start_date_remembered = @start_date.blank? && session[:start_date].present?
-    end_date_remembered = @end_date.blank? && session[:end_date].present?
-    if start_date_remembered || end_date_remembered
-      @start_date = session[:start_date] if start_date_remembered
-      @end_date = session[:end_date] if end_date_remembered
-
-      flash.keep
-      redirect_to :start_date => @start_date, :end_date => @end_date and return
-=======
     if(@start_date.blank? || @end_date.blank?)
       @end_date = DateTime.now.at_end_of_day
       @start_date = (DateTime.now - 15.days)
@@ -89,7 +78,6 @@ class VisitorsController < ApplicationController
     else
       @start_date = DateTime.strptime(@start_date,'%m/%d/%Y').at_beginning_of_day
       @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
->>>>>>> development
     end
     if(@contactable == "1")
       @visitors = Visitor.where(:created_at => @start_date..@end_date).where(:contact => true)
@@ -104,7 +92,15 @@ class VisitorsController < ApplicationController
     # else
     #   flash[:notice] = ''
     # end
+
     render :layout => 'admin'
+  end
+
+  def export
+    respond_to do |format|
+      format.html
+      format.csv { send_data Visitor.to_csv, filename: "visitors-#{Date.today}.csv" }
+    end
   end
 
   def filter_area
@@ -183,20 +179,7 @@ class VisitorsController < ApplicationController
       # end of "This part is not optimized and can be improved"
     end
 
-<<<<<<< HEAD
-    session[:start_date] = @start_date
-    session[:end_date] = @end_date
-
-    @visitors = Visitor.all
-    #where(:created_at => params[:start_date]..params[:end_date])
-    #respond_to do |format|
-    #  format.html
-    #  format.json { render json: @visitor}
-    #  format.js
-    #end
-=======
     render :partial => 'visitors/filter_area', :content_type => 'text/html'
->>>>>>> development
   end
 
   # GET /visitors/1
@@ -274,4 +257,5 @@ class VisitorsController < ApplicationController
       redirect_to login_url
     end
   end
+
 end

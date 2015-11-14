@@ -28,11 +28,6 @@
   <!--<p id="notice"><%= notice %></p>-->
 <!--</div>-->
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-  <div class="form-group pull-right">
-    <input type="text" class="search form-control" id="search_visitor" placeholder="Search">
-=======
 
 <!--<div class="content">-->
   <!--<div class="page-header">-->
@@ -44,8 +39,13 @@
       <h1 class="page-header">Visitors Information</h1>
     </div>
     <!-- /.col-lg-12 -->
->>>>>>> development
   </div>
+
+  <p>
+    Export
+    <%=link_to 'CSV', visitors_export_path(request.parameters.merge({format: :csv}))%>
+  </p>
+  <a href="visitors.csv"><button class="btn btn-success">export all</button></a>
 
   <div>
     <form class="pull-right form-inline">
@@ -220,8 +220,6 @@
             }
             });
 
-
-<%= link_to 'New Visitor', new_visitor_path %>
             $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
                 $(this).attr('visible','false');
             });
@@ -270,63 +268,4 @@
         });
 
     });
-<<<<<<< HEAD
 </script>
-=======
-<h1>Listing Visitors</h1>
-
-
-<div class="row ">
-    <div class=" input-group input-daterange">
-        <input name="start_date" type="text" class=" form-control" value="2015-04-05">
-        <span class="input-group-addon">to</span>
-        <input name="end_date" type="text" class=" form-control" value="2015-12-30">    
-    </div>
-    <button type="button" class="btn btn-primary">Submit</button>
-
-</div>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Last name</th>
-      <th>First name</th>
-      <th>Group</th>
-      <th>Email</th>
-      <th>Contact</th>
-      <th>Zip code</th>
-      <th>Country</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @visitors.each do |visitor| %>
-      <tr>
-        <td><%= visitor.last_name %></td>
-        <td><%= visitor.first_name %></td>
-        <td><%= visitor.group_id %></td>
-        <td><%= visitor.email %></td>
-        <td><%= visitor.contact %></td>
-        <td><%= visitor.zip_code %></td>
-        <td><%= visitor.country_id %></td>
-        <td><%= link_to 'Show', visitor %></td>
-        <td><%= link_to 'Edit', edit_visitor_path(visitor) %></td>
-        <td><%= link_to 'Destroy', visitor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<script>
-$('.input-daterange input').each(function() {
-    $(this).datepicker("clearDates");
-});
-</script>
-
-<%= link_to 'New Visitor', new_visitor_path %>
->>>>>>> Stashed changes
-=======
-</script>
->>>>>>> development

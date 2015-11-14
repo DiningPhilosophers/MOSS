@@ -46,4 +46,8 @@ Rails.application.routes.draw do
   resource :visitors_statistics do
     get 'visitors_in_date'
   end
+
+  #export
+  get 'export', to: 'visitors#export', as: :visitors_export
+
 end
