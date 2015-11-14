@@ -54,6 +54,15 @@
   <!-- /.container-fluid -->
 </nav>
 
+
+  <% flash.each do |message_type, message| %>
+    <div id="alert">
+      <div class="alert alert-<%= message_type %>">
+        <%= message %>
+      </div>
+    </div>
+  <% end %>
+
 <div>
   <%= yield %>
 </div>
@@ -80,7 +89,7 @@
           <!--</li>-->
           <!--<li><a href="#">Terms of Use</a>-->
           <!--</li>-->
-          <li><a href="#" style="color: #fed136; font-size: 15px">Administration</a></li>
+          <li><a href="login" style="color: #fed136; font-size: 15px">Administration</a></li>
         </ul>
       </div>
     </div>

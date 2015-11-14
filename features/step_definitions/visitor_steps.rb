@@ -56,6 +56,30 @@ Given /the following admins exist/ do |admin_table|
   #fail "Unimplemented"
 end
 
+Given /the following questions exist/ do |question_table|
+
+  question_table.hashes.each do |question|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create question in the database
+    Question.create(question)
+  end
+  #fail "Unimplemented"
+end
+
+Given /the following answers exist/ do |answer_table|
+
+  answer_table.hashes.each do |answer|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that visitor to the database here.
+
+    # create question in the database
+    Answer.create(answer)
+  end
+  #fail "Unimplemented"
+end
+
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
@@ -99,6 +123,11 @@ end
 # This is used for clicking of JavaScript buttons
 When /^(?:|I )click on "([^"]*)"$/ do |selector|
   click_on selector
+end
+
+When /^(?:|I )view details for "([^"]*)"$/ do |last_name|
+  id = Visitor.find_by_last_name(last_name).id
+  click_on "show_info_#{id}"
 end
 
 When /^(?:|I )select option "([^"]*)" in "([^"]*)"$/ do |option, id|
