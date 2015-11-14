@@ -141,7 +141,6 @@ development:
  # min_messages: warning
  # pool: 5
  # timeout: 5000
-
 production:
   # <<: *default
   # database: db/production.sqlite3
