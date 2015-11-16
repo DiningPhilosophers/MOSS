@@ -43,6 +43,9 @@
             <!% visitor.label :zip_code %>
             <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", placeholder: :zip_code %>
           </div>
+          <div class="field" hidden="hidden">
+            <input id="sign_in_city" class="form-control" disabled="disabled" name="city_input" placeholder="City"/>
+          </div>
           <div class="field">
             <!% visitor.label :country_id %>
             <%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'}, class: 'form-control' %>
@@ -123,4 +126,64 @@
 //            }
 //        });
 //    });
+
+	$(document).ready()
+	{
+		$('#sign_in_zipcode').change(getAutocompleteCity);
+	}
+
+	function getAutocompleteCity(event)
+	{
+		//get zip_code
+		var zip_code = event.target.value.trim();
+		//parseInt gets the first number in the zip-code e.g. for 12345-6789, zip_code_int = 12345;
+		var zip_code_int = parseInt(zip_code);
+		//check for valid zip code format
+		var zip_code_regex = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+		if(zip_code && zip_code_regex.test(zip_code) && zip_code_int && zip_code_int != 0)
+		{
+			if(zip_code.length > 5)
+			{
+				//if the zip-code has more than 5 characters, take the first 5.
+				zip_code = zip_code.substring(0,5);
+			}
+			//valid zipcode
+			//get the zipcode object which contains the city and state.
+			$.get(
+				"/zipcodes/city",
+				{"zip_code":zip_code},
+				autocompleteCity,
+				"json"
+			);
+		}
+		else
+		{
+			//invalid zipcode
+			hideCity();
+		}
+	}
+
+	function autocompleteCity(data)
+	{
+		if(data.Zipcode && data.Zipcode.city && data.Zipcode.state)
+		{
+			var cityState = data.Zipcode.city.trim().concat(', ', data.Zipcode.state.trim());
+			//fill out city input
+			var cityInput = $("#sign_in_city");
+			cityInput.val(cityState);
+			//show city field
+			cityInput.closest("div.field").show();
+		}
+		else
+		{
+			hideCity();
+		}
+	}
+
+	function hideCity()
+	{
+		//hide city field
+		$("#sign_in_city").closest("div.field").hide();
+	}
+
 </script>

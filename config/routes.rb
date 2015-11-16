@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'visitors_statistics/show', as: 'visitors_statistics'
   get 'session/new'
 
+  # City Autocomplete
+  get 'zipcodes/city' => 'zipcodes#city'
+
   # TODO we should remove those resources or make them available to admins only
   resources :admins, only: [:create, :edit, :update, :new] # TODO We should probably remove this and do this manualy. We do not want somebody to get admins' data by visiting /admins/2
   resources :countries
