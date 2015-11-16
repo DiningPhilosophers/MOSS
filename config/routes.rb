@@ -49,5 +49,4 @@ Rails.application.routes.draw do
 
   #export
   get 'export', to: 'visitors#export', as: :visitors_export
-
 end

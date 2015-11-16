@@ -1,4 +1,5 @@
 class VisitorsController < ApplicationController
+  require 'csv'
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
 
@@ -180,7 +181,11 @@ class VisitorsController < ApplicationController
     end
 
     render :partial => 'visitors/filter_area', :content_type => 'text/html'
+
+
   end
+
+
 
   # GET /visitors/1
   # GET /visitors/1.json
@@ -257,5 +262,4 @@ class VisitorsController < ApplicationController
       redirect_to login_url
     end
   end
-
 end
