@@ -64,7 +64,7 @@
 
       </div>
     </div>
-    <a href="#survey" class="page-scroll btn btn-signin" style="width: 170px; display: block; margin: 0 auto;">Next</a>
+    <a href="#survey" class="scroll btn btn-signin" style="width: 170px; display: block; margin: 0 auto;">Next</a>
   </section>
 
   <!-- Survey Section -->
@@ -126,6 +126,19 @@
 //            }
 //        });
 //    });
+
+{cms_jquery}
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".scroll").click(function(event) {
+    event.preventDefault();
+    $('html,body').animate( { scrollTop:$(this.hash).offset().top } , 1000);
+    } );
+  } );
+</script>
+
+  
 
 	$(document).ready()
 	{
