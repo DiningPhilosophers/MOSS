@@ -48,4 +48,6 @@ Rails.application.routes.draw do
   end
 
   get 'export_to_csv', to: 'visitors#export_to_csv', as: :visitors_export_to_csv
+  # get 'editanswer', to: 'questions#editanswer', as: :editanswer_question
+  # get 'answerform' => 'questions#answerform'
 end

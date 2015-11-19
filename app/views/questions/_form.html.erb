@@ -11,22 +11,79 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :question %><br>
-    <%= f.text_area :question %>
+  <%= f.label :question %><br>
+  <div class="row">
+    <div class="field col-lg-8">
+      <%= f.text_area :question %>
+      <p> <!%= @question.id %> </p>
+    </div>
+    <div class="col-lg-2">
+      <%= link_to "Submit", "#", :class => 'button_submit' %>
+    </div>
   </div>
   <!-- <div class="actions">
     <%= f.submit %>
   </div> -->
+  <% if(@question.typ == 'choice') %>
+    <% @ans = Answer.where(:question_id => @question.id) %>
+    <% end %>
 
-  <%= link_to "Submit", "#", :class => 'button_submit' %>
+    <div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
+      <!--<table class="table table-bordered table-hover sortable results">-->
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3>Answers Table</h3>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+              <div class="dataTable_wrapper">
+      <table id="answer_table" class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+          <th class="table_header" style="text-align:center">Answer Content</th>
+          <th class="table_header"></th>
+          <th class="table_header"></th>
+        </tr>
+        </thead>
 
+        <tbody>
+          <% @ans.each do |an| %>
+            <tr>
+              <td><%= an.answer %></td>
+              <!-- <td> <!%= link_to "Edit", "#", :class => 'button_submit' %> </td> -->
+              <!-- <td> <!%= button_tag(type: 'submit') do %>
+                    <!%= content_tag(:strong, 'Ask me!') %>
+                    <!% end %> </td> -->
+              <!-- <td> <button onclick="myFunction()">Try it</button> </td> -->
+              <!-- <td> <p id="demo"></p> </td> -->
+              <!-- <td><!%= link_to_redbox 'Open The Details Form', 'redbox' %></td> -->
+              <!-- <td> <!%= link_to "Submit", "#", :class => 'button_submit' %> </td> -->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- <div id="redbox" style="display: none;">
+    <!%= form_for @ans do %>
+    <!% end -%>
+</div> -->
 <% end %>
+
+<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>
+
+
 <script type="text/javascript">
     //    jQuery(function($) {
-    $(".button_submit").click(function() {
-        $( "#form2" ).submit();
-    });
-    //    })
+    // $(".button_submit").click(function() {
+    //     $( "#form2" ).submit();
+    // });
+
 </script>

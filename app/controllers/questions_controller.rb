@@ -25,6 +25,10 @@ class QuestionsController < ApplicationController
     render :layout => 'admin'
   end
 
+  def editanswer
+    render :layout => 'admin'
+  end
+
   # POST /questions
   # POST /questions.json
   def create
