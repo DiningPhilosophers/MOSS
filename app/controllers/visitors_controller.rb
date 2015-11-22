@@ -178,7 +178,6 @@ class VisitorsController < ApplicationController
   # GET /visitors/1.json
   def show
     @n_questions = Question.all #number of questions in the database
-
     render :partial => 'visitors/show', :content_type => 'text/html'
   end
 

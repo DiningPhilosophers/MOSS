@@ -21,6 +21,15 @@ class ZipcodesController < ApplicationController
   def edit
   end
 
+  # GET /zipcodes/city
+  def city
+	zipcode = params[:zip_code]
+ 	zipobj = Zipcode.find_by(zip_code: zipcode)
+	respond_to do |format|
+		format.json {render :json => {"Zipcode": zipobj}}
+	end
+  end
+
   # POST /zipcodes
   # POST /zipcodes.json
   def create

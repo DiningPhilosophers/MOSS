@@ -25,15 +25,15 @@
       <%= f.fields_for :visitors, @group.visitors.new do |visitor| %>
           <div class="field">
             <!% visitor.label :first_name %>
-            <%= visitor.text_field :first_name, class: 'form-control', placeholder: :first_name %>
+            <%= visitor.text_field :first_name, class: 'form-control', placeholder: :first_name, pattern: '\D*',  oninvalid: 'this.setCustomValidity(this.willValidate? \'\' : \'Your name cannot contain numbers.\')', oninput: 'setCustomValidity(\'\')' %>
           </div>
           <div class="field">
             <!% visitor.label :last_name, class: 'sign_in_field_label' %>
-            <%= visitor.text_field :last_name, class: 'form-control', placeholder: :last_name %>
+            <%= visitor.text_field :last_name, class: 'form-control', placeholder: :last_name, pattern: '\D*',  oninvalid: 'setCustomValidity(\'Your name cannot contain numbers.\')', oninput: 'setCustomValidity(\'\')'  %>
           </div>
           <div class="field">
             <!% visitor.label :email %>
-            <%= visitor.text_field :email, class: 'form-control', placeholder: :email %>
+            <%= visitor.text_field :email, class: 'form-control', placeholder: :email, pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',  oninvalid: 'setCustomValidity(\'Invalid email address.\')', oninput: 'setCustomValidity(\'\')' %>
           </div>
           <div class="field">
             <label>May we contact you?</label>
@@ -41,7 +41,10 @@
           </div>
           <div class="field">
             <!% visitor.label :zip_code %>
-            <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", placeholder: :zip_code %>
+            <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", pattern: '\d{5}', placeholder: :zip_code, required: 'required',  oninvalid: 'setCustomValidity(\'Zip code should be 5 numbers.\')', oninput: 'setCustomValidity(\'\')', maxlength: 5 %>
+          </div>
+          <div class="field" hidden="hidden">
+            <input id="sign_in_city" class="form-control" disabled="disabled" name="city_input" placeholder="City"/>
           </div>
           <div class="field">
             <!% visitor.label :country_id %>
@@ -52,7 +55,7 @@
       <div class="field">
         <!% f.label :group_size %>
         <label>How many people are in your group?</label>
-        <%= f.number_field :group_size, :value => 1, :min => 0, class: 'form-control' %>
+        <%= f.number_field :group_size, :value => 1, :min => 1, :max => 99, class: 'form-control' %>
       </div>
       <div class="field hidden">
         <!% f.label :created_at %>
@@ -61,7 +64,7 @@
 
       </div>
     </div>
-    <a href="#survey" class="page-scroll btn btn-signin" style="width: 170px; display: block; margin: 0 auto;">Next</a>
+    <a id="NextButton" href="#survey" class="btn btn-signin" style="width: 170px; display: block; margin: 0 auto;">Next</a>
   </section>
 
   <!-- Survey Section -->
@@ -88,7 +91,7 @@
                         <%= survey.collection_select :answer, @ans, :id, :answer, {:selected => '215'}, class: 'form-control' %>
                     <% elsif(ques.typ == 'number') %>
                         <!= survey.text_field :answer, class: 'form-control', placeholder: "#{ques.question}" %>
-                        <%= survey.number_field :answer, :value => 1, :min => 0, class: 'form-control' %>
+                        <%= survey.number_field :answer, :value => 0, :min => 0, :max => 99, class: 'form-control' %>
                     <% end %>
                   </div>
                   <div class="field hidden">
@@ -107,20 +110,86 @@
   </section>
 <% end %>
 
-<script>
-//    $( document ).ready(function() {
-//        $.ajax({
-//            type: "GET",
-//            dataType: "json",
-//            url: "/zipcodes#index",
-//            success: function(data){
-//                var arr = $.map(data, function(el) { return el.zip_code });
-////                console.log(arr[0].zip_code);
-//                $( "#sign_in_zipcode" ).autocomplete({
-//                    source: arr,
-//                    delay: 0
-//                });
-//            }
-//        });
-//    });
+
+{cms_jquery}
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $('#sign_in_zipcode').change(getAutocompleteCity);
+    $('#NextButton').click(checkVisitorInfoValidity);
+    $(".scroll").click(function(event) {
+    event.preventDefault();
+    $('html,body').animate( { scrollTop:$(this.hash).offset().top } , 1000);
+    } );
+  } );
+
+
+	function checkVisitorInfoValidity(event)
+	{
+		event.preventDefault();
+		var form = $('form#form');
+		if(!form[0].checkValidity())
+		{
+			//if the form is invalid, submit it
+			//only way to get the form dialogs to popup
+			form.find(':submit').click();
+		}
+		else
+		{
+			//scroll if ok
+			$('html,body').animate( { scrollTop:$(this.hash).offset().top } , 1000);
+		}
+	}
+
+  
+	function hideCity()
+	{
+		//hide city field
+		$("#sign_in_city").closest("div.field").hide();
+	}
+
+	function autocompleteCity(data)
+	{
+		if(data.Zipcode && data.Zipcode.city && data.Zipcode.state)
+		{
+			var cityState = data.Zipcode.city.trim().concat(', ', data.Zipcode.state.trim());
+			//fill out city input
+			var cityInput = $("#sign_in_city");
+			cityInput.val(cityState);
+			//show city field
+			cityInput.closest("div.field").show();
+		}
+		else
+		{
+			hideCity();
+		}
+	}
+
+	function getAutocompleteCity(event)
+	{
+		//get zip_code
+		var zip_code = event.target.value.trim();
+		//parseInt gets the first number in the zip-code e.g. for 12345-6789, zip_code_int = 12345;
+		var zip_code_int = parseInt(zip_code);
+		//check for valid zip code format
+		var zip_code_regex = /^\d{5}$/;
+		if(zip_code && zip_code_regex.test(zip_code) && zip_code_int && zip_code_int != 0)
+		{
+			//get the zipcode object which contains the city and state.
+			$.get(
+				"/zipcodes/city",
+				{"zip_code":zip_code},
+				autocompleteCity,
+				"json"
+			);
+		}
+		else
+		{
+			//invalid zipcode
+			hideCity();
+		}
+	}
+
 </script>
+
+
