@@ -25,15 +25,15 @@
       <%= f.fields_for :visitors, @group.visitors.new do |visitor| %>
           <div class="field">
             <!% visitor.label :first_name %>
-            <%= visitor.text_field :first_name, class: 'form-control', placeholder: :first_name, pattern: '\D*',  oninvalid: 'this.setCustomValidity(this.willValidate? \'\' : \'Your name cannot contain numbers.\')', oninput: 'setCustomValidity(\'\')' %>
+            <%= visitor.text_field :first_name, type: 'text', class: 'form-control', placeholder: :first_name, pattern: '\D*',  oninvalid: 'setCustomValidity(\'Your name cannot contain numbers.\')', oninput: 'setCustomValidity(\'\')' %>
           </div>
           <div class="field">
             <!% visitor.label :last_name, class: 'sign_in_field_label' %>
-            <%= visitor.text_field :last_name, class: 'form-control', placeholder: :last_name, pattern: '\D*',  oninvalid: 'setCustomValidity(\'Your name cannot contain numbers.\')', oninput: 'setCustomValidity(\'\')'  %>
+            <%= visitor.text_field :last_name, type: 'text', class: 'form-control', placeholder: :last_name, pattern: '\D*', oninvalid: 'setCustomValidity(\'Your name cannot contain numbers.\')', oninput: 'setCustomValidity(\'\')'  %>
           </div>
           <div class="field">
             <!% visitor.label :email %>
-            <%= visitor.text_field :email, class: 'form-control', placeholder: :email, pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',  oninvalid: 'setCustomValidity(\'Invalid email address.\')', oninput: 'setCustomValidity(\'\')' %>
+            <%= visitor.text_field :email, type: 'email', class: 'form-control', placeholder: :email, pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',  oninvalid: 'setCustomValidity(\'Invalid email address.\')', oninput: 'setCustomValidity(\'\')' %>
           </div>
           <div class="field">
             <label>May we contact you?</label>
@@ -41,7 +41,7 @@
           </div>
           <div class="field">
             <!% visitor.label :zip_code %>
-            <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", pattern: '\d{5}', placeholder: :zip_code, required: 'required',  oninvalid: 'setCustomValidity(\'Zip code should be 5 numbers.\')', oninput: 'setCustomValidity(\'\')', maxlength: 5 %>
+            <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", pattern: '\d{5}', placeholder: :zip_code, required: 'required',  oninvalid: 'setCustomValidity(\'Zip code should be 5 numbers.\')', oninput: 'setCustomValidity(\'\')', maxlength: 5, minlength: 5 %>
           </div>
           <div class="field" hidden="hidden">
             <input id="sign_in_city" class="form-control" disabled="disabled" name="city_input" placeholder="City"/>
