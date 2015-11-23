@@ -59,7 +59,34 @@
         destroy: true,
         "dom": 'T<"clear">lfrtip',
         "tableTools": {
-          "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf"
+          "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf",
+          aButtons: [
+            {
+              "sExtends": "copy",
+              "sButtonText": "Copy",
+              "mColumns": [ 0, 1 ]
+            },
+            {
+              "sExtends": "csv",
+              "sButtonText": "CSV",
+              "mColumns": [ 0, 1 ]
+            },
+            {
+              "sExtends": "pdf",
+              "sButtonText": "PDF",
+              "mColumns": [ 0, 1 ]
+            },
+            {
+              "sExtends": "xls",
+              "sButtonText": "Excel",
+              "mColumns": [ 0, 1 ]
+            },
+            {
+              "sExtends": "print",
+              "sButtonText": "Print",
+              "mColumns": [ 0, 1 ]
+            },
+          ]
         },
         "columnDefs": [
           {"targets": 2, "orderable": false},
@@ -71,7 +98,34 @@
         destroy: true,
         "dom": 'T<"clear">lfrtip',
         "tableTools": {
-          "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf"
+          "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf",
+          aButtons: [
+            {
+              "sExtends": "copy",
+              "sButtonText": "Copy",
+              "mColumns": [ 0, 1 ]
+            },
+            {
+              "sExtends": "csv",
+              "sButtonText": "CSV",
+              "mColumns": [ 0, 1 ]
+            },
+            {
+              "sExtends": "pdf",
+              "sButtonText": "PDF",
+              "mColumns": [ 0, 1 ]
+            },
+            {
+              "sExtends": "xls",
+              "sButtonText": "Excel",
+              "mColumns": [ 0, 1 ]
+            },
+            {
+              "sExtends": "print",
+              "sButtonText": "Print",
+              "mColumns": [ 0, 1 ]
+            },
+          ]
         },
         "columnDefs": [
           {"targets": 2, "orderable": false},

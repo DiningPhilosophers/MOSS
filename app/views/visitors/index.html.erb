@@ -95,7 +95,7 @@
                   <th class="table_header">First name</th>
                   <th class="table_header">Visit Date</th>
                   <th class="table_header">Email</th>
-                  <th class="table_header">Contact</th>
+                  <th class="table_header">Contactable</th>
                   <th class="table_header">City</th>
                   <th class="table_header">Zip code</th>
                   <th class="table_header">State</th>
@@ -106,22 +106,22 @@
                 </tr>
                 </thead>
 
-                <tfoot>
-                <tr>
-                  <th class="table_header">Last name</th>
-                  <th class="table_header">First name</th>
-                  <th class="table_header">Visit Date</th>
-                  <th class="table_header">Email</th>
-                  <th class="table_header">Contact</th>
-                  <th class="table_header">City</th>
-                  <th class="table_header">Zip code</th>
-                  <th class="table_header">State</th>
-                  <th class="table_header">Country</th>
-                  <th class="table_header"></th>
-                  <th class="table_header"></th>
-                  <th class="table_header"></th>
-                </tr>
-                </tfoot>
+                <!--<tfoot>-->
+                <!--<tr>-->
+                  <!--<th class="table_header">Last name</th>-->
+                  <!--<th class="table_header">First name</th>-->
+                  <!--<th class="table_header">Visit Date</th>-->
+                  <!--<th class="table_header">Email</th>-->
+                  <!--<th class="table_header">Contactable</th>-->
+                  <!--<th class="table_header">City</th>-->
+                  <!--<th class="table_header">Zip code</th>-->
+                  <!--<th class="table_header">State</th>-->
+                  <!--<th class="table_header">Country</th>-->
+                  <!--<th class="table_header"></th>-->
+                  <!--<th class="table_header"></th>-->
+                  <!--<th class="table_header"></th>-->
+                <!--</tr>-->
+                <!--</tfoot>-->
 
                 <tbody>
                 <% @visitors.each do |visitor| %>
@@ -131,7 +131,8 @@
                       <!--<td><%= visitor.group_id %></td>-->
                       <td><%= visitor.created_at %></td>
                       <td style="word-wrap: break-word"><%= visitor.email %></td>
-                      <td style="text-align: center"><%= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>
+                      <!--<td style="text-align: center"><!= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>-->
+                      <td style="text-align: center"><%= visitor.contact == true ? 'Yes' : 'No' %></td>
                       <td><%= Zipcode.find(visitor.zip_code).city %></td>
                       <td style="text-align: center"><%= visitor.zip_code %></td>
                       <td><%= Zipcode.find(visitor.zip_code).state %></td>
@@ -166,11 +167,38 @@
         if ( $.fn.dataTable.isDataTable( '#visitors_table' ) ) {
             table = $('#visitors_table').DataTable({
               destroy: true,
-              "dom": 'T<"clear">lfrtip',
-              "tableTools": {
-                "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf"
+              dom: 'T<"clear">lfrtip',
+              tableTools: {
+                sSwfPath: "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf",
+                aButtons: [
+                  {
+                    "sExtends": "copy",
+                    "sButtonText": "Copy",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "csv",
+                    "sButtonText": "CSV",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "pdf",
+                    "sButtonText": "PDF",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "xls",
+                    "sButtonText": "Excel",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "print",
+                    "sButtonText": "Print",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                ]
               },
-              "columnDefs": [ { "targets": 9, "orderable": false },
+              columnDefs: [ { "targets": 9, "orderable": false },
                 { "targets": 10, "orderable": false },
                 { "targets": 11, "orderable": false }]
             });
@@ -178,11 +206,38 @@
         else {
             table = $('#visitors_table').DataTable({
               destroy: true,
-              "dom": 'T<"clear">lfrtip',
-              "tableTools": {
-                "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf"
+              dom: 'T<"clear">lfrtip',
+              tableTools: {
+                sSwfPath: "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf",
+                aButtons: [
+                  {
+                    "sExtends": "copy",
+                    "sButtonText": "Copy",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "csv",
+                    "sButtonText": "CSV",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "pdf",
+                    "sButtonText": "PDF",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "xls",
+                    "sButtonText": "Excel",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "print",
+                    "sButtonText": "Print",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                ]
               },
-              "columnDefs": [ { "targets": 9, "orderable": false },
+              columnDefs: [ { "targets": 9, "orderable": false },
                 { "targets": 10, "orderable": false },
                 { "targets": 11, "orderable": false }]
             });
