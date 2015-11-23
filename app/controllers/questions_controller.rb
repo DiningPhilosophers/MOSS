@@ -5,20 +5,24 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
     @questions = Question.all
+    render :layout => 'admin'
   end
 
   # GET /questions/1
   # GET /questions/1.json
   def show
+    render :layout => 'admin'
   end
 
   # GET /questions/new
   def new
     @question = Question.new
+    render :layout => 'admin'
   end
 
   # GET /questions/1/edit
   def edit
+    render :layout => 'admin'
   end
 
   # POST /questions
@@ -69,6 +73,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question)
+      params.require(:question).permit(:question, :typ)
     end
 end
