@@ -28,6 +28,8 @@
 //= require metisMenu
 //= require raphael
 //= require morris
+//= require dataTables/extras/dataTables.tableTools
+//= require dataTables/extras/dataTables.responsive
 
 // require agency
 // require cbpAnimatedHeader

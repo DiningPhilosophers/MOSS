@@ -5,7 +5,7 @@
  */
 
 body {
-    background-color: #f8f8f8;
+    /*background-color: #f8f8f8;*/
 }
 
 #wrapper {
@@ -224,36 +224,48 @@ body {
     height: 100%;
 }
 
-.dataTables_wrapper {
-    position: relative;
-    clear: both;
+/*.dataTables_wrapper {*/
+    /*position: relative;*/
+    /*clear: both;*/
+/*}*/
+
+/*table.dataTable thead .sorting,*/
+/*table.dataTable thead .sorting_asc,*/
+/*table.dataTable thead .sorting_desc,*/
+/*table.dataTable thead .sorting_asc_disabled,*/
+/*table.dataTable thead .sorting_desc_disabled {*/
+    /*background: 0 0;*/
+/*}*/
+
+/*table.dataTable thead .sorting_asc:after {*/
+    /*content: "\f0de";*/
+    /*float: right;*/
+    /*font-family: fontawesome;*/
+/*}*/
+
+/*table.dataTable thead .sorting_desc:after {*/
+    /*content: "\f0dd";*/
+    /*float: right;*/
+    /*font-family: fontawesome;*/
+/*}*/
+
+/*table.dataTable thead .sorting:after {*/
+    /*content: "\f0dc";*/
+    /*float: right;*/
+    /*font-family: fontawesome;*/
+    /*color: rgba(50,50,50,.5);*/
+/*}*/
+
+.DTTT_container {
+    padding-left: 10px;
 }
 
-table.dataTable thead .sorting,
-table.dataTable thead .sorting_asc,
-table.dataTable thead .sorting_desc,
-table.dataTable thead .sorting_asc_disabled,
-table.dataTable thead .sorting_desc_disabled {
-    background: 0 0;
+.dataTables_length {
+    float: left;
+    text-align: right;
 }
 
-table.dataTable thead .sorting_asc:after {
-    content: "\f0de";
-    float: right;
-    font-family: fontawesome;
-}
-
-table.dataTable thead .sorting_desc:after {
-    content: "\f0dd";
-    float: right;
-    font-family: fontawesome;
-}
-
-table.dataTable thead .sorting:after {
-    content: "\f0dc";
-    float: right;
-    font-family: fontawesome;
-    color: rgba(50,50,50,.5);
+.dataTables_filter {
 }
 
 .btn-circle {

@@ -82,10 +82,28 @@
 <script>
     $( document ).ready(function() {
         if ( $.fn.dataTable.isDataTable( '#visitors_table' ) ) {
-            table = $('#visitors_table').DataTable();
+          table = $('#visitors_table').DataTable({
+            destroy: true,
+            "dom": 'T<"clear">lfrtip',
+            "tableTools": {
+              "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf"
+            },
+            "columnDefs": [ { "targets": 9, "orderable": false },
+              { "targets": 10, "orderable": false },
+              { "targets": 11, "orderable": false }]
+          });
         }
         else {
-            table = $('#visitors_table').DataTable();
+          table = $('#visitors_table').DataTable({
+            destroy: true,
+            "dom": 'T<"clear">lfrtip',
+            "tableTools": {
+              "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf"
+            },
+            "columnDefs": [ { "targets": 9, "orderable": false },
+              { "targets": 10, "orderable": false },
+              { "targets": 11, "orderable": false }]
+          });
         }
 
         $('.show_btn').click(function () {
