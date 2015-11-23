@@ -9,34 +9,3 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', questions_path, class: 'btn btn-primary' %>
-
-<script>
-  $( document ).ready(function() {
-    $('#question_typ').val('number'); //default this field to number on refresh
-    var counter = 0;
-    $('#question_typ').change(function(){
-      if($('#question_typ').val() == "choice") {
-//        alert("hehe");
-        $('#add_more_ans').removeClass("hidden");
-        $('#answer_div').append("<div class='field'>" +
-            "<label>Answer " + counter +"</label>" +
-            "<textarea></textarea>" +
-            "</div>"
-        );
-      }
-      else{
-        $('#add_more_ans').addClass("hidden");
-        $('#answer_div').empty();
-      }
-    });
-    $('#add_more_ans').click(function() {
-      counter++;
-      $('#answer_div').append("<div class='field'>" +
-          "<label>Answer " + counter +"</label>" +
-          "<textarea></textarea>" +
-          "</div>"
-      );
-    });
-  });
-
-</script>
