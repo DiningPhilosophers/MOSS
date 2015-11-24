@@ -62,7 +62,7 @@ gem 'test-unit'
 # gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-datatables-rails'
 
-gem 'chartkick'
+# gem 'chartkick'
 
 # gem 'mysql2'
 

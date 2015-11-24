@@ -1,3 +1,7 @@
+<!--<script src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script>-->
+<!--<script src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>-->
+<!--<!%= javascript_include_tag "http://canvg.googlecode.com/svn/trunk/rgbcolor.js" %>-->
+<!--<!%= javascript_include_tag "http://canvg.googlecode.com/svn/trunk/canvg.js" %>-->
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 </br>
 <div id="alert_danger" class="alert alert-danger alert-dismissible hidden" role="alert">
@@ -35,10 +39,10 @@
 
   <h3 id="h_donut" class="page-header"></h3>
   <div id="pie-chart" style="height: 500px; width: 100%"></div>
-  <!--<button id="print">to PDF</button>-->
+  <button id="print" class="btn btn-success fa fa-print hidden"></button>
   <h3 id="h_bar" class="page-header"></h3>
-  <div id="bar-chart" style="height: 500px; width: 100%"></div>
-  <!--<button id="print2">to PDF</button>-->
+  <div id="line-chart" style="height: 500px; width: 100%"></div>
+  <button id="print2" class="btn btn-success fa fa-print hidden"></button>
 </div>
 
 
@@ -113,10 +117,11 @@
           console.log(tot);
 
           $('#donut-chart').empty();
-          $('#bar-chart').empty();
+          $('#line-chart').empty();
 
           $('#h_donut').empty();
           $('#h_donut').append('Donut Chart - Unit is in Percentage (%)');
+          $('#print').removeClass('hidden');
 
           new Chartkick.PieChart("pie-chart",
               [
@@ -128,16 +133,20 @@
                 ["Other Cities in Texas", ((parseInt(ocit)/tot)*100).toFixed(2)],
                 ["Out of States", ((parseInt(os)/tot)*100).toFixed(2)],
                 ["International", ((parseInt(inter)/tot)*100).toFixed(2)]
-              ]
+              ],
+              {"download": true}
           );
 
           $('#print').click(function () {
-            printMe();
+            var divContents = $("#pie-chart").html();
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html><head><title>Pie Chart</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
           });
-          // This will render SVG only as PDF and download
-          function printMe() {
-            xepOnline.Formatter.Format('donut-chart', {render:'download', srctype:'svg'});
-          }
 
 
           var start = new Date($('#start_date').val());
@@ -162,7 +171,8 @@
             success: function (data) {
 //                            console.log(data);
               $('#h_bar').empty();
-              $('#h_bar').append('Bar Chart - Unit is in Number of Visitors');
+              $('#h_bar').append('Line Chart - Unit is in Number of Visitors');
+              $('#print2').removeClass('hidden');
 
               data = $.parseJSON(data);
               var da = [];
@@ -178,16 +188,20 @@
 
 //              console.log(da);
 
-//              new Chartkick.LineChart("bar-chart", {"2013-02-10 00:00:00 -0800": 11, "2013-02-11 00:00:00 -0800": 6});
+//              new Chartkick.LineChart("line-chart", {"2013-02-10 00:00:00 -0800": 11, "2013-02-11 00:00:00 -0800": 6});
 //              new Chartkick.ColumnChart("bar-chart", da);
-              new Chartkick.LineChart("bar-chart", da);
+              new Chartkick.LineChart("line-chart", da, {"xtitle": "Date", "ytitle": "Number of Visitors"});
+//              new Chartkick.LineChart("line-chart", da, {"download": true});
               $('#print2').click(function () {
-                printMe();
+                var divContents = $("#line-chart").html();
+                var printWindow = window.open('', '', 'height=400,width=800');
+                printWindow.document.write('<html><head><title>Line Chart</title>');
+                printWindow.document.write('</head><body >');
+                printWindow.document.write(divContents);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.print();
               });
-              // This will render SVG only as PDF and download
-              function printMe() {
-                xepOnline.Formatter.Format('bar-chart', {render:'download', srctype:'svg'});
-              }
             }
           });
         }

@@ -31,7 +31,10 @@
 //= require dataTables/extras/dataTables.tableTools
 //= require dataTables/extras/dataTables.responsive
 //= require xepOnline.jqPlugin.008
+//= require canvg
+//= require rgbcolor
 //= require Chartkick
+
 // require agency
 // require cbpAnimatedHeader
 // require classie

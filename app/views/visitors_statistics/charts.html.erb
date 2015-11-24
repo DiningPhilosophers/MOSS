@@ -52,11 +52,11 @@
 
 <div id="charts" style="padding-bottom: 40px">
   <h3 id="h_donut" class="page-header"></h3>
-  <button id="print">to PDF</button>
   <div id="donut-chart"></div>
+  <button id="print" class="btn btn-success fa fa-print hidden"></button>
   <h3 id="h_bar" class="page-header"></h3>
   <div id="bar-chart"></div>
-  <button id="print2">to PDF</button>
+  <button id="print2" class="btn btn-success fa fa-print hidden"></button>
 </div>
 
 
@@ -138,6 +138,7 @@
 
                     $('#h_donut').empty();
                     $('#h_donut').append('Donut Chart - Unit is in Percentage (%)');
+                    $('#print').removeClass('hidden');
 
                     new Morris.Donut({
                         element: 'donut-chart',
@@ -219,6 +220,8 @@
                                 labels: ['Total Visitors'],
                                 resize: true,
                             });
+
+                            $('#print2').removeClass('hidden');
 
                             $('#print2').click(function () {
                                printMe();
