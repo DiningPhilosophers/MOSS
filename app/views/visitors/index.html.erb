@@ -1,10 +1,10 @@
 
-
-<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+</br>
+<div id="alert_danger" class="alert alert-danger alert-dismissible hidden" role="alert">
   <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
 </div>
 
-<div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
+<div id="alert_warning" class="alert alert-warning alert-dismissible hidden" role="alert">
   <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
 </div>
 
@@ -161,8 +161,8 @@
 
 <script>
     $( document ).ready(function() {
-      $('#alert_danger').hide();
-      $('#alert_warning').hide();
+//      $('#alert_danger').hide();
+//      $('#alert_warning').hide();
 
         if ( $.fn.dataTable.isDataTable( '#visitors_table' ) ) {
             table = $('#visitors_table').DataTable({
@@ -320,16 +320,20 @@
         $('#submit_btn').click(function(event) {
             if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
                 event.preventDefault();
-                $('#alert_danger').show();
+//                $('#alert_danger').show();
+                $('#alert_danger').removeClass('hidden');
                 $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_danger").hide();
+//                    $("#alert_danger").hide();
+                    $("#alert_danger").addClass('hidden');
                 });
             }
             else if(new Date($('#end_date').val()) > (new Date($.now()))){
                 event.preventDefault();
-                $('#alert_warning').show();
+//                $('#alert_warning').show();
+                $('#alert_warning').removeClass('hidden');
                 $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_warning").hide();
+//                    $("#alert_warning").hide();
+                    $('#alert_warning').addClass('hidden');
                 });
             }
         });

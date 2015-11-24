@@ -8,18 +8,18 @@
 <!--
 <p>
   <strong>Last name:</strong>
-  <%= @visitor.last_name %>
+  <!= @visitor.last_name %>
 </p>
 
 <p>
   <strong>First name:</strong>
-  <%= @visitor.first_name %>
+  <!= @visitor.first_name %>
 </p> 
 -->
 <p></p>
 <p>
-  <strong>Group:</strong>
-  <%= @visitor.group_id %>
+  <strong>Group Size:</strong>
+  <%= Group.where(:id => @visitor.group_id)[0].group_size %>
 </p>
 
 <p>

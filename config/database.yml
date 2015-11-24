@@ -107,29 +107,29 @@ test:
   timeout: 5000
 
 development:
- # adapter: mysql2
- # timeout: 5000
- # database: mossmysql
- # encoding: utf8
- # host: 127.0.0.1
- # port: 3306
- # username: root
- # password: 0934084534
- # min_messages: warning
- # pool: 5
-  #timeout: 5000
-
   adapter: mysql2
   timeout: 5000
-  database: heroku_16334637a8aeebb
+  database: mossmysql
   encoding: utf8
-  host: us-cdbr-iron-east-03.cleardb.net
+  host: 127.0.0.1
   port: 3306
-  username: b5f290e52fa8cf
-  password: 5c62811c
+  username: root
+  password: 0934084534
   min_messages: warning
   pool: 5
   timeout: 5000
+
+#  adapter: mysql2
+#  timeout: 5000
+#  database: heroku_16334637a8aeebb
+#  encoding: utf8
+#  host: us-cdbr-iron-east-03.cleardb.net
+#  port: 3306
+#  username: b5f290e52fa8cf
+#  password: 5c62811c
+#  min_messages: warning
+#  pool: 5
+#  timeout: 5000
  # adapter: mysql2
  # timeout: 5000
  # database: heroku_16334637a8aeebb

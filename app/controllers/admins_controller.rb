@@ -21,6 +21,7 @@ class AdminsController < ApplicationController
 
   # GET /admins/1/edit
   def edit
+    render :layout => 'admin'
   end
 
   # POST /admins
