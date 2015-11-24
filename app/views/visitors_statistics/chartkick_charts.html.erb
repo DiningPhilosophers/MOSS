@@ -1,0 +1,197 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+</br>
+<div id="alert_danger" class="alert alert-danger alert-dismissible hidden" role="alert">
+  <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
+</div>
+
+<div id="alert_warning" class="alert alert-warning alert-dismissible hidden" role="alert">
+  <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Statistics Chartkick Charts</h1>
+  </div>
+</div>
+
+<div style="padding-bottom: 10px">
+  <!--<form class="pull-right form-inline">-->
+  <div class="form-group">
+    <div class="input-group input-daterange">
+      <!--<input id="start_date" type="text" name="start_date" class="form-control">-->
+      <%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %>
+      <span class="input-group-addon">to</span>
+      <!--<input id="end_date" type="text" name="end_date" class="form-control">-->
+      <%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %>
+    </div>
+  </div>
+  <button id="charts_btn" class="btn btn-maroon">Submit</button>
+
+  <!--</form>-->
+</div>
+
+<div id="charts" style="padding-bottom: 40px">
+  <!--<!%= pie_chart Visitor.group(:zip_code).count %>-->
+
+  <h3 id="h_donut" class="page-header"></h3>
+  <div id="pie-chart" style="height: 500px; width: 100%"></div>
+  <!--<button id="print">to PDF</button>-->
+  <h3 id="h_bar" class="page-header"></h3>
+  <div id="bar-chart" style="height: 500px; width: 100%"></div>
+  <!--<button id="print2">to PDF</button>-->
+</div>
+
+
+<script>
+  if($('#end_date').val() == '' || $('#start_date').val()== '') {
+    $('#end_date').datepicker("setDate", new Date());
+    var startdate = $('#end_date').datepicker('getDate', '+1d');
+    startdate.setDate(startdate.getDate() - 15);
+    $('#start_date').datepicker("setDate", startdate);
+  }
+  else{
+    $('#start_date').datepicker();
+    $('#end_date').datepicker();
+  }
+
+  var austin = -1;
+  var df = -1;
+  var inter = -1;
+  var bcs = -1;
+  var sa = -1;
+  var houston = -1;
+  var ocit = -1;
+  var os = -1;
+
+  $('#charts_btn').click(function(event){
+    if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
+      event.preventDefault();
+//                $('#alert_danger').show();
+      $('#alert_danger').removeClass('hidden');
+      $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
+//                    $("#alert_danger").hide();
+        $("#alert_danger").addClass('hidden');
+      });
+    }
+    else if(new Date($('#end_date').val()) > (new Date($.now()))){
+      event.preventDefault();
+//                $('#alert_warning').show();
+      $('#alert_warning').removeClass('hidden');
+      $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
+//                    $("#alert_warning").hide();
+        $('#alert_warning').addClass('hidden');
+      });
+    }
+    else{
+      $.ajax({
+        type: "GET",
+        dataType: "html",
+        data:{
+          start_date: $('#start_date').val(),
+          end_date: $('#end_date').val(),
+        },
+        url: "/visitors_statistics/show",
+        success: function(data){
+          inter = $(data).find('#ooc').html();
+
+          df = $(data).find('#df').html();
+
+          austin = $(data).find('#austin').html();
+
+          ocit = $(data).find('#ocit').html();
+
+          bcs = $(data).find('#bcs').html();
+
+          os = $(data).find('#os').html();
+
+          sa = $(data).find('#sa').html();
+
+          houston = $(data).find('#houston').html();
+
+          var tot = parseInt(inter) + parseInt(df) + parseInt(austin) +
+              parseInt(ocit) + parseInt(bcs) + parseInt(os) + parseInt(sa) + parseInt(houston);
+          console.log(tot);
+
+          $('#donut-chart').empty();
+          $('#bar-chart').empty();
+
+          $('#h_donut').empty();
+          $('#h_donut').append('Donut Chart - Unit is in Percentage (%)');
+
+          new Chartkick.PieChart("pie-chart",
+              [
+                ["Bryan/College Station", ((parseInt(bcs)/tot)*100).toFixed(2)],
+                ["Houston", ((parseInt(houston)/tot)*100).toFixed(2)],
+                ["Austin", ((parseInt(austin)/tot)*100).toFixed(2)],
+                ["San Antonio", ((parseInt(sa)/tot)*100).toFixed(2)],
+                ["Dallas / Fort Worth", ((parseInt(df)/tot)*100).toFixed(2)],
+                ["Other Cities in Texas", ((parseInt(ocit)/tot)*100).toFixed(2)],
+                ["Out of States", ((parseInt(os)/tot)*100).toFixed(2)],
+                ["International", ((parseInt(inter)/tot)*100).toFixed(2)]
+              ]
+          );
+
+          $('#print').click(function () {
+            printMe();
+          });
+          // This will render SVG only as PDF and download
+          function printMe() {
+            xepOnline.Formatter.Format('donut-chart', {render:'download', srctype:'svg'});
+          }
+
+
+          var start = new Date($('#start_date').val());
+          var end = new Date($('#end_date').val());
+          var current = start;
+          var between = [];
+
+          while (current <= end) {
+            var date = new Date(current);
+            var d = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+            between.push(d);
+            current.setDate(current.getDate() + 1);
+          }
+
+          $.ajax({
+            type: "GET",
+            dataType: "html",
+            data: {
+              dates: between,
+            },
+            url: "/visitors_statistics/visitors_in_date",
+            success: function (data) {
+//                            console.log(data);
+              $('#h_bar').empty();
+              $('#h_bar').append('Bar Chart - Unit is in Number of Visitors');
+
+              data = $.parseJSON(data);
+              var da = [];
+              $.each(data, function(i, item) {
+                da.push([item.d, item.v]);
+              });
+//              var da = {};
+//              $.each(data, function(i, item) {
+//                var d = (item.d).toString();
+//                var v = (item.v);
+//                console.log( {d : v} );
+//              });
+
+//              console.log(da);
+
+//              new Chartkick.LineChart("bar-chart", {"2013-02-10 00:00:00 -0800": 11, "2013-02-11 00:00:00 -0800": 6});
+//              new Chartkick.ColumnChart("bar-chart", da);
+              new Chartkick.LineChart("bar-chart", da);
+              $('#print2').click(function () {
+                printMe();
+              });
+              // This will render SVG only as PDF and download
+              function printMe() {
+                xepOnline.Formatter.Format('bar-chart', {render:'download', srctype:'svg'});
+              }
+            }
+          });
+        }
+      });
+    }
+  })
+</script>

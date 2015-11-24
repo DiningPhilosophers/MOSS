@@ -17,8 +17,8 @@
 <!--<table>-->
   <!--<thead>-->
   <!--<tr>-->
-    <!--<th style="border: none;"><label>From:</label><%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %></th>-->
-    <!--<th style="border: none;"><label>To:</label><%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %></th>-->
+    <!--<th style="border: none;"><label>From:</label><!%= text_field_tag :text, params[:start_date], class: 'form-control', id: 'start_date', name: 'start_date' %></th>-->
+    <!--<th style="border: none;"><label>To:</label><!%= text_field_tag :text, params[:end_date], class: 'form-control', id: 'end_date', name: 'end_date' %></th>-->
 
   <!--</tr>-->
   <!--<tr>-->
@@ -61,8 +61,8 @@
 
 
 <script>
-    $('#alert_danger').hide();
-    $('#alert_warning').hide();
+//    $('#alert_danger').hide();
+//    $('#alert_warning').hide();
 
     if($('#end_date').val() == '' || $('#start_date').val()== '') {
         $('#end_date').datepicker("setDate", new Date());

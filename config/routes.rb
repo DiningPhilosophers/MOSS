@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   # Visitors charts page
   get 'charts' => 'visitors_statistics#charts'
 
+  # Visitors flot charts page
+  get 'chartkick_charts' => 'visitors_statistics#chartkick_charts'
+
   # City autocomplete
   get 'zipcodes/city' => 'zipcodes#city'
 

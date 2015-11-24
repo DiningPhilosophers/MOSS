@@ -142,6 +142,11 @@ class VisitorsStatisticsController < ApplicationController
     render :layout => 'admin'
   end
 
+  def chartkick_charts
+    # @v = Group.where(Visitor.)
+    render :layout => 'admin'
+  end
+
   def visitors_in_date
     @dates_result = []
     @dates = params[:dates]
