@@ -54,7 +54,8 @@
 <!--</div>-->
 <div id="statistic_content">
     <div class="alert alert-success" role="alert">
-      <p id="total_note" style="text-align: center; font-size: 150%;">Total Number of Visitors: <%= @total_visitors %></p>
+      <!--<p id="total_note" style="text-align: center; font-size: 150%;">Total Number of Visitors: <!= @total_visitors %></p>-->
+      <p id="total_note" style="text-align: center; font-size: 150%;">Total Number of Visitors: <%= @total_v %></p>
     </div>
      
       <div class="row">
@@ -68,8 +69,9 @@
                 <%= image_tag("CS_logo.jpg", :alt => "Brand", :style => "width: 80px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="bcs" class="huge"><%= @n_bcs_visitors %></div>
-                <div>College Station</div>
+                <!--<div id="bcs" class="huge"><!= @n_bcs_visitors %></div>-->
+                <div id="bcs" class="huge"><%= @bcs_v %></div>
+                <div>Bryan/College Station</div>
               </div>
             </div>
           </div>
@@ -92,7 +94,8 @@
                 <%= image_tag("austin_logo.png", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="austin" class="huge"><%= @n_austin_visitors %></div>
+                <!--<div id="austin" class="huge"><!= @n_austin_visitors %></div>-->
+                <div id="austin" class="huge"><%= @austin_v %></div>
                 <div>Austin</div>
               </div>
             </div>
@@ -116,7 +119,8 @@
                 <%= image_tag("dallas_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="df" class="huge"><%= @n_df_visitors %></div>
+                <!--<div id="df" class="huge"><!= @n_df_visitors %></div>-->
+                <div id="df" class="huge"><%= @df_v %></div>
                 <div>Dallas/FortWorth</div>
               </div>
             </div>
@@ -140,7 +144,8 @@
                 <%= image_tag("houston_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="houston" class="huge"><%= @n_h_visitors %></div>
+                <!--<div id="houston" class="huge"><!= @n_h_visitors %></div>-->
+                <div id="houston" class="huge"><%= @houston_v %></div>
                 <div>Houston</div>
               </div>
             </div>
@@ -164,7 +169,8 @@
                 <%= image_tag("SA_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="sa" class="huge"><%= @n_sa_visitors %></div>
+                <!--<div id="sa" class="huge"><!= @n_sa_visitors %></div>-->
+                <div id="sa" class="huge"><%= @sa_v %></div>
                 <div>San Antonio</div>
               </div>
             </div>
@@ -187,7 +193,8 @@
                 <%= image_tag("texas_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="ocit" class="huge"><%= @n_ocit_visitors %></div>
+                <!--<div id="ocit" class="huge"><!= @n_ocit_visitors %></div>-->
+                <div id="ocit" class="huge"><%= @ocit_v %></div>
                 <div style="white-space:nowrap;">Other Cities in Texas</div>
               </div>
             </div>
@@ -211,7 +218,8 @@
                 <%= image_tag("US_flag.png", :alt => "Brand", :style => "width: 70px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="os" class="huge"><%= @n_os_visitors %></div>
+                <!--<div id="os" class="huge"><!= @n_os_visitors %></div>-->
+                <div id="os" class="huge"><%= @os_v %></div>
                 <div>Other States</div>
               </div>
             </div>
@@ -235,7 +243,8 @@
                 <%= image_tag("international_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="ooc" class="huge"><%= @n_ooc_visitors %></div>
+                <!--<div id="ooc" class="huge"><!= @n_ooc_visitors %></div>-->
+                <div id="ooc" class="huge"><%= @ooc_v %></div>
                 <div>International</div>
               </div>
             </div>
