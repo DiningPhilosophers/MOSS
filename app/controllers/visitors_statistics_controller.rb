@@ -148,7 +148,8 @@ class VisitorsStatisticsController < ApplicationController
     @dates.each do |date|
       @s = DateTime.strptime(date,'%m/%d/%Y').at_beginning_of_day
       @e = DateTime.strptime(date,'%m/%d/%Y').at_end_of_day
-      @dates_result.push(d:date,v:Visitor.where(:created_at => @s..@e).size)
+      # @dates_result.push(d:date,v:Visitor.where(:created_at => @s..@e).size)
+      @dates_result.push(d:date,v:Group.where(:created_at => @s..@e).pluck(:group_size).sum())
     end
 
     # render :json => @dates
