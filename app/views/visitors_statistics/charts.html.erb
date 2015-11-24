@@ -152,6 +152,7 @@
                             {label: "International", value: ((parseInt(inter)/tot)*100).toFixed(2)},
                         ],
                         resize: true,
+                        formatter: function (value, data) { return (value) + '%'; }
                     });
 
                     var start = new Date($('#start_date').val());
