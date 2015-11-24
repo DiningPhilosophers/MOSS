@@ -55,9 +55,9 @@
   <div id="donut-chart"></div>
   <h3 id="h_bar" class="page-header"></h3>
   <div id="bar-chart"></div>
+  <button id="print2">to PDF</button>
 </div>
 
-<script src="js/js/xepOnline.jqPlugin.js"></script>
 
 <script>
     $('#alert_danger').hide();
@@ -214,6 +214,14 @@
                                 labels: ['Total Visitors'],
                                 resize: true,
                             });
+
+                            $('#print2').click(function () {
+                               printMe();
+                            });
+                           // This will render SVG only as PDF and download
+                            function printMe() {
+                                  xepOnline.Formatter.Format('bar-chart', {render:'download', srctype:'svg'});
+                            }
                         }
                     });
                 }
