@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == '1' ? remember(admin) : forget(admin)
       redirect_to visitors_statistics_path
     else
-      flash.now[:danger] = 'Invalid user name/password combination'
+      flash.now[:danger] = 'Invalid Password!'
       # render 'new'
       render 'new', :layout => 'signin'
     end
