@@ -1,49 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<<<<<<< HEAD
-<div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
-  <!--<table class="table table-bordered table-hover sortable results">-->
-  <!-- /.row -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3>Questions Table</h3>
-        </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body">
-          <div class="dataTable_wrapper">
-  <table id="visitors_table" class="table table-striped table-bordered table-hover">
-    <thead>
-    <tr>
-      <th class="table_header" style="text-align:center">Question Content</th>
-      <th class="table_header"></th>
-      <th class="table_header"></th>
-      <th class="table_header"></th>
-    </tr>
-    </thead>
-
-    <tfoot>
-    <tr>
-      <th class="table_header" style="text-align:center">Question Content</th>
-      <th class="table_header"></th>
-      <th class="table_header"></th>
-      <th class="table_header"></th>
-    </tr>
-    </tfoot>
-
-    <tbody>
-      <% @questions.each do |question| %>
-        <tr>
-          <td><%= question.question %></td>
-          <td style="text-align: center"><button value='<%= question.id %>' id='show_info_<%= question.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#showquestionModal"><i class="fa fa-eye fa-1"></i></button></td>
-          <td><%= link_to '<i class="fa fa-pencil fa-1"></i>'.html_safe, edit_question_path(question), class: 'btn btn-warning btn-xs' %></td>
-          <td><%= link_to '<i class="fa fa-trash-o fa-1"></i>'.html_safe, question, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-=======
 <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
   <!--<div class="modal-dialog" role="document">-->
     <!--<div class="modal-content">-->
@@ -54,7 +10,6 @@
     <!--</div>-->
   <!--</div>-->
 <!--</div>-->
->>>>>>> development
 
 <!--<h1>Listing Questions</h1>-->
 <div class="row">
@@ -94,48 +49,6 @@
 </div>
 <br>
 
-<<<<<<< HEAD
-
-
-<div class="modal fade" id="showquestionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <!-- <div class="modal-header"> -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <!-- <h4 class="modal-title" id="myModalLabel">Displa</h4> -->
-      <!-- </div> -->
-      <div class="modal-body" id="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-      </div>
-    </div>
-  </div>
-</div>
-
-<%= link_to 'New Question', new_question_path, class: 'btn btn-primary', style: "color:white" %>
-
-
-<script type="text/javascript">
-    $('.show_btn').click(function() {
-        var val = $(this).attr("value")
-        $.ajax({
-            type: "GET",
-            dataType: "html",
-            url: "/questions/"+val.toString(),
-            success: function(data){
-                $('#modal-body').empty();
-                $('#modal-body').append(data);
-            }
-        });
-    });
-
-    function myFunction() {
-        $("#input2").submmit();
-    }
-</script>
-=======
 <%= link_to 'New Question', new_question_path, class: 'btn btn-success' %>
 
 <script>
@@ -221,4 +134,3 @@
     }
   });
 </script>
->>>>>>> development

@@ -12,11 +12,7 @@ class QuestionsController < ApplicationController
   # GET /questions/13
   # GET /questions/1.json
   def show
-<<<<<<< HEAD
-    # render :partial => 'questions/show', :content_type => 'text/html'
-=======
     render :layout => 'admin'
->>>>>>> development
   end
 
   # GET /questions/new
@@ -28,13 +24,6 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
     render :layout => 'admin'
-<<<<<<< HEAD
-  end
-
-  def editanswer
-    render :layout => 'admin'
-=======
->>>>>>> development
   end
 
   # POST /questions

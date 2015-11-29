@@ -50,12 +50,4 @@ Rails.application.routes.draw do
   resource :visitors_statistics do
     get 'visitors_in_date'
   end
-<<<<<<< HEAD
-
-  get 'export_to_csv', to: 'visitors#export_to_csv', as: :visitors_export_to_csv
-  # get 'editanswer', to: 'questions#editanswer', as: :editanswer_question
-  # get 'answerform' => 'questions#answerform'
 end
-=======
-end
->>>>>>> development

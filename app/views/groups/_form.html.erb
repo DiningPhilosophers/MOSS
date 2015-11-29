@@ -12,7 +12,7 @@
 	<% end %>
 	<%= f.fields_for :visitors, @group.visitors.new do |visitor| %>
 		<!--Zip Code Section-->
-		
+
 		<section id="zip-code" class="bg-light-gray" style='min-height: 1000px; padding-top: 50px; '>
 			<div class="container">
 				<div class="row">
@@ -126,25 +126,6 @@
   </section>
 <% end %>
 
-<<<<<<< HEAD
-<script>
-//    $( document ).ready(function() {
-//        $.ajax({
-//            type: "GET",
-//            dataType: "json",
-//            url: "/zipcodes#index",
-//            success: function(data){
-//                var arr = $.map(data, function(el) { return el.zip_code });
-////                console.log(arr[0].zip_code);
-//                $( "#sign_in_zipcode" ).autocomplete({
-//                    source: arr,
-//                    delay: 0
-//                });
-//            }
-//        });
-//    });
-</script>
-=======
 
 <!--{cms_jquery}-->
 
@@ -172,7 +153,7 @@
 		$('.NextButton').prop('disabled', false);
 	}
 
-  
+
 	function hideCity()
 	{
 		//hide city field
@@ -371,6 +352,3 @@
 	}
 
 </script>
-
-
->>>>>>> development
