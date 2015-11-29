@@ -15,10 +15,6 @@
   <div class="row">
     <div class="field col-lg-8">
       <%= f.text_area :question %>
-      <p> <!%= @question.id %> </p>
-    </div>
-    <div class="col-lg-2">
-      <%= link_to "Submit", "#", :class => 'button_submit' %>
     </div>
   </div>
 
@@ -27,78 +23,28 @@
     <% end %>
 
     <div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
-      <!--<table class="table table-bordered table-hover sortable results">-->
-      <!-- /.row -->
       <div class="row">
         <div class="col-lg-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3>Answers Table</h3>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-              <div class="dataTable_wrapper">
-      <table id="answer_table" class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr>
-          <th class="table_header" style="text-align:center">Answer Content</th>
-          <th class="table_header"></th>
-          <th class="table_header"></th>
-        </tr>
-        </thead>
+            <%= f.fields_for :answers do |answer| %>
+              <%= answer.text_field :answer %>
+            <% end %>
 
-        <!-- <tbody> -->
-          <!% @ans.each do |an| %>
-              <!-- <textarea><!%= an.answer %></textarea> -->
-              <!-- <td> <!%= link_to "Edit", "#", :class => 'button_submit' %> </td> -->
-              <!-- <td> <!%= button_tag(type: 'submit') do %>
-                    <!%= content_tag(:strong, 'Ask me!') %>
-                    <!% end %> </td> -->
-              <!-- <td> <button onclick="myFunction()">Try it</button> </td> -->
-              <!-- <td> <p id="demo"></p> </td> -->
-              <!-- <td><!%= link_to_redbox 'Open The Details Form', 'redbox' %></td> -->
-              <!-- <td> <!%= link_to "Submit", "#", :class => 'button_submit' %> </td> -->
-          <!% end %>
-
-          <% @ans2 = @question.answers %>
-          <% @ans2.each do |ans| %>
-          <textarea> <%= ans.answer %> </textarea>
-          <% end %>
 
           <div id="answer_div"></div>
           <a class='btn btn-success' id='add_more_ans'>Add More Answer</a>
           </br></br>
-        <!-- </tbody> -->
-        <
-      </table>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit Changes"%>
   </div>
 <% end %>
-
-
-
-<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>
 
 
 <script type="text/javascript">
     //    jQuery(function($) {
     // $(".button_submit").click(function() {
     //     $( "#form2" ).submit();
+    //     $( "#answerform" ).submit();
     // });
-    var counter = 0;
-    $('#add_more_ans').click(function() {
-      counter++;
-      $('#answer_div').append("<div class='field'>" +
-          "<label>Answer " + counter +"</label>" +
-          "<textarea></textarea>" +
-          "</div>"
-      );
-    });
 </script>
