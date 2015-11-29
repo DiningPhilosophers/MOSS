@@ -1,10 +1,11 @@
 <!--<h1>VisitorsStatistics#show</h1>-->
 <!--<p>Find me in app/views/visitors_statistics/show.html.erb</p>-->
-<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+</br>
+<div id="alert_danger" class="alert alert-danger alert-dismissible hidden" role="alert">
   <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
 </div>
 
-<div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
+<div id="alert_warning" class="alert alert-warning alert-dismissible hidden" role="alert">
   <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
 </div>
 
@@ -54,25 +55,28 @@
 <!--</div>-->
 <div id="statistic_content">
     <div class="alert alert-success" role="alert">
-      <p id="total_note" style="text-align: center; font-size: 150%;">Total Number of Visitors: <%= @total_visitors %></p>
+      <!--<p id="total_note" style="text-align: center; font-size: 150%;">Total Number of Visitors: <!= @total_visitors %></p>-->
+      <p id="total_note" style="text-align: center; font-size: 150%;">Total Number of Visitors: <%= @total_v %></p>
     </div>
+     
+      <div class="row">
 
-    <div class="row">
       <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
+        <div class="panel panel-red">
           <div class="panel-heading">
             <div class="row">
               <div class="col-xs-3">
-                <!--<i class="fa fa-comments fa-5x"></i>-->
-                <%= image_tag("dallas_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
+                <!--<i class="fa fa-support fa-5x"></i>-->
+                <%= image_tag("CS_logo.jpg", :alt => "Brand", :style => "width: 80px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="df" class="huge"><%= @n_df_visitors %></div>
-                <div>Dallas/FortWorth</div>
+                <!--<div id="bcs" class="huge"><!= @n_bcs_visitors %></div>-->
+                <div id="bcs" class="huge"><%= @bcs_v %></div>
+                <div>Bryan/College Station</div>
               </div>
             </div>
           </div>
-          <a href="#" id="df_details">
+          <a href="#" id="bc_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -81,6 +85,7 @@
           </a>
         </div>
       </div>
+
       <div class="col-lg-3 col-md-6">
         <div class="panel panel-green">
           <div class="panel-heading">
@@ -90,7 +95,8 @@
                 <%= image_tag("austin_logo.png", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="austin" class="huge"><%= @n_austin_visitors %></div>
+                <!--<div id="austin" class="huge"><!= @n_austin_visitors %></div>-->
+                <div id="austin" class="huge"><%= @austin_v %></div>
                 <div>Austin</div>
               </div>
             </div>
@@ -104,21 +110,48 @@
           </a>
         </div>
       </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <!--<i class="fa fa-comments fa-5x"></i>-->
+                <%= image_tag("dallas_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
+              </div>
+              <div class="col-xs-9 text-right">
+                <!--<div id="df" class="huge"><!= @n_df_visitors %></div>-->
+                <div id="df" class="huge"><%= @df_v %></div>
+                <div>Dallas/FortWorth</div>
+              </div>
+            </div>
+          </div>
+          <a href="#" id="df_details">
+            <div class="panel-footer">
+              <span class="pull-left">View Details</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
       <div class="col-lg-3 col-md-6">
         <div class="panel panel-yellow">
           <div class="panel-heading">
             <div class="row">
               <div class="col-xs-3">
                 <!--<i class="fa fa-shopping-cart fa-5x"></i>-->
-                <%= image_tag("texas_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
+                <%= image_tag("houston_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="ocit" class="huge"><%= @n_ocit_visitors %></div>
-                <div style="white-space:nowrap;">Other Cities in Texas</div>
+                <!--<div id="houston" class="huge"><!= @n_h_visitors %></div>-->
+                <div id="houston" class="huge"><%= @houston_v %></div>
+                <div>Houston</div>
               </div>
             </div>
           </div>
-          <a href="#" id="ocit_details">
+          <a href="#" id="houston_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -127,75 +160,7 @@
           </a>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="panel panel-red">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <!--<i class="fa fa-support fa-5x"></i>-->
-                <%= image_tag("international_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div id="ooc" class="huge"><%= @n_ooc_visitors %></div>
-                <div>International</div>
-              </div>
-            </div>
-          </div>
-          <a href="#" id="inter_details">
-            <div class="panel-footer">
-              <span class="pull-left">View Details</span>
-              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-              <div class="clearfix"></div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="panel panel-red">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <!--<i class="fa fa-support fa-5x"></i>-->
-                <%= image_tag("CS_logo.jpg", :alt => "Brand", :style => "width: 80px !important; height: 50px !important;") %>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div id="bcs" class="huge"><%= @n_bcs_visitors %></div>
-                <div>College Station</div>
-              </div>
-            </div>
-          </div>
-          <a href="#" id="bc_details">
-            <div class="panel-footer">
-              <span class="pull-left">View Details</span>
-              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-              <div class="clearfix"></div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="panel panel-green">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <!--<i class="fa fa-tasks fa-5x"></i>-->
-                <%= image_tag("US_flag.png", :alt => "Brand", :style => "width: 70px !important; height: 50px !important;") %>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div id="os" class="huge"><%= @n_os_visitors %></div>
-                <div>Other States</div>
-              </div>
-            </div>
-          </div>
-          <a href="#" id="os_details">
-            <div class="panel-footer">
-              <span class="pull-left">View Details</span>
-              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-              <div class="clearfix"></div>
-            </div>
-          </a>
-        </div>
-      </div>
+
       <div class="col-lg-3 col-md-6">
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -205,7 +170,8 @@
                 <%= image_tag("SA_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="sa" class="huge"><%= @n_sa_visitors %></div>
+                <!--<div id="sa" class="huge"><!= @n_sa_visitors %></div>-->
+                <div id="sa" class="huge"><%= @sa_v %></div>
                 <div>San Antonio</div>
               </div>
             </div>
@@ -225,15 +191,16 @@
             <div class="row">
               <div class="col-xs-3">
                 <!--<i class="fa fa-shopping-cart fa-5x"></i>-->
-                <%= image_tag("houston_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
+                <%= image_tag("texas_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
               </div>
               <div class="col-xs-9 text-right">
-                <div id="houston" class="huge"><%= @n_h_visitors %></div>
-                <div>Houston</div>
+                <!--<div id="ocit" class="huge"><!= @n_ocit_visitors %></div>-->
+                <div id="ocit" class="huge"><%= @ocit_v %></div>
+                <div style="white-space:nowrap;">Other Cities in Texas</div>
               </div>
             </div>
           </div>
-          <a href="#" id="houston_details">
+          <a href="#" id="ocit_details">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -242,6 +209,59 @@
           </a>
         </div>
       </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <!--<i class="fa fa-tasks fa-5x"></i>-->
+                <%= image_tag("US_flag.png", :alt => "Brand", :style => "width: 70px !important; height: 50px !important;") %>
+              </div>
+              <div class="col-xs-9 text-right">
+                <!--<div id="os" class="huge"><!= @n_os_visitors %></div>-->
+                <div id="os" class="huge"><%= @os_v %></div>
+                <div>Other States</div>
+              </div>
+            </div>
+          </div>
+          <a href="#" id="os_details">
+            <div class="panel-footer">
+              <span class="pull-left">View Details</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <!--<i class="fa fa-support fa-5x"></i>-->
+                <%= image_tag("international_logo.jpg", :alt => "Brand", :style => "width: 50px !important; height: 50px !important;") %>
+              </div>
+              <div class="col-xs-9 text-right">
+                <!--<div id="ooc" class="huge"><!= @n_ooc_visitors %></div>-->
+                <div id="ooc" class="huge"><%= @ooc_v %></div>
+                <div>International</div>
+              </div>
+            </div>
+          </div>
+          <a href="#" id="inter_details">
+            <div class="panel-footer">
+              <span class="pull-left">View Details</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+
+
     </div>
 </div>
 
@@ -268,7 +288,7 @@
 //
 //        });
 
-        $('#df_details').click(function () {
+        $('#df_details,#austin_details,#bc_details,#houston_details,#sa_details,#ocit_details,#os_details,#inter_details').click(function () {
             window.location.replace(window.location.protocol + "//" +
                     window.location.host + "/" + "visitors?start_date=" + $('#start_date').val() +
                     "&end_date=" + $('#end_date').val());
@@ -293,18 +313,22 @@
 
         $('#statistics_btn').click(function(event){
             if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
-                event.preventDefault();
-                $('#alert_danger').show();
-                $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_danger").hide();
-                });
+              event.preventDefault();
+//                $('#alert_danger').show();
+              $('#alert_danger').removeClass('hidden');
+              $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
+//                    $("#alert_danger").hide();
+                $("#alert_danger").addClass('hidden');
+              });
             }
             else if(new Date($('#end_date').val()) > (new Date($.now()))){
-                event.preventDefault();
-                $('#alert_warning').show();
-                $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_warning").hide();
-                });
+              event.preventDefault();
+//                $('#alert_warning').show();
+              $('#alert_warning').removeClass('hidden');
+              $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
+//                    $("#alert_warning").hide();
+                $('#alert_warning').addClass('hidden');
+              });
             }
             else{
                 $.ajax({

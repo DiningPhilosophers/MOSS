@@ -1,33 +1,40 @@
 Rails.application.routes.draw do
 
-  #get 'password_resets/new'
+  # Routes for groups (we want only to create new groups)
+  resources :groups, only: [:create, :new]
 
-  #get 'password_resets/edit'
-
-  get 'visitors_statistics/show', as: 'visitors_statistics'
-  get 'session/new'
-
-  # TODO we should remove those resources or make them available to admins only
-  resources :admins, only: [:create, :edit, :update, :new] # TODO We should probably remove this and do this manualy. We do not want somebody to get admins' data by visiting /admins/2
-  resources :countries
-  resources :zipcodes
-  resources :surveys
-  resources :questions
-  resources :groups
+  # Routes for visitors (we want all CRUD operations)
   resources :visitors
 
-  # resource :visitors do
-  #   get 'filter_area'
-  # end
+  # Routes for questions (we want CRUD)
+  resources :questions
 
-  get 'filter_area'  => 'visitors#filter_area'
+  # Routes for surveys (we want only to create new surveys)
+  resources :surveys, only: [:create, :new]
 
+  # Routes for administrators
+  resources :admins, only: [:create, :edit, :update, :new]
+
+  # Home page
+  root 'groups#new'
+
+  # Visitor sing in page
+  get 'signin' => 'groups#new', as: 'sign_in'
+
+  # Visitors statistics page
+  get 'visitors_statistics/show', as: 'visitors_statistics'
+
+  # Visitors charts page
   get 'charts' => 'visitors_statistics#charts'
 
-  get 'homepage/index'
+  # Visitors flot charts page
+  get 'chartkick_charts' => 'visitors_statistics#chartkick_charts'
 
-  #root 'homepage#index'
-  root 'groups#new'
+  # City autocomplete
+  get 'zipcodes/city' => 'zipcodes#city'
+
+  # Filtering area
+  get 'filter_area'  => 'visitors#filter_area'
 
   # Routes for administrator login system
   get    'login'   => 'sessions#new'
@@ -37,17 +44,18 @@ Rails.application.routes.draw do
   # Routes for adding a new administrator
   get 'signup'  => 'admins#new'
 
-  # Visitor sing in
-  get 'signin' => 'groups#new', as: 'sign_in'
-
   # Password reset
   resources :password_resets, only: [:create, :edit, :update]
 
   resource :visitors_statistics do
     get 'visitors_in_date'
   end
+<<<<<<< HEAD
 
   get 'export_to_csv', to: 'visitors#export_to_csv', as: :visitors_export_to_csv
   # get 'editanswer', to: 'questions#editanswer', as: :editanswer_question
   # get 'answerform' => 'questions#answerform'
 end
+=======
+end
+>>>>>>> development

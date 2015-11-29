@@ -84,10 +84,82 @@
 <script>
     $( document ).ready(function() {
         if ( $.fn.dataTable.isDataTable( '#visitors_table' ) ) {
-            table = $('#visitors_table').DataTable();
+          table = $('#visitors_table').DataTable({
+            destroy: true,
+            "dom": 'T<"clear">lfrtip',
+            "tableTools": {
+              "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf",
+              aButtons: [
+                {
+                  "sExtends": "copy",
+                  "sButtonText": "Copy",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+                {
+                  "sExtends": "csv",
+                  "sButtonText": "CSV",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+                {
+                  "sExtends": "pdf",
+                  "sButtonText": "PDF",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+                {
+                  "sExtends": "xls",
+                  "sButtonText": "Excel",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+                {
+                  "sExtends": "print",
+                  "sButtonText": "Print",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+              ]
+            },
+            "columnDefs": [ { "targets": 9, "orderable": false },
+              { "targets": 10, "orderable": false },
+              { "targets": 11, "orderable": false }]
+          });
         }
         else {
-            table = $('#visitors_table').DataTable();
+          table = $('#visitors_table').DataTable({
+            destroy: true,
+            "dom": 'T<"clear">lfrtip',
+            "tableTools": {
+              "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf",
+              aButtons: [
+                {
+                  "sExtends": "copy",
+                  "sButtonText": "Copy",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+                {
+                  "sExtends": "csv",
+                  "sButtonText": "CSV",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+                {
+                  "sExtends": "pdf",
+                  "sButtonText": "PDF",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+                {
+                  "sExtends": "xls",
+                  "sButtonText": "Excel",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+                {
+                  "sExtends": "print",
+                  "sButtonText": "Print",
+                  "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                },
+              ]
+            },
+            "columnDefs": [ { "targets": 9, "orderable": false },
+              { "targets": 10, "orderable": false },
+              { "targets": 11, "orderable": false }]
+          });
         }
 
         $('.show_btn').click(function () {

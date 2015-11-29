@@ -1,20 +1,29 @@
 
-
-<div id="alert_danger" class="alert alert-danger alert-dismissible" role="alert">
+</br>
+<div id="alert_danger" class="alert alert-danger alert-dismissible hidden" role="alert">
   <strong>Invalid Date Range! </strong> Please change the date range and try submitting again.
 </div>
 
-<div id="alert_warning" class="alert alert-warning alert-dismissible" role="alert">
+<div id="alert_warning" class="alert alert-warning alert-dismissible hidden" role="alert">
   <strong>The date is not reached yet! </strong> Please change the date range and try submitting again.
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+<<<<<<< HEAD
       <!-- <div class="modal-header"> -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <!-- <h4 class="modal-title" id="myModalLabel">Individual Information</h4> -->
       <!-- </div> -->
+=======
+    <!--  <div class="modal-header"> -->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+          <!--<span aria-hidden="true">&times;</span>-->
+        <!--</button>-->
+     <!--   <h4 class="modal-title" id="myModalLabel"></h4> -->
+    <!--  </div>  -->
+>>>>>>> development
       <div class="modal-body" id="modal-body"></div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -71,9 +80,7 @@
                                                      ['Out of State', 'oos'], ['Out of Country', 'N/A']],
                                                     :selected => params[:area]),
                      :class => "multiselect", :multiple => "multiple") %>
-
     </div>
-
   </div>
 
   <div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
@@ -83,66 +90,67 @@
       <div class="col-lg-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3>Visitors Tables</h3>
+            <h3>Visitors Table</h3>
           </div>
           <!-- /.panel-heading -->
           <div class="panel-body">
-            <div class="dataTable_wrapper">
-    <table id="visitors_table" class="table table-striped table-bordered table-hover">
-      <thead>
-      <tr>
-        <th class="table_header">Last name</th>
-        <th class="table_header">First name</th>
-        <th class="table_header">Visit Date</th>
-        <th class="table_header">Email</th>
-        <th class="table_header">Contact</th>
-        <th class="table_header">City</th>
-        <th class="table_header">Zip code</th>
-        <th class="table_header">State</th>
-        <th class="table_header">Country</th>
-        <th class="table_header"></th>
-        <th class="table_header"></th>
-        <th class="table_header"></th>
-      </tr>
-      </thead>
+            <div class="dataTables_wrapper">
+              <table id="visitors_table" class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th class="table_header">Last name</th>
+                  <th class="table_header">First name</th>
+                  <th class="table_header">Visit Date</th>
+                  <th class="table_header">Email</th>
+                  <th class="table_header">Contactable</th>
+                  <th class="table_header">City</th>
+                  <th class="table_header">Zip code</th>
+                  <th class="table_header">State</th>
+                  <th class="table_header">Country</th>
+                  <th class="table_header"></th>
+                  <th class="table_header"></th>
+                  <th class="table_header"></th>
+                </tr>
+                </thead>
 
-      <tfoot>
-      <tr>
-        <th class="table_header">Last name</th>
-        <th class="table_header">First name</th>
-        <th class="table_header">Visit Date</th>
-        <th class="table_header">Email</th>
-        <th class="table_header">Contact</th>
-        <th class="table_header">City</th>
-        <th class="table_header">Zip code</th>
-        <th class="table_header">State</th>
-        <th class="table_header">Country</th>
-        <th class="table_header"></th>
-        <th class="table_header"></th>
-        <th class="table_header"></th>
-      </tr>
-      </tfoot>
+                <!--<tfoot>-->
+                <!--<tr>-->
+                  <!--<th class="table_header">Last name</th>-->
+                  <!--<th class="table_header">First name</th>-->
+                  <!--<th class="table_header">Visit Date</th>-->
+                  <!--<th class="table_header">Email</th>-->
+                  <!--<th class="table_header">Contactable</th>-->
+                  <!--<th class="table_header">City</th>-->
+                  <!--<th class="table_header">Zip code</th>-->
+                  <!--<th class="table_header">State</th>-->
+                  <!--<th class="table_header">Country</th>-->
+                  <!--<th class="table_header"></th>-->
+                  <!--<th class="table_header"></th>-->
+                  <!--<th class="table_header"></th>-->
+                <!--</tr>-->
+                <!--</tfoot>-->
 
-      <tbody>
-      <% @visitors.each do |visitor| %>
-          <tr>
-            <td><%= visitor.last_name %></td>
-            <td><%= visitor.first_name %></td>
-            <!--<td><%= visitor.group_id %></td>-->
-            <td><%= visitor.created_at %></td>
-            <td style="word-wrap: break-word"><%= visitor.email %></td>
-            <td style="text-align: center"><%= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>
-            <td><%= Zipcode.find(visitor.zip_code).city %></td>
-            <td style="text-align: center"><%= visitor.zip_code %></td>
-            <td><%= Zipcode.find(visitor.zip_code).state %></td>
-            <td style="word-wrap: break-word"><%= visitor.country.name %></td>
-            <td style="text-align: center"><button value='<%= visitor.id %>' id='show_info_<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye fa-1"></i></button></td>
-            <td style="text-align: center"><%= link_to '<i class="fa fa-pencil fa-1"></i>'.html_safe, edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
-            <td style="text-align: center"><%= link_to '<i class="fa fa-trash-o fa-1"></i>'.html_safe, visitor, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
+                <tbody>
+                <% @visitors.each do |visitor| %>
+                    <tr>
+                      <td><%= visitor.last_name %></td>
+                      <td><%= visitor.first_name %></td>
+                      <!--<td><%= visitor.group_id %></td>-->
+                      <td><%= visitor.created_at %></td>
+                      <td style="word-wrap: break-word"><%= visitor.email %></td>
+                      <!--<td style="text-align: center"><!= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>-->
+                      <td style="text-align: center"><%= visitor.contact == true ? 'Yes' : 'No' %></td>
+                      <td><%= Zipcode.find(visitor.zip_code).city %></td>
+                      <td style="text-align: center"><%= visitor.zip_code %></td>
+                      <td><%= Zipcode.find(visitor.zip_code).state %></td>
+                      <td style="word-wrap: break-word"><%= visitor.country.name %></td>
+                      <td style="text-align: center"><button value='<%= visitor.id %>' id='show_info_<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye fa-1"></i></button></td>
+                      <td style="text-align: center"><%= link_to '<i class="fa fa-pencil fa-1"></i>'.html_safe, edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
+                      <td style="text-align: center"><%= link_to '<i class="fa fa-trash-o fa-1"></i>'.html_safe, visitor, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
             </div>
             <!-- /.table-responsive -->
           </div>
@@ -160,16 +168,87 @@
 
 <script>
     $( document ).ready(function() {
+//      $('#alert_danger').hide();
+//      $('#alert_warning').hide();
 
         if ( $.fn.dataTable.isDataTable( '#visitors_table' ) ) {
-            table = $('#visitors_table').DataTable();
+            table = $('#visitors_table').DataTable({
+              destroy: true,
+              dom: 'T<"clear">lfrtip',
+              tableTools: {
+                sSwfPath: "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf",
+                aButtons: [
+                  {
+                    "sExtends": "copy",
+                    "sButtonText": "Copy",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "csv",
+                    "sButtonText": "CSV",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "pdf",
+                    "sButtonText": "PDF",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "xls",
+                    "sButtonText": "Excel",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "print",
+                    "sButtonText": "Print",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                ]
+              },
+              columnDefs: [ { "targets": 9, "orderable": false },
+                { "targets": 10, "orderable": false },
+                { "targets": 11, "orderable": false }]
+            });
         }
         else {
-            table = $('#visitors_table').DataTable();
+            table = $('#visitors_table').DataTable({
+              destroy: true,
+              dom: 'T<"clear">lfrtip',
+              tableTools: {
+                sSwfPath: "http://cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf",
+                aButtons: [
+                  {
+                    "sExtends": "copy",
+                    "sButtonText": "Copy",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "csv",
+                    "sButtonText": "CSV",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "pdf",
+                    "sButtonText": "PDF",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "xls",
+                    "sButtonText": "Excel",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                  {
+                    "sExtends": "print",
+                    "sButtonText": "Print",
+                    "mColumns": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+                  },
+                ]
+              },
+              columnDefs: [ { "targets": 9, "orderable": false },
+                { "targets": 10, "orderable": false },
+                { "targets": 11, "orderable": false }]
+            });
         }
-
-        $('#alert_danger').hide();
-        $('#alert_warning').hide();
 
         $('#sel_area').multiselect({includeSelectAllOption: true});
 
@@ -248,16 +327,20 @@
         $('#submit_btn').click(function(event) {
             if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
                 event.preventDefault();
-                $('#alert_danger').show();
+//                $('#alert_danger').show();
+                $('#alert_danger').removeClass('hidden');
                 $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_danger").hide();
+//                    $("#alert_danger").hide();
+                    $("#alert_danger").addClass('hidden');
                 });
             }
             else if(new Date($('#end_date').val()) > (new Date($.now()))){
                 event.preventDefault();
-                $('#alert_warning').show();
+//                $('#alert_warning').show();
+                $('#alert_warning').removeClass('hidden');
                 $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
-                    $("#alert_warning").hide();
+//                    $("#alert_warning").hide();
+                    $('#alert_warning').addClass('hidden');
                 });
             }
         });

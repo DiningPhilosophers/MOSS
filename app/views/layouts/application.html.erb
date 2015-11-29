@@ -32,7 +32,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand page-scroll" href="#page-top" style="font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive; color: #fed136;">Museum of American G.I</a>
+      <!--<a class="navbar-brand scroll" href="#page-top" style="font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive; color: #fed136;">Museum of American G.I.</a>-->
+      <a class="navbar-brand scroll" href="#page-top" style="font-family: 'Stencil'; font-size: 20px; color: #fed136;">Museum of American G.I.</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -42,10 +43,13 @@
           <a href="#page-top"></a>
         </li>
         <li>
-          <a class="page-scroll" href="#information">Information</a>
+          <a class="scroll" href="#zip-code" style="font-family: 'Helvetica'; font-size: 15px; color: #fed136">Zip Code</a>
         </li>
         <li>
-          <a class="page-scroll" href="#survey">Survey</a>
+          <a class="scroll" href="#information" style="font-family: 'Helvetica'; font-size: 15px; color: #fed136">Visitor Information</a>
+        </li>
+        <li>
+          <a class="scroll" href="#survey" style="font-family: 'Helvetica'; font-size: 15px; color: #fed136">Survey</a>
         </li>
       </ul>
     </div>
@@ -55,13 +59,13 @@
 </nav>
 
 
-  <% flash.each do |message_type, message| %>
-    <div id="alert">
-      <div class="alert alert-<%= message_type %>">
-        <%= message %>
-      </div>
-    </div>
-  <% end %>
+  <!--<!% flash.each do |message_type, message| %>-->
+    <!--<div id="alert">-->
+      <!--<div class="alert alert-<!%= message_type %>">-->
+        <!--<!%= message %>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--<!% end %>-->
 
 <div>
   <%= yield %>
@@ -71,9 +75,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <span class="copyright" style="color: #fed136">Copyright &copy; The Dining Philosophers <%= (Date.today>>1).strftime("%Y") %></span>
+        <span class="copyright" style="color: #fed136">Copyright &copy; <a href="#" style="color: #fed136">The Dining Philosophers</a> <%= (Date.today>>1).strftime("%Y") %></span>
       </div>
-      <div class="col-md-4">
+      <!--<div class="col-md-4">-->
         <!--<ul class="list-inline social-buttons">-->
         <!--<li><a href="#"><i class="fa fa-twitter"></i></a>-->
         <!--</li>-->
@@ -82,19 +86,30 @@
         <!--<li><a href="#"><i class="fa fa-linkedin"></i></a>-->
         <!--</li>-->
         <!--</ul>-->
-      </div>
-      <div class="col-md-4">
-        <ul class="list-inline quicklinks">
-          <!--<li><a href="#">Privacy Policy</a>-->
-          <!--</li>-->
-          <!--<li><a href="#">Terms of Use</a>-->
-          <!--</li>-->
-          <li><a href="login" style="color: #fed136; font-size: 15px">Administration</a></li>
-        </ul>
-      </div>
+      <!--</div>-->
+      <!--<div class="col-md-4">-->
+        <!--<ul class="list-inline quicklinks">-->
+          <!--&lt;!&ndash;<li><a href="#">Privacy Policy</a>&ndash;&gt;-->
+          <!--&lt;!&ndash;</li>&ndash;&gt;-->
+          <!--&lt;!&ndash;<li><a href="#">Terms of Use</a>&ndash;&gt;-->
+          <!--&lt;!&ndash;</li>&ndash;&gt;-->
+          <!--<li><a href="visitors_statistics" style="color: #fed136; font-size: 15px">Administration</a></li>-->
+        <!--</ul>-->
+      <!--</div>-->
     </div>
   </div>
 </footer>
+
+<!--{cms_jquery}-->
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".scroll").click(function(event) {
+    event.preventDefault();
+    $('html,body').animate( { scrollTop:$(this.hash).offset().top } , 500);
+    } );
+  } );
+</script>
 
 </body>
 </html>

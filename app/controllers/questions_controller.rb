@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
 
   # GET /questions
   # GET /questions.json
@@ -11,7 +12,11 @@ class QuestionsController < ApplicationController
   # GET /questions/13
   # GET /questions/1.json
   def show
+<<<<<<< HEAD
     # render :partial => 'questions/show', :content_type => 'text/html'
+=======
+    render :layout => 'admin'
+>>>>>>> development
   end
 
   # GET /questions/new
@@ -23,10 +28,13 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
     render :layout => 'admin'
+<<<<<<< HEAD
   end
 
   def editanswer
     render :layout => 'admin'
+=======
+>>>>>>> development
   end
 
   # POST /questions
@@ -77,6 +85,13 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question)
+      params.require(:question).permit(:question, :typ)
+    end
+
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
     end
 end

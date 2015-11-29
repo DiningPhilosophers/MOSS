@@ -27,6 +27,7 @@
 @import "font-awesome";
 //@import "dataTables/jquery.dataTables";
 @import "dataTables/extras/dataTables.responsive";
+@import "dataTables/extras/dataTables.tableTools";
 @import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
 
 html {
@@ -353,6 +354,7 @@ header .intro-text .intro-heading {
   font-size: 50px;
   font-weight: 700;
   line-height: 50px;
+  color: #fed136;
 }
 
 //.navbar-brand {
