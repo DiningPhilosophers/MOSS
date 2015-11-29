@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
   # GET /questions/13
   # GET /questions/1.json
   def show
-    render :layout => 'admin'
+    # render :partial => 'questions/show', :content_type => 'text/html'
   end
 
   # GET /questions/new

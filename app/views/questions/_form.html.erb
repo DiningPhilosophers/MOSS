@@ -21,9 +21,7 @@
       <%= link_to "Submit", "#", :class => 'button_submit' %>
     </div>
   </div>
-  <!-- <div class="actions">
-    <%= f.submit %>
-  </div> -->
+
   <% if(@question.typ == 'choice') %>
     <% @ans = Answer.where(:question_id => @question.id) %>
     <% end %>
@@ -49,10 +47,9 @@
         </tr>
         </thead>
 
-        <tbody>
-          <% @ans.each do |an| %>
-            <tr>
-              <td><%= an.answer %></td>
+        <!-- <tbody> -->
+          <!% @ans.each do |an| %>
+              <!-- <textarea><!%= an.answer %></textarea> -->
               <!-- <td> <!%= link_to "Edit", "#", :class => 'button_submit' %> </td> -->
               <!-- <td> <!%= button_tag(type: 'submit') do %>
                     <!%= content_tag(:strong, 'Ask me!') %>
@@ -61,9 +58,18 @@
               <!-- <td> <p id="demo"></p> </td> -->
               <!-- <td><!%= link_to_redbox 'Open The Details Form', 'redbox' %></td> -->
               <!-- <td> <!%= link_to "Submit", "#", :class => 'button_submit' %> </td> -->
-            </tr>
+          <!% end %>
+
+          <% @ans2 = @question.answers %>
+          <% @ans2.each do |ans| %>
+          <textarea> <%= ans.answer %> </textarea>
           <% end %>
-        </tbody>
+
+          <div id="answer_div"></div>
+          <a class='btn btn-success' id='add_more_ans'>Add More Answer</a>
+          </br></br>
+        <!-- </tbody> -->
+        <
       </table>
             </div>
           </div>
@@ -71,11 +77,12 @@
       </div>
     </div>
   </div>
-  <!-- <div id="redbox" style="display: none;">
-    <!%= form_for @ans do %>
-    <!% end -%>
-</div> -->
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
+
+
 
 <button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>
 
@@ -85,5 +92,13 @@
     // $(".button_submit").click(function() {
     //     $( "#form2" ).submit();
     // });
-
+    var counter = 0;
+    $('#add_more_ans').click(function() {
+      counter++;
+      $('#answer_div').append("<div class='field'>" +
+          "<label>Answer " + counter +"</label>" +
+          "<textarea></textarea>" +
+          "</div>"
+      );
+    });
 </script>

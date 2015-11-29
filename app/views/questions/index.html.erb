@@ -35,7 +35,7 @@
       <% @questions.each do |question| %>
         <tr>
           <td><%= question.question %></td>
-          <td style="text-align: center"><button value='<%= question.id %>' id='show_info_<%= question.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye fa-1"></i></button></td>
+          <td style="text-align: center"><button value='<%= question.id %>' id='show_info_<%= question.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#showquestionModal"><i class="fa fa-eye fa-1"></i></button></td>
           <td><%= link_to '<i class="fa fa-pencil fa-1"></i>'.html_safe, edit_question_path(question), class: 'btn btn-warning btn-xs' %></td>
           <td><%= link_to '<i class="fa fa-trash-o fa-1"></i>'.html_safe, question, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
@@ -47,7 +47,7 @@
 
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="showquestionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <!-- <div class="modal-header"> -->
@@ -55,10 +55,6 @@
         <!-- <h4 class="modal-title" id="myModalLabel">Displa</h4> -->
       <!-- </div> -->
       <div class="modal-body" id="modal-body">
-        <form class="form-horizontal" onsubmit="return false">
-          <input type="text" name="pepe" />
-          <a onclick="myFunction();" href="javascript:;">submit</a>
-        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -67,4 +63,25 @@
     </div>
   </div>
 </div>
+
 <%= link_to 'New Question', new_question_path, class: 'btn btn-primary', style: "color:white" %>
+
+
+<script type="text/javascript">
+    $('.show_btn').click(function() {
+        var val = $(this).attr("value")
+        $.ajax({
+            type: "GET",
+            dataType: "html",
+            url: "/questions/"+val.toString(),
+            success: function(data){
+                $('#modal-body').empty();
+                $('#modal-body').append(data);
+            }
+        });
+    });
+
+    function myFunction() {
+        $("#input2").submmit();
+    }
+</script>
