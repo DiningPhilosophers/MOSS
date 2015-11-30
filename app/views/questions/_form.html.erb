@@ -68,7 +68,9 @@
               if (selected_option.attr("value") === "choice") {
                   $("#answers_placeholder").append(answers)
               } else {
-                  answers = $("#answers")
+                  if ($("#answers").length != 0) {
+                      answers = $("#answers")
+                  }
                   answers.detach()
               }
           }
