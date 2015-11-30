@@ -21,22 +21,24 @@
     <%= f.label :typ %><br>
     <div class="row">
       <div class="field col-lg-8">
-        <%= f.text_area :typ %> # TODO make choice
+        <%= f.collection_select :typ, Country.all, :id, :name, {:selected => '215'}, class: 'form-control' %>
       </div>
     </div>
 
-    <div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
       <div class="row">
-        <div class="col-lg-12">
-            <%= f.fields_for :answers, @question.answers.new do |answer| %>
-              <%= answer.text_field :answer, placeholder: "Answer" %>
-            <% end %>
-
-
-          <div id="answer_div"></div>
-          <a class='btn btn-success' id='add_more_ans'>Add More Answer</a>
+          <div id="answers">
+            <div class="field col-lg-8"><input placeholder="Answer 1" type="text" name="question[answers_attributes][0][answer]" id="question_answers_attributes_0_answer"></div>
+          </div>
+          <a class='btn btn-success' id='add_more_ans' onclick="addAnswer();">Add More Answer</a>
+          <script>
+            var number_of_answers = 0
+            function addAnswer() {
+                number_of_answers++
+                var new_field = "<div class='field col-lg-8'><input placeholder='Answer " + (number_of_answers + 1) + "' type='text' name='question[answers_attributes][" + number_of_answers + "][answer]' id='question_answers_attributes_" + number_of_answers + "_answer'></div>"
+                $("#answers").append(new_field)
+            }
+          </script>
           </br></br>
-      </div>
     </div>
   <div class="actions">
     <%= f.submit "Submit Changes"%>
