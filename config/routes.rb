@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   # Home page
   root 'groups#new'
 
+  # Administrator section
+  get 'admin' => 'visitors_statistics#show'
+  get 'administrator' => 'visitors_statistics#show'
+
   # Visitor sing in page
   get 'signin' => 'groups#new', as: 'sign_in'
 
