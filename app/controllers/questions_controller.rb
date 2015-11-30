@@ -18,6 +18,9 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+
+    @question.answers.new
+
     render :layout => 'admin'
   end
 
@@ -74,7 +77,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question, :typ)
+      params.require(:question).permit(:question, :typ, answers_attributes: [:question_id, :answer]) # TODO maybe it is answers_attribute
     end
 
     def logged_in_user

@@ -18,15 +18,18 @@
     </div>
   </div>
 
-  <% if(@question.typ == 'choice') %>
-    <% @ans = Answer.where(:question_id => @question.id) %>
-    <% end %>
+    <%= f.label :typ %><br>
+    <div class="row">
+      <div class="field col-lg-8">
+        <%= f.text_area :typ %> # TODO make choice
+      </div>
+    </div>
 
     <div id="div_table" style="margin: 0 auto; text-align:center; padding-bottom: 30px">
       <div class="row">
         <div class="col-lg-12">
-            <%= f.fields_for :answers do |answer| %>
-              <%= answer.text_field :answer %>
+            <%= f.fields_for :answers, @question.answers.new do |answer| %>
+              <%= answer.text_field :answer, placeholder: "Answer" %>
             <% end %>
 
 
