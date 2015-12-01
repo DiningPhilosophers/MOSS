@@ -33,6 +33,7 @@
 //= require xepOnline.jqPlugin.008
 //= require canvg
 //= require rgbcolor
+//= require jsapi
 //= require Chartkick
 
 // require agency
