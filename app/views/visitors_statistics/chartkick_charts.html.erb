@@ -151,7 +151,7 @@
 
           var start = new Date($('#start_date').val());
           var end = new Date($('#end_date').val());
-          var current = start;
+          var current = new Date($('#start_date').val());
           var between = [];
 
           while (current <= end) {
@@ -162,7 +162,7 @@
           }
 
           $.ajax({
-            type: "GET",
+            type: "POST",
             dataType: "html",
             data: {
               dates: between,
