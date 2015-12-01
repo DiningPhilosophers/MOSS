@@ -318,14 +318,19 @@
 
 	function autocompleteCity(data)
 	{
-		if(data.Zipcode && data.Zipcode.city && data.Zipcode.state)
+		//is international checked?
+		var international = $('#InternationalCheckBox')[0].checked;
+		if(!international)
 		{
-			var cityState = data.Zipcode.city.trim().concat(', ', data.Zipcode.state.trim());
-			validCityState(cityState);
-		}
-		else
-		{
-			invalidCityState();
+			if(data.Zipcode && data.Zipcode.city && data.Zipcode.state)
+			{
+				var cityState = data.Zipcode.city.trim().concat(', ', data.Zipcode.state.trim());
+				validCityState(cityState);
+			}
+			else
+			{
+				invalidCityState();
+			}
 		}
 	}
 
