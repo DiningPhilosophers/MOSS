@@ -29,6 +29,8 @@ gem 'bootstrap-sass', '~> 3.3.5'
 
 gem 'mysql2', '~> 0.3.18'
 
+# gem 'mysql2', '0.4.2'
+
 gem 'bootstrap-datepicker-rails'
 
 # gem 'bootstrap-table-rails', '~> 1.8.1'
@@ -63,8 +65,6 @@ gem 'test-unit'
 gem 'jquery-datatables-rails'
 
 # gem 'chartkick'
-
-# gem 'mysql2'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
