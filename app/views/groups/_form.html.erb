@@ -218,7 +218,8 @@
 		{
 			//set zip-code to 00000, prevent US as option in dropdown
 			zipcode.val('00000');
-			zipcode.prop('disabled', true);
+//			zipcode.prop('disabled', true);
+      zipcode.prop("readonly", true);
 			countrySelect.find('option[value="215"]').hide();
 			countrySelect.find('option[value="1"]').prop('selected', true);
 			countrySelect.prop('disabled', false);
@@ -230,7 +231,8 @@
 			//reset
 			//set zip-code to empty, select US as option in dropdown
 			zipcode.val('');
-			zipcode.prop('disabled', false);
+//			zipcode.prop('disabled', false);
+      zipcode.prop("readonly", false);
 			countrySelect.find('option[value="215"]').show();
 			countrySelect.find('option[value="215"]').prop('selected', true);
 			countrySelect.prop('disabled', true);
