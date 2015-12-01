@@ -29,7 +29,7 @@ class AnswersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @answer.update(country_params)
+      if @answer.update(answer_params)
         format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
         format.json { render :show, status: :ok, location: @answer }
       else
