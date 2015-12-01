@@ -220,6 +220,7 @@
 			zipcode.val('00000');
 //			zipcode.prop('disabled', true);
       zipcode.prop("readonly", true);
+      zipcode.hide();
 			countrySelect.find('option[value="215"]').hide();
 			countrySelect.find('option[value="1"]').prop('selected', true);
 			countrySelect.prop('disabled', false);
@@ -233,6 +234,7 @@
 			zipcode.val('');
 //			zipcode.prop('disabled', false);
       zipcode.prop("readonly", false);
+      zipcode.show();
 			countrySelect.find('option[value="215"]').show();
 			countrySelect.find('option[value="215"]').prop('selected', true);
 			countrySelect.prop('disabled', true);
