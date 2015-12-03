@@ -36,7 +36,10 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+
+        remove_blank_answers
+
+        format.html { redirect_to questions_path, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -50,7 +53,10 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+
+        remove_blank_answers
+
+        format.html { redirect_to questions_path, notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -62,7 +68,12 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
+    # Destroy all the relevant answers
+    @question.answers.destroy_all
+
+    # Destroy question
     @question.destroy
+
     respond_to do |format|
       format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
@@ -77,13 +88,22 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question, :typ, answers_attributes: [:question_id, :answer]) # TODO maybe it is answers_attribute
+      params.require(:question).permit(:question, :typ, answers_attributes: [:id, :question_id, :answer])
     end
 
     def logged_in_user
       unless logged_in?
         flash[:danger] = "Please log in."
         redirect_to login_url
+      end
+    end
+
+    # Destroy blank answers
+    def remove_blank_answers
+      @question.answers.each do |answer|
+        if answer.answer == ""
+          answer.destroy
+        end
       end
     end
 end

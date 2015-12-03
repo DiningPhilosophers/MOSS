@@ -19,8 +19,8 @@
       </div>
     </div>
 
-    <!%= Question type %>
-    <%= f.label "Type" %><br>
+<!--    <!%= Question type %>
+    <!%= f.label "Type" %><br>
     <div class="row">
       <div class="field col-lg-8">
         <!%= Everytime type is selected, JavaScript function is executed in order to hide or show answers %>
@@ -30,38 +30,32 @@
         </select>
       </div>
     </div>
+-->
 
-    <%= f.fields_for :answers do |answer| %>
-        <!%= answer.text_area :answer %>
-        <%= answer.text_field  :answer %>
-    <% end %>
     <div class="row">
       <!%= Place where answers are inserted after beeing hidden %>
-      <!-- <div id="answers_placeholder">
+      <div id="answers_placeholder">
         <!%= Answers box including answer fields and "Add More Answers" button %>
         <div id="answers">
           <!%= Answer fields %>
           <div id="answers_fields">
-            <div class="field col-lg-8">
-              <!%= First answer field is shown %>
-              <input placeholder="Answer 1" type="text" name="question[answers_attributes][0][answer]" id="question_answers_attributes_0_answer">
-            </div>
+            <%= f.fields_for :answers, @question.answers do |answer| %>
+                <div class="field col-lg-8">
+                    <%= answer.text_field  :answer %>
+                </div>
+            <% end %>
           </div>
-          <div class="field col-lg-8">
-            <!%= On click will execute jQuery that will add additional fields %>
-            <a class='btn btn-success' id='add_more_ans' onclick="addAnswer();">Add More Answers</a></div>
+          <% if @question.typ == "choice"%>
+            <div class="field col-lg-8">
+              <!%= On click will execute jQuery that will add additional fields %>
+              <a class='btn btn-success' id='add_more_ans' onclick="addAnswer();">Add More Answers</a>
+            </div>
+          <%end%>
         </div>
-      </div> -->
-
-      <!% if(@question.typ == 'choice') %>
-        <!% @ans = Answer.where(:question_id =><!% @question.id) %>
-      <!% end %>
-      <!% @ans.each do |ans| %>
-        <!-- <input value="<!%= ans.answer %>" type="text" name="question[answers_attributes][0][answer]" id="question_answers_attributes_0_answer"> -->
-      <!% end %>
+      </div>
       <script>
           // Total number of input fields so far
-          var number_of_answers = 0
+          var number_of_answers = $("#answers_fields > div[class='field col-lg-8']").length - 1
 
           // Add one more answer field
           function addAnswer() {
