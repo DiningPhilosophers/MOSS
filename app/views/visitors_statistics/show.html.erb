@@ -276,7 +276,7 @@
         if($('#end_date').val() == '' || $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
             var startdate = $('#end_date').datepicker('getDate', '+1d');
-            startdate.setDate(startdate.getDate() - 15);
+            startdate.setDate(startdate.getDate() - 365);
             $('#start_date').datepicker("setDate", startdate);
         }
         else{
