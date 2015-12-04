@@ -74,6 +74,10 @@ class GroupsController < ApplicationController
     end
   end
 
+  def team
+    render :layout => 'team_layout'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group

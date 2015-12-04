@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'admin' => 'visitors_statistics#show'
   get 'administrator' => 'visitors_statistics#show'
 
-  # Visitor sing in page
+  # Visitor singin page
   get 'signin' => 'groups#new', as: 'sign_in'
 
   # Visitors statistics page
@@ -47,6 +47,9 @@ Rails.application.routes.draw do
 
   # Routes for adding a new administrator
   get 'signup'  => 'admins#new'
+
+  # Visitor singin page
+  get 'team' => 'groups#team', as: 'team'
 
   # Password reset
   resources :password_resets, only: [:create, :edit, :update]

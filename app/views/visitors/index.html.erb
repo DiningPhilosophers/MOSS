@@ -137,7 +137,7 @@
                       <td style="text-align: center"><%= visitor.zip_code %></td>
                       <td><%= Zipcode.find(visitor.zip_code).state %></td>
                       <td style="word-wrap: break-word"><%= visitor.country.name %></td>
-                      <td style="text-align: center"><button value='<%= visitor.id %>' id='show_info_<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye fa-1"></i></button></td>
+                      <td style="text-align: center"><a value='<%= visitor.id %>' id='show_info_<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye fa-1"></i></a></td>
                       <td style="text-align: center"><%= link_to '<i class="fa fa-pencil fa-1"></i>'.html_safe, edit_visitor_path(visitor), class: 'btn btn-warning btn-xs' %></td>
                       <td style="text-align: center"><%= link_to '<i class="fa fa-trash-o fa-1"></i>'.html_safe, visitor, class: 'btn btn-danger btn-xs', method: :delete, data: { confirm: 'Are you sure?' } %></td>
                     </tr>

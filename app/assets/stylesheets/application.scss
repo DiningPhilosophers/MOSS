@@ -423,3 +423,25 @@ fieldset[disabled] .btn-signin.active {
     margin: 0 auto;
     padding-bottom: 10px;
 }
+
+a {
+  text-decoration: none;
+  //color: #000;
+  /*display: block;*/
+  /*width: 200px;*/
+
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+
+a:hover {
+  /*text-transform: uppercase;*/
+  font-size: 130%;
+  //background: #f6f6f6;
+  background: transparent;
+  //color: #500000;
+  text-decoration: none;
+}
