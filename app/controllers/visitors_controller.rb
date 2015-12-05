@@ -72,13 +72,18 @@ class VisitorsController < ApplicationController
                 uniq.pluck(:zip_code))
       end
       if(@area.include?('ocit'))
+        # @visitors += Visitor.where(:created_at => @start_date..@end_date).
+        #     where(:zip_code => TexasZipcode.uniq.pluck(:zip_code)).
+        #     where.not(:zip_code => FilteredZipcode.uniq.pluck(:zip_code))
         @visitors += Visitor.where(:created_at => @start_date..@end_date).
-            where(:zip_code => TexasZipcode.uniq.pluck(:zip_code)).
+            where(:zip_code => Zipcode.where(:state => 'TX').uniq.pluck(:zip_code)).
             where.not(:zip_code => FilteredZipcode.uniq.pluck(:zip_code))
       end
       if(@area.include?('oos'))
+        # @visitors += Visitor.where(:created_at => @start_date..@end_date).
+        #     where.not(:zip_code => (TexasZipcode.uniq.pluck(:zip_code) << '00000'))
         @visitors += Visitor.where(:created_at => @start_date..@end_date).
-            where.not(:zip_code => (TexasZipcode.uniq.pluck(:zip_code) << '00000'))
+            where.not(:zip_code => (Zipcode.where(:state => 'TX').uniq.pluck(:zip_code) << '00000'))
       end
       if(@area.include?('N/A'))
         @visitors += Visitor.where(:created_at => @start_date..@end_date).

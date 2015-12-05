@@ -38,7 +38,7 @@
                     <td><%= visitor.created_at %></td>
                     <td style="word-wrap: break-word"><%= visitor.email %></td>
                     <!--<td style="text-align: center"><%= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>-->
-                    <td style="text-align: center"><%= visitor.contact == true ? 'Yes' : '' %></td>
+                    <td style="text-align: center"><%= visitor.contact == true ? 'Yes' : 'No' %></td>
                     <td><%= Zipcode.find(visitor.zip_code).city %></td>
                     <td style="text-align: center"><%= visitor.zip_code == '00000'? 'N/A' : visitor.zip_code %></td>
                     <td><%= Zipcode.find(visitor.zip_code).state %></td>

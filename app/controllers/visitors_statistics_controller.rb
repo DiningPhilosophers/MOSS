@@ -169,7 +169,7 @@ class VisitorsStatisticsController < ApplicationController
       @df_groups = Group.where(:id => @df_group_ids).pluck(:group_size)
       @df_v = @df_groups.sum()
     end
-    
+
     @n_austin_visitors = Visitor.where(:created_at => @start_date..@end_date).
         where(:zip_code => FilteredZipcode.where(:area => 'Austin').
             uniq.pluck(:zip_code))
@@ -182,7 +182,7 @@ class VisitorsStatisticsController < ApplicationController
     end
 
     @n_ocit_visitors =  Visitor.where(:created_at => @start_date..@end_date).
-        where(:zip_code => TexasZipcode.uniq.pluck(:zip_code)).
+        where(:zip_code => Zipcode.where(:state => 'TX').uniq.pluck(:zip_code)).
         where.not(:zip_code => FilteredZipcode.uniq.pluck(:zip_code))
     if(@n_ocit_visitors.size == 0)
       @ocit_v = 0
@@ -213,7 +213,7 @@ class VisitorsStatisticsController < ApplicationController
     end
 
     @n_os_visitors = Visitor.where(:created_at => @start_date..@end_date).
-        where.not(:zip_code => (TexasZipcode.uniq.pluck(:zip_code) << '00000'))
+        where.not(:zip_code => (Zipcode.where(:state => 'TX').uniq.pluck(:zip_code) << '00000'))
     if(@n_os_visitors.size == 0)
       @os_v = 0
     else

@@ -236,7 +236,8 @@
         }
 
         $('#sel_area').multiselect({includeSelectAllOption: true});
-        $('sel_area').multiselect('refresh');
+        $('#sel_area').multiselect('deselectAll', false);
+        $('#sel_area').multiselect('updateButtonText');
 
         if($('#end_date').val() == '' || $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
