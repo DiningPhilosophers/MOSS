@@ -1,4 +1,5 @@
 
+
 <%= form_for @group, :html => {:id => 'form'} do |f| %>
 	<% if @group.errors.any? %>
 		<div id="error_explanation">
@@ -29,15 +30,15 @@
 						<!% visitor.label :zip_code %>
 						<%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", pattern: '\d{5}', placeholder: :zip_code, required: 'required',  oninvalid: 'setCustomValidity(\'Zip code should be 5 numbers.\')', oninput: 'setCustomValidity(\'\')', maxlength: 5, minlength: 5 %>
 					</div>
-					<div class="field" hidden="hidden">
-						<input id="zipcode_error" class="form-control" disabled="disabled" name="zipcode_error" placeholder="The zip code you entered is invalid."/>
+					<div class="error field" hidden="hidden">
+						<input id="zipcode_error" class="form-control" disabled="disabled" name="zipcode_error" value="The zip code you entered is invalid."/>
 					</div>
 					<div class="field" hidden="hidden">
 						<input id="sign_in_city" class="form-control" disabled="disabled" name="city_input" placeholder="City"/>
 					</div>
 					<div class="field">
 						<!% visitor.label :country_id %>
-						<%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'}, class: 'form-control' %>
+						<%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'}, class: 'form-control', id: "sign_in_country_id" %>
 					</div>
 				</div>
 			</div>
@@ -61,12 +62,15 @@
 						<%= visitor.text_field :last_name, type: 'text', class: 'form-control', placeholder: :last_name, pattern: '\D*', oninvalid: 'setCustomValidity(\'Your name cannot contain numbers.\')', oninput: 'setCustomValidity(\'\')'  %>
   					</div>
 					<div class="field">
-						<!% visitor.label :email %>
-						<%= visitor.text_field :email, type: 'email', class: 'form-control', placeholder: :email, pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',  oninvalid: 'setCustomValidity(\'Invalid email address.\')', oninput: 'setCustomValidity(\'\')' %>
+						<label>May we contact you?</label>
+						<%= visitor.check_box :contact, {checked: false}, 0, class: "form-control" %>
 					</div>
 					<div class="field">
-						<label>May we contact you?</label>
-						<%= visitor.check_box :contact, {checked: true}, 1, class: "form-control" %>
+						<!% visitor.label :email %>
+						<%= visitor.text_field :email, id: "sign_in_email", type: 'email', class: 'form-control', placeholder: :email, pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',  oninvalid: 'setCustomValidity(\'Invalid email address.\')', oninput: 'setCustomValidity(\'\')' %>
+					</div>
+					<div class="error field" hidden="hidden">
+						<input id="email_error" class="form-control" disabled="disabled" name="zipcode_error" value='Your email is missing. Your email is required when you check the "May we contact you?" checkbox above.'/>
 					</div>
 					<div class="field">
 						<!% f.label :group_size %>
@@ -131,8 +135,10 @@
 
 <script type="text/javascript">
   jQuery(document).ready(function($) {
+    $('#NextButton1').click(checkZipCodeInfoValidity);
+    $('#NextButton2').click(checkEmailInfoValidity);
     $('#sign_in_zipcode').change(getAutocompleteCity);
-    $('.NextButton').click(checkVisitorInfoValidity);
+    $('#sign_in_email').change(onEmailChange);
     $('#InternationalCheckBox').change(onInternationalChange);
     $(".scroll").click(function(event) {
     event.preventDefault();
@@ -164,6 +170,18 @@
 	{
 		//show city field
 		$("#sign_in_city").closest("div.field").show();
+	}
+	
+	function showEmailError()
+	{
+		//show email error field
+		$("#email_error").closest("div.field").show();
+	}
+
+	function hideEmailError()
+	{
+		//show email error field
+		$("#email_error").closest("div.field").hide();
 	}
 
 	function hideError()
@@ -207,12 +225,11 @@
 		DisableNextButton();
 	}
 
-
 	function onInternationalChange(event)
 	{
 		//is international checked?
 		var international = this.checked;
-		var countrySelect = $('#group_visitors_attributes_0_country_id');
+		var countrySelect = $('#sign_in_country_id');
 		var zipcode = $('#sign_in_zipcode');
 		if(international)
 		{
@@ -244,7 +261,7 @@
 	}
 
 
-	function checkVisitorInfoValidity(event)
+	function checkZipCodeInfoValidity(event)
 	{
 		event.preventDefault();
 		var form = $('form#form');
@@ -295,6 +312,59 @@
 				form.find(':submit').click();
 			}
 
+		}
+	}
+
+	function onEmailChange(event)
+	{
+		var email = this.value;
+		if(email)
+		{
+			//not empty anymore
+			hideEmailError();
+		}		
+	}
+
+	function checkEmailInfoValidity(event)
+	{
+		event.preventDefault();
+		var form = $('form#form');
+		if(!form[0].checkValidity())
+		{
+			//if the form is invalid, submit it
+			//only way to get the form dialogs to popup
+			form.find(':submit').click();
+		}
+		else
+		{
+			//check email
+			var emailInput = $('#sign_in_email');
+			var email = emailInput.val();
+			if(!email)
+			{
+				//empty or null or undefined email
+				//we dont worry about emails that aren't empty, but are invalid, the form validity should check it.
+				//is Contact checked?
+				var contact = $('#group_visitors_attributes_0_contact')[0].checked;
+				if(contact)
+				{
+					//we may contact them, but no email is provided.
+					showEmailError();
+				}
+				else
+				{
+					hideEmailError();
+					//scroll for this function
+					$('html,body').animate( { scrollTop:$(this.hash).offset().top } , 500);
+				}
+
+			}
+			else
+			{
+				hideEmailError();
+				//scroll for this function
+				$('html,body').animate( { scrollTop:$(this.hash).offset().top } , 500);
+			}
 		}
 	}
 
