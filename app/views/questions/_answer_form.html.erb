@@ -39,6 +39,9 @@
         <div id="answers">
           <!%= Answer fields %>
           <div id="answers_fields">
+            <div class="field col-lg-8">
+              <%= f.label "Answers" %><br>
+              </div>
             <%= f.fields_for :answers, @question.answers do |answer| %>
                 <div class="field col-lg-8">
                     <%= answer.text_field  :answer %>
