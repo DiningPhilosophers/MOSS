@@ -46,7 +46,7 @@
           </div>
           <div class="field col-lg-8">
             <!%= On click will execute jQuery that will add additional fields %>
-            <a class='btn btn-success' id='add_more_ans' onclick="addAnswer();" style="float: right">Add More Answers</a>
+            <a class='btn btn-success' id='add_more_ans' onclick="addAnswer();" style="width: 300px; float: right">Add More Answers</a>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
           }
       </script>
       <div class="field col-lg-8">
-        <%= f.submit "Submit Changes", class: "btn btn-primary" %>
+        <%= f.submit "Submit Changes", class: "btn btn-primary", style: "width: 300px; float: right" %>
       </div>
     </div>
 <% end %>
