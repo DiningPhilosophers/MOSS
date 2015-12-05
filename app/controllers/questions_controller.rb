@@ -1,24 +1,32 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
 
   # GET /questions
   # GET /questions.json
   def index
     @questions = Question.all
+    render :layout => 'admin'
   end
 
-  # GET /questions/1
+  # GET /questions/13
   # GET /questions/1.json
   def show
+    render :layout => 'admin'
   end
 
   # GET /questions/new
   def new
     @question = Question.new
+
+    @question.answers.new
+
+    render :layout => 'admin'
   end
 
   # GET /questions/1/edit
   def edit
+    render :layout => 'admin'
   end
 
   # POST /questions
@@ -28,7 +36,10 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+
+        remove_blank_answers
+
+        format.html { redirect_to questions_path, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -42,7 +53,10 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+
+        remove_blank_answers
+
+        format.html { redirect_to questions_path, notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -54,7 +68,12 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
+    # Destroy all the relevant answers
+    @question.answers.destroy_all
+
+    # Destroy question
     @question.destroy
+
     respond_to do |format|
       format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
@@ -69,6 +88,22 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question)
+      params.require(:question).permit(:question, :typ, answers_attributes: [:id, :question_id, :answer])
+    end
+
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # Destroy blank answers
+    def remove_blank_answers
+      @question.answers.each do |answer|
+        if answer.answer == ""
+          answer.destroy
+        end
+      end
     end
 end

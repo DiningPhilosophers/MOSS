@@ -6,21 +6,28 @@ class AdminsController < ApplicationController
   # GET /admins.json
   def index
     @admins = Admin.all
+
+    render :layout => 'admin'
   end
 
   # GET /admins/1
   # GET /admins/1.json
   def show
     @admin = Admin.find(params[:id])
+
+    render :layout => 'admin'
   end
 
   # GET /admins/new
   def new
     @admin = Admin.new
+
+    render :layout => 'admin'
   end
 
   # GET /admins/1/edit
   def edit
+    render :layout => 'admin'
   end
 
   # POST /admins
@@ -57,7 +64,9 @@ class AdminsController < ApplicationController
         format.html { redirect_to visitors_statistics_path, notice: 'Admin was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin }
       else
-        format.html { render :edit }
+        format.html {
+          render :edit, :layout => 'admin'
+        }
         format.json { render json: @admin.errors, status: :unprocessable_entity }
       end
     end

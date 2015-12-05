@@ -19,7 +19,6 @@ class GroupsController < ApplicationController
 
     # Create a new group
     @group = Group.new
-
     # Create a new visitors reference
     @group.visitors.new
 
@@ -39,6 +38,7 @@ class GroupsController < ApplicationController
     # If no group size is specified, consider it group of 1
     @group.group_size = 1 if @group.group_size == nil
 
+    # @group.visitors.first.zip_code = '00000' if @group.visitors.first.zip_code == nil
     respond_to do |format|
       if @group.save
         format.html { redirect_to sign_in_path, notice: 'Group was successfully created.' }
@@ -74,6 +74,10 @@ class GroupsController < ApplicationController
     end
   end
 
+  def team
+    render :layout => 'team_layout'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group
@@ -83,6 +87,6 @@ class GroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       # We are taking in parameters also for visitors and surveys
-      params.require(:group).permit(:group_size, :visit_date, visitors_attributes: [:last_name, :first_name, :group_id, :email, :contact, :zip_code, :country_id], surveys_attributes: [:group_id, :question_id, :answer])
+      params.require(:group).permit( :group_size, :visit_date, visitors_attributes: [:last_name, :first_name, :group_id, :email, :contact, :zip_code, :country_id], surveys_attributes: [:group_id, :question_id, :answer])
     end
 end

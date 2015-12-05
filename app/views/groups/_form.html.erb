@@ -1,68 +1,91 @@
 
+
 <%= form_for @group, :html => {:id => 'form'} do |f| %>
-  <!-- Visitor Information Grid Section -->
-  <section id="information" class="bg-light-gray" style='min-height: 1000px; padding-top: 50px; '>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <!--<h2 class="section-heading">Information</h2>-->
-          <h3 class="section-subheading text-muted">Visitor Information.</h3>
-        </div>
-      </div>
-      <div class="row" style="padding-right: 10px; padding-left: 10px">
-      <% if @group.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+	<% if @group.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+			<ul>
+				<% @group.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<%= f.fields_for :visitors, @group.visitors.new do |visitor| %>
+		<!--Zip Code Section-->
 
-            <ul>
-              <% @group.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
-      <%= f.fields_for :visitors, @group.visitors.new do |visitor| %>
-          <div class="field">
-            <!% visitor.label :first_name %>
-            <%= visitor.text_field :first_name, class: 'form-control', placeholder: :first_name %>
-          </div>
-          <div class="field">
-            <!% visitor.label :last_name, class: 'sign_in_field_label' %>
-            <%= visitor.text_field :last_name, class: 'form-control', placeholder: :last_name %>
-          </div>
-          <div class="field">
-            <!% visitor.label :email %>
-            <%= visitor.text_field :email, class: 'form-control', placeholder: :email %>
-          </div>
-          <div class="field">
-            <label>May we contact you?</label>
-            <%= visitor.check_box :contact, {checked: true}, 1, class: "form-control" %>
-          </div>
-          <div class="field">
-            <!% visitor.label :zip_code %>
-            <%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", placeholder: :zip_code %>
-          </div>
-          <div class="field">
-            <!% visitor.label :country_id %>
-            <%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'}, class: 'form-control' %>
-          </div>
-      <% end %>
-
-      <div class="field">
-        <!% f.label :group_size %>
-        <label>How many people are in your group?</label>
-        <%= f.number_field :group_size, :value => 1, :min => 0, class: 'form-control' %>
-      </div>
-      <div class="field hidden">
-        <!% f.label :created_at %>
-        <%= f.datetime_select :created_at, class: 'form-control' %>
-      </div>
-
-      </div>
-    </div>
-    <a href="#survey" class="page-scroll btn btn-signin" style="width: 170px; display: block; margin: 0 auto;">Next</a>
-  </section>
+		<section id="zip-code" class="bg-light-gray" style='min-height: 1000px; padding-top: 50px; '>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h3 class="section-subheading text-muted">Zip Code/Country Information (required)</h3>
+					</div>
+				</div>
+				<div class="row" style="padding-right: 10px; padding-left: 10px">
+					<div class="field">
+						<label>Are you an international visitor?</label>
+						<input type="checkbox" id="InternationalCheckBox" >
+					</div>
+					<div class="field">
+						<!% visitor.label :zip_code %>
+						<%= visitor.text_field :zip_code, class: 'form-control', id: "sign_in_zipcode", pattern: '\d{5}', placeholder: :zip_code, required: 'required',  oninvalid: 'setCustomValidity(\'Zip code should be 5 numbers.\')', oninput: 'setCustomValidity(\'\')', maxlength: 5, minlength: 5 %>
+					</div>
+					<div class="error field" hidden="hidden">
+						<input id="zipcode_error" class="form-control" disabled="disabled" name="zipcode_error" value="The zip code you entered is invalid."/>
+					</div>
+					<div class="field" hidden="hidden">
+						<input id="sign_in_city" class="form-control" disabled="disabled" name="city_input" placeholder="City"/>
+					</div>
+					<div class="field">
+						<!% visitor.label :country_id %>
+						<%= visitor.collection_select :country_id, Country.all, :id, :name, {:selected => '215'}, class: 'form-control', id: "sign_in_country_id" %>
+					</div>
+				</div>
+			</div>
+			<a id="NextButton1" href="#information" class="btn btn-signin NextButton" style="width: 170px; display: block; margin: 0 auto;">Next</a>
+		</section>
+		<!-- Visitor Information Grid Section -->
+		<section id="information" class="bg-light-gray" style='min-height: 1000px; padding-top: 50px; '>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h3 class="section-subheading text-muted">Visitor Information.</h3>
+					</div>
+				</div>
+				<div class="row" style="padding-right: 10px; padding-left: 10px">
+					<div class="field">
+						<!% visitor.label :first_name %>
+						<%= visitor.text_field :first_name, type: 'text', class: 'form-control', placeholder: :first_name, pattern: '\D*',  oninvalid: 'setCustomValidity(\'Your name cannot contain numbers.\')', oninput: 'setCustomValidity(\'\')' %>
+					</div>
+					<div class="field">
+						<!% visitor.label :last_name, class: 'sign_in_field_label' %>
+						<%= visitor.text_field :last_name, type: 'text', class: 'form-control', placeholder: :last_name, pattern: '\D*', oninvalid: 'setCustomValidity(\'Your name cannot contain numbers.\')', oninput: 'setCustomValidity(\'\')'  %>
+  					</div>
+					<div class="field">
+						<label>May we contact you?</label>
+						<%= visitor.check_box :contact, {checked: false}, 0, class: "form-control" %>
+					</div>
+					<div class="field">
+						<!% visitor.label :email %>
+						<%= visitor.text_field :email, id: "sign_in_email", type: 'email', class: 'form-control', placeholder: :email, pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',  oninvalid: 'setCustomValidity(\'Invalid email address.\')', oninput: 'setCustomValidity(\'\')' %>
+					</div>
+					<div class="error field" hidden="hidden">
+						<input id="email_error" class="form-control" disabled="disabled" name="zipcode_error" value='Your email is missing. Your email is required when you check the "May we contact you?" checkbox above.'/>
+					</div>
+					<div class="field">
+						<!% f.label :group_size %>
+						<label>How many people are in your group?</label>
+						<%= f.number_field :group_size, :value => 1, :min => 1, :max => 99, class: 'form-control' %>
+					</div>
+					<div class="field hidden">
+						<!% f.label :created_at %>
+						<%= f.datetime_select :created_at, class: 'form-control' %>
+					</div>
+				</div>
+			</div>
+			<a id="NextButton2" href="#survey" class="btn btn-signin NextButton" style="width: 170px; display: block; margin: 0 auto;">Next</a>
+		</section>
+	<% end %>
 
   <!-- Survey Section -->
   <section id="survey"  style="min-height: 1000px; padding-top: 50px">
@@ -88,7 +111,7 @@
                         <%= survey.collection_select :answer, @ans, :id, :answer, {:selected => '215'}, class: 'form-control' %>
                     <% elsif(ques.typ == 'number') %>
                         <!= survey.text_field :answer, class: 'form-control', placeholder: "#{ques.question}" %>
-                        <%= survey.number_field :answer, :value => 1, :min => 0, class: 'form-control' %>
+                        <%= survey.number_field :answer, :value => 0, :min => 0, :max => 99, class: 'form-control' %>
                     <% end %>
                   </div>
                   <div class="field hidden">
@@ -107,20 +130,305 @@
   </section>
 <% end %>
 
-<script>
-//    $( document ).ready(function() {
-//        $.ajax({
-//            type: "GET",
-//            dataType: "json",
-//            url: "/zipcodes#index",
-//            success: function(data){
-//                var arr = $.map(data, function(el) { return el.zip_code });
-////                console.log(arr[0].zip_code);
-//                $( "#sign_in_zipcode" ).autocomplete({
-//                    source: arr,
-//                    delay: 0
-//                });
-//            }
-//        });
-//    });
+
+<!--{cms_jquery}-->
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $('#NextButton1').click(checkZipCodeInfoValidity);
+    $('#NextButton2').click(checkEmailInfoValidity);
+    $('#sign_in_zipcode').change(getAutocompleteCity);
+    $('#sign_in_email').change(onEmailChange);
+    $('#InternationalCheckBox').change(onInternationalChange);
+    $(".scroll").click(function(event) {
+    event.preventDefault();
+    $('html,body').animate( { scrollTop:$(this.hash).offset().top } , 500);
+    } );
+  } );
+
+
+	function DisableNextButton()
+	{
+		//disable Next Button
+		$('.NextButton').prop('disabled', true);
+	}
+
+	function EnableNextButton()
+	{
+		//enable Next Button
+		$('.NextButton').prop('disabled', false);
+	}
+
+
+	function hideCity()
+	{
+		//hide city field
+		$("#sign_in_city").closest("div.field").hide();
+	}
+
+	function showCity()
+	{
+		//show city field
+		$("#sign_in_city").closest("div.field").show();
+	}
+	
+	function showEmailError()
+	{
+		//show email error field
+		$("#email_error").closest("div.field").show();
+	}
+
+	function hideEmailError()
+	{
+		//show email error field
+		$("#email_error").closest("div.field").hide();
+	}
+
+	function hideError()
+	{
+		//hide city field
+		$("#zipcode_error").closest("div.field").hide();
+	}
+
+	function showError()
+	{
+		//show city field
+		$("#zipcode_error").closest("div.field").show();
+	}
+
+	function hideBoth()
+	{
+		hideError();
+		hideCity();
+	}
+
+	function validCityState(cityState)
+	{
+		var cityInput = $("#sign_in_city");
+		cityInput.val(cityState);
+		//show city field
+		showCity();
+		//hide the error field
+		hideError();
+		//set zip code state to valid
+		EnableNextButton();
+	}
+
+	function invalidCityState()
+	{
+		//invalid zip code
+		//show error
+		showError();
+		//hide city field
+		hideCity();
+		//set zip code state to invalid
+		DisableNextButton();
+	}
+
+	function onInternationalChange(event)
+	{
+		//is international checked?
+		var international = this.checked;
+		var countrySelect = $('#sign_in_country_id');
+		var zipcode = $('#sign_in_zipcode');
+		if(international)
+		{
+			//set zip-code to 00000, prevent US as option in dropdown
+			zipcode.val('00000');
+//			zipcode.prop('disabled', true);
+      zipcode.prop("readonly", true);
+      zipcode.hide();
+			countrySelect.find('option[value="215"]').hide();
+			countrySelect.find('option[value="1"]').prop('selected', true);
+			countrySelect.prop('disabled', false);
+			hideBoth();
+			EnableNextButton();
+		}
+		else
+		{
+			//reset
+			//set zip-code to empty, select US as option in dropdown
+			zipcode.val('');
+//			zipcode.prop('disabled', false);
+      zipcode.prop("readonly", false);
+      zipcode.show();
+			countrySelect.find('option[value="215"]').show();
+			countrySelect.find('option[value="215"]').prop('selected', true);
+			countrySelect.prop('disabled', true);
+			hideBoth();
+			DisableNextButton();
+		}
+	}
+
+
+	function checkZipCodeInfoValidity(event)
+	{
+		event.preventDefault();
+		var form = $('form#form');
+		if(!form[0].checkValidity())
+		{
+			//if the form is invalid, submit it
+			//only way to get the form dialogs to popup
+			form.find(':submit').click();
+		}
+		else
+		{
+
+			//get zip_code
+			var zip_code = $('#sign_in_zipcode').val();
+			//parseInt gets the first number in the zip-code e.g. for 12345-6789, zip_code_int = 12345;
+			var zip_code_int = parseInt(zip_code);
+			//check for valid zip code format
+			var zip_code_regex = /^\d{5}$/;
+			if(zip_code && zip_code_regex.test(zip_code) && zip_code_int && zip_code_int != 0)
+			{
+				//get the zipcode object which contains the city and state.
+				$.ajax({
+						url: "/zipcodes/city",
+						data: {"zip_code":zip_code},
+						context: this,
+						success: function(data)
+							{
+								isValidZipCode(data, this.hash);
+							},
+						dataType: "json"
+					});
+			}
+			else if(zip_code_int == 0)
+			{
+				//international no need to check zip code
+				hideBoth();
+				//scroll for this function
+				$('html,body').animate( { scrollTop:$(this.hash).offset().top } , 500);
+			}
+			else
+			{
+				//shouldn't get here, but just in case.
+				//invalid zipcode regex- let the default form checker catch it.
+				hideBoth();
+				DisableNextButton();
+				//the form is invalid, submit it
+				//only way to get the form dialogs to popup
+				form.find(':submit').click();
+			}
+
+		}
+	}
+
+	function onEmailChange(event)
+	{
+		var email = this.value;
+		if(email)
+		{
+			$('#group_visitors_attributes_0_contact')[0].checked = true;
+			//not empty anymore
+			hideEmailError();
+		}
+	}
+
+	function checkEmailInfoValidity(event)
+	{
+		event.preventDefault();
+		var form = $('form#form');
+		if(!form[0].checkValidity())
+		{
+			//if the form is invalid, submit it
+			//only way to get the form dialogs to popup
+			form.find(':submit').click();
+		}
+		else
+		{
+			//check email
+			var emailInput = $('#sign_in_email');
+			var email = emailInput.val();
+			if(!email)
+			{
+				//empty or null or undefined email
+				//we dont worry about emails that aren't empty, but are invalid, the form validity should check it.
+				//is Contact checked?
+				var contact = $('#group_visitors_attributes_0_contact')[0].checked;
+				if(contact)
+				{
+					//we may contact them, but no email is provided.
+					showEmailError();
+				}
+				else
+				{
+					hideEmailError();
+					//scroll for this function
+					$('html,body').animate( { scrollTop:$(this.hash).offset().top } , 500);
+				}
+
+			}
+			else
+			{
+				hideEmailError();
+				//scroll for this function
+				$('html,body').animate( { scrollTop:$(this.hash).offset().top } , 500);
+			}
+		}
+	}
+
+
+	//same as autocompleteCity except that this function scrolls if the zip code is good.
+	function isValidZipCode(data, hash)
+	{
+		if(data.Zipcode && data.Zipcode.city && data.Zipcode.state)
+		{
+			var cityState = data.Zipcode.city.trim().concat(', ', data.Zipcode.state.trim());
+			validCityState(cityState);
+			//scroll for this function
+			$('html,body').animate( { scrollTop:$(hash).offset().top } , 500);
+		}
+		else
+		{
+			invalidCityState();
+		}
+	}
+
+
+	function autocompleteCity(data)
+	{
+		//is international checked?
+		var international = $('#InternationalCheckBox')[0].checked;
+		if(!international)
+		{
+			if(data.Zipcode && data.Zipcode.city && data.Zipcode.state)
+			{
+				var cityState = data.Zipcode.city.trim().concat(', ', data.Zipcode.state.trim());
+				validCityState(cityState);
+			}
+			else
+			{
+				invalidCityState();
+			}
+		}
+	}
+
+	function getAutocompleteCity(event)
+	{
+		//get zip_code
+		var zip_code = event.target.value.trim();
+		//parseInt gets the first number in the zip-code e.g. for 12345-6789, zip_code_int = 12345;
+		var zip_code_int = parseInt(zip_code);
+		//check for valid zip code format
+		var zip_code_regex = /^\d{5}$/;
+		if(zip_code && zip_code_regex.test(zip_code) && zip_code_int && zip_code_int != 0)
+		{
+			//get the zipcode object which contains the city and state.
+			$.get(
+				"/zipcodes/city",
+				{"zip_code":zip_code},
+				autocompleteCity,
+				"json"
+			);
+		}
+		else
+		{
+			//invalid zipcode regex- let the default form checker catch it.
+			hideBoth();
+			DisableNextButton();
+		}
+	}
+
 </script>

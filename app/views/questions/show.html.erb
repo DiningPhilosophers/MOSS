@@ -4,6 +4,14 @@
   <strong>Question:</strong>
   <%= @question.question %>
 </p>
+<div class="modal-header">
+  <h2>
+    Question <%= @question.id %>
+  </h2>
+</div>
 
+<div class="modal-body">
+    <p><%= @question.question %></p>
+</div>
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
