@@ -320,9 +320,10 @@
 		var email = this.value;
 		if(email)
 		{
+			$('#group_visitors_attributes_0_contact')[0].checked = true;
 			//not empty anymore
 			hideEmailError();
-		}		
+		}
 	}
 
 	function checkEmailInfoValidity(event)
