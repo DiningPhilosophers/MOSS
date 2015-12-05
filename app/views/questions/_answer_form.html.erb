@@ -15,7 +15,7 @@
     <%= f.label :question %><br>
     <div class="row">
       <div class="field col-lg-8">
-        <%= f.text_area :question %>
+        <%= f.text_area :question, class: "form-control" %>
       </div>
     </div>
 
@@ -44,7 +44,7 @@
               </div>
             <%= f.fields_for :answers, @question.answers do |answer| %>
                 <div class="field col-lg-8">
-                    <%= answer.text_field  :answer %>
+                    <%= answer.text_field  :answer, class: "form-control" %>
                 </div>
             <% end %>
           </div>
@@ -63,7 +63,7 @@
           // Add one more answer field
           function addAnswer() {
               number_of_answers++
-              var new_field = "<div class='field col-lg-8'><input placeholder='Answer " + (number_of_answers + 1) + "' type='text' name='question[answers_attributes][" + number_of_answers + "][answer]' id='question_answers_attributes_" + number_of_answers + "_answer'></div>"
+              var new_field = "<div class='field col-lg-8'><input class='form-control' placeholder='Answer " + (number_of_answers + 1) + "' type='text' name='question[answers_attributes][" + number_of_answers + "][answer]' id='question_answers_attributes_" + number_of_answers + "_answer'></div>"
               $("#answers_fields").append(new_field)
           }
 
