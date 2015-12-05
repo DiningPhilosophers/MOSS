@@ -7,6 +7,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
+    render :layout => 'signin'
   end
 
   def create
