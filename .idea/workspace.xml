@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89f21418-e182-4a9b-86ab-4a08131d5db0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admins/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/admins/_form.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/groups/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/groups/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/groups/team.erb" afterPath="$PROJECT_DIR$/app/views/groups/team.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/admin.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/admin.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
     </list>
     <ignored path="MOSS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,23 +50,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/groups/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="246.83333">
-              <caret line="20" column="106" selection-start-line="20" selection-start-column="106" selection-end-line="20" selection-end-column="106" />
+            <state vertical-scroll-proportion="0.4787234">
+              <caret line="90" column="95" selection-start-line="90" selection-start-column="95" selection-end-line="90" selection-end-column="95" />
               <folding>
+                <element signature="n#style#0;n#section#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#section#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#section#2;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6409575">
-              <caret line="77" column="167" selection-start-line="77" selection-start-column="167" selection-end-line="77" selection-end-column="167" />
+            <state vertical-scroll-proportion="-7.5416665">
+              <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -196,8 +194,8 @@
         <option value="$PROJECT_DIR$/app/views/groups/team.erb" />
         <option value="$PROJECT_DIR$/app/views/admins/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/views/admins/_form.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/groups/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/groups/_form.html.erb" />
       </list>
     </option>
   </component>
@@ -994,21 +992,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/groups/_form.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="246.83333">
-          <caret line="20" column="106" selection-start-line="20" selection-start-column="106" selection-end-line="20" selection-end-column="106" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-7.5416665">
+          <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/groups/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6409575">
-          <caret line="77" column="167" selection-start-line="77" selection-start-column="167" selection-end-line="77" selection-end-column="167" />
-          <folding />
+        <state vertical-scroll-proportion="0.4787234">
+          <caret line="90" column="95" selection-start-line="90" selection-start-column="95" selection-end-line="90" selection-end-column="95" />
+          <folding>
+            <element signature="n#style#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#section#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#section#2;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
