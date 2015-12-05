@@ -69,8 +69,9 @@
 						<!% visitor.label :email %>
 						<%= visitor.text_field :email, id: "sign_in_email", type: 'email', class: 'form-control', placeholder: :email, pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',  oninvalid: 'setCustomValidity(\'Invalid email address.\')', oninput: 'setCustomValidity(\'\')' %>
 					</div>
-					<div class="error field" hidden="hidden">
-						<input id="email_error" class="form-control" disabled="disabled" name="zipcode_error" value='Your email is missing. Your email is required when you check the "May we contact you?" checkbox above.'/>
+					<div id="email_error" class="error field alert alert-warning" hidden="hidden">
+            <strong>Your email is missing. Your email is required when you check the contact checkbox above.</strong>
+						<!--<input id="email_error" class="form-control" disabled="disabled" name="zipcode_error" value='Your email is missing. Your email is required when you check the "May we contact you?" checkbox above.'/>-->
 					</div>
 					<div class="field">
 						<!% f.label :group_size %>
