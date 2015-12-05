@@ -26,16 +26,6 @@
   </div>
 </div>
 
-<!--<div>-->
-  <!--<p id="notice"><%= notice %></p>-->
-<!--</div>-->
-
-
-<!--<div class="content">-->
-  <!--<div class="page-header">-->
-    <!--<h1 class="visitor_title">Visitors Information</h1>-->
-  <!--</div>-->
-
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Visitors Information</h1>
@@ -55,7 +45,7 @@
           <span class="input-group-addon">
             Contactable ?
             <!--<input type="checkbox" value="1" id="contactable" name="contactable" style="width: 30px">-->
-            <%= check_box_tag :contactable, 1, !!params[:contactable], :class => "check" %>
+            <%= check_box_tag :contactable, 1, !!params[:contactable], :class => 'check' %>
           </span>
         </div>
       </div>
@@ -69,7 +59,7 @@
       <label for="sel_area">Choose Area:</label >
       <%= select_tag("sel_area", options_for_select([['Austin', 'Austin'], ['Houston', 'Houston'],
                                                      ['Bryan/College Station', 'bcs'], ['Dallas/Fort Worth', 'df'],
-                                                     ['San Antonio', 'San Antonio'], ['Other Cities in Texas', 'ocit'],
+                                                     ['San Antonio', 'San Antonio'], ['Other Areas in Texas', 'ocit'],
                                                      ['Out of State', 'oos'], ['Out of Country', 'N/A']],
                                                     :selected => params[:area]),
                      :class => "multiselect", :multiple => "multiple") %>
@@ -134,7 +124,7 @@
                       <!--<td style="text-align: center"><!= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>-->
                       <td style="text-align: center"><%= visitor.contact == true ? 'Yes' : 'No' %></td>
                       <td><%= Zipcode.find(visitor.zip_code).city %></td>
-                      <td style="text-align: center"><%= visitor.zip_code %></td>
+                      <td style="text-align: center"><%= visitor.zip_code == '00000'? 'N/A' : visitor.zip_code %></td>
                       <td><%= Zipcode.find(visitor.zip_code).state %></td>
                       <td style="word-wrap: break-word"><%= visitor.country.name %></td>
                       <td style="text-align: center"><a value='<%= visitor.id %>' id='show_info_<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye fa-1"></i></a></td>
@@ -160,9 +150,11 @@
 
 
 <script>
+//  $( document).on('reset', function(){
+//      $('#sel_area').multiselect('deselectAll', true);
+//  });
+
     $( document ).ready(function() {
-//      $('#alert_danger').hide();
-//      $('#alert_warning').hide();
 
         if ( $.fn.dataTable.isDataTable( '#visitors_table' ) ) {
             table = $('#visitors_table').DataTable({
@@ -244,6 +236,7 @@
         }
 
         $('#sel_area').multiselect({includeSelectAllOption: true});
+        $('sel_area').multiselect('refresh');
 
         if($('#end_date').val() == '' || $('#start_date').val()== '') {
             $('#end_date').datepicker("setDate", new Date());
@@ -257,24 +250,23 @@
         }
 
         $('#sel_area').change(function(){
-            var selected = $('#sel_area').val()
-//            if(selected != null){
-                $.ajax({
-                    type: "GET",
-                    dataType: "html",
-                    data:{
-                        area: selected,
-                        start_date: $('#start_date').val(),
-                        end_date: $('#end_date').val(),
-                        contactable: $('#contactable').val(),
-                    },
-                    url: "/filter_area",
-                    success: function(data){
-                        $('#div_table').empty();
-                        $('#div_table').append(data);
-                    }
-                });
-//            }
+          var check = $('#contactable').is(':checked') == true? 1 : 0;
+          var selected = $('#sel_area').val()
+              $.ajax({
+                  type: "GET",
+                  dataType: "html",
+                  data:{
+                      area: selected,
+                      start_date: $('#start_date').val(),
+                      end_date: $('#end_date').val(),
+                      contactable: check,
+                  },
+                  url: "/filter_area",
+                  success: function(data){
+                      $('#div_table').empty();
+                      $('#div_table').append(data);
+                  }
+              });
         });
 
         $(".search").keyup(function () {
@@ -320,19 +312,15 @@
         $('#submit_btn').click(function(event) {
             if(new Date($('#start_date').val()) >= new Date($('#end_date').val())) {
                 event.preventDefault();
-//                $('#alert_danger').show();
                 $('#alert_danger').removeClass('hidden');
                 $("#alert_danger").fadeTo(3000, 500).slideUp(500, function(){
-//                    $("#alert_danger").hide();
                     $("#alert_danger").addClass('hidden');
                 });
             }
             else if(new Date($('#end_date').val()) > (new Date($.now()))){
                 event.preventDefault();
-//                $('#alert_warning').show();
                 $('#alert_warning').removeClass('hidden');
                 $("#alert_warning").fadeTo(3000, 500).slideUp(500, function(){
-//                    $("#alert_warning").hide();
                     $('#alert_warning').addClass('hidden');
                 });
             }

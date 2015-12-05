@@ -17,7 +17,7 @@
                 <th class="table_header">First name</th>
                 <th class="table_header">Visit Date</th>
                 <th class="table_header">Email</th>
-                <th class="table_header">Contact</th>
+                <th class="table_header">Contactable</th>
                 <th class="table_header">City</th>
                 <th class="table_header">Zip code</th>
                 <th class="table_header">State</th>
@@ -28,22 +28,6 @@
               </tr>
               </thead>
 
-              <tfoot>
-              <tr>
-                <th class="table_header">Last name</th>
-                <th class="table_header">First name</th>
-                <th class="table_header">Visit Date</th>
-                <th class="table_header">Email</th>
-                <th class="table_header">Contact</th>
-                <th class="table_header">City</th>
-                <th class="table_header">Zip code</th>
-                <th class="table_header">State</th>
-                <th class="table_header">Country</th>
-                <th class="table_header"></th>
-                <th class="table_header"></th>
-                <th class="table_header"></th>
-              </tr>
-              </tfoot>
 
               <tbody>
               <% @visitors.each do |visitor| %>
@@ -53,9 +37,10 @@
                     <!--<td><%= visitor.group_id %></td>-->
                     <td><%= visitor.created_at %></td>
                     <td style="word-wrap: break-word"><%= visitor.email %></td>
-                    <td style="text-align: center"><%= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>
+                    <!--<td style="text-align: center"><%= visitor.contact == true ? content_tag(:span, '',:class => 'glyphicon glyphicon-thumbs-up') : '' %></td>-->
+                    <td style="text-align: center"><%= visitor.contact == true ? 'Yes' : '' %></td>
                     <td><%= Zipcode.find(visitor.zip_code).city %></td>
-                    <td style="text-align: center"><%= visitor.zip_code %></td>
+                    <td style="text-align: center"><%= visitor.zip_code == '00000'? 'N/A' : visitor.zip_code %></td>
                     <td><%= Zipcode.find(visitor.zip_code).state %></td>
                     <td style="word-wrap: break-word"><%= visitor.country.name %></td>
                     <td style="text-align: center"><button value='<%= visitor.id %>' type="button" class="btn btn-primary btn-xs show_btn" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye fa-1"></i></button></td>
