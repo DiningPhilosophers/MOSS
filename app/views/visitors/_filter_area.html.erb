@@ -68,6 +68,7 @@
     $( document ).ready(function() {
         if ( $.fn.dataTable.isDataTable( '#visitors_table' ) ) {
           table = $('#visitors_table').DataTable({
+            paging: false,
             destroy: true,
             "dom": 'T<"clear">lfrtip',
             "tableTools": {
@@ -107,6 +108,7 @@
         }
         else {
           table = $('#visitors_table').DataTable({
+            paging: false,
             destroy: true,
             "dom": 'T<"clear">lfrtip',
             "tableTools": {
