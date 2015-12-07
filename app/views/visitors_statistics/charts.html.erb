@@ -165,12 +165,20 @@
                     });
 
                     $('#print').click(function () {
-                      printMe();
+//                      printMe();
+                      var divContents = $("#donut-chart").html();
+                      var printWindow = window.open('', '', 'height=400,width=800');
+                      printWindow.document.write('<html><head><title>Pie Chart</title>');
+                      printWindow.document.write('</head><body >');
+                      printWindow.document.write(divContents);
+                      printWindow.document.write('</body></html>');
+                      printWindow.document.close();
+                      printWindow.print();
                     });
                    // This will render SVG only as PDF and download
-                    function printMe() {
-                        xepOnline.Formatter.Format('donut-chart', {render:'download', srctype:'svg'});
-                    }
+//                    function printMe() {
+//                        xepOnline.Formatter.Format('donut-chart', {render:'download', srctype:'svg'});
+//                    }
 
 
                     var start = new Date($('#start_date').val());
@@ -224,12 +232,20 @@
                             $('#print2').removeClass('hidden');
 
                             $('#print2').click(function () {
-                               printMe();
+//                               printMe();
+                              var divContents = $("#bar-chart").html();
+                              var printWindow = window.open('', '', 'height=400,width=800');
+                              printWindow.document.write('<html><head><title>Line Chart</title>');
+                              printWindow.document.write('</head><body >');
+                              printWindow.document.write(divContents);
+                              printWindow.document.write('</body></html>');
+                              printWindow.document.close();
+                              printWindow.print();
                             });
                            // This will render SVG only as PDF and download
-                            function printMe() {
-                                  xepOnline.Formatter.Format('bar-chart', {render:'download', srctype:'svg'});
-                            }
+//                            function printMe() {
+//                                  xepOnline.Formatter.Format('bar-chart', {render:'download', srctype:'svg'});
+//                            }
                         }
                     });
                 }
