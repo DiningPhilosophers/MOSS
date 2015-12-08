@@ -151,13 +151,13 @@ class VisitorsStatisticsController < ApplicationController
       @end_date = DateTime.strptime(@end_date,'%m/%d/%Y').at_end_of_day
     end
 
-    @total_visitors = Group.where(:created_at => @start_date..@end_date)
-    if(@total_visitors.size == 0)
-      @total_v = 0
-    else
-      @total_groups = @total_visitors.pluck(:group_size)
-      @total_v = @total_groups.sum()
-    end
+    # @total_visitors = Group.where(:created_at => @start_date..@end_date)
+    # if(@total_visitors.size == 0)
+    #   @total_v = 0
+    # else
+    #   @total_groups = @total_visitors.pluck(:group_size)
+    #   @total_v = @total_groups.sum()
+    # end
 
     @n_df_visitors = Visitor.where(:created_at => @start_date..@end_date).
         where(:zip_code => FilteredZipcode.where(:area => 'Dallas/Fort Worth').
@@ -243,6 +243,8 @@ class VisitorsStatisticsController < ApplicationController
       @houston_groups = Group.where(:id => @houston_group_ids).pluck(:group_size)
       @houston_v = @houston_groups.sum()
     end
+
+    @total_v = @houston_v + @sa_v + @os_v + @bcs_v + @ooc_v + @ocit_v + @austin_v + @df_v
 
     render :layout => 'admin'
   end
